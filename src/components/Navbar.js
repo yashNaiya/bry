@@ -8,7 +8,7 @@ export default function Navbar() {
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav me-auto mb-2 mb-lg-0">
         <li className="nav-item">
-        <img src="./logo512.png" alt="" width="70" height="55"/>
+        <img src="./BVM.jpg" alt="" width="70" height="55"/>
         </li>
       </ul>
       <form className="d-flex" role="search">
