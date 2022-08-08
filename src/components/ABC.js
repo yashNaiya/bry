@@ -1,8 +1,8 @@
 import React from 'react'
-
+import './ABC.css'
 export default function heading() {
   return (
-    <div >
+    <div class="first">
        <h1><center>BVM Computer Department Platform</center></h1>
        <div class="container text-center">
   <div class="row">
