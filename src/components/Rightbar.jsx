@@ -1,6 +1,6 @@
 import React from 'react'
 import FilterAltIcon from '@mui/icons-material/FilterAlt';
-import { Box, InputLabel, FormControl, Typography, FormControlLabel, Checkbox, FormGroup, Button } from '@mui/material'
+import { Box, InputLabel, FormControl, Typography, FormControlLabel, Checkbox, FormGroup } from '@mui/material'
 import { MenuItem } from '@mui/material';
 import Select from '@mui/material/Select';
 
@@ -62,7 +62,6 @@ const Rightbar = () => {
           <FormControlLabel control={<Checkbox/>} label="Show only 3 LPA+ jobs" />
           <FormControlLabel control={<Checkbox/>} label="Include all internships" />
         </FormGroup>
-        <Button variant='button' type="reset">Clear all</Button>
       </Box>
     </Box>
   )

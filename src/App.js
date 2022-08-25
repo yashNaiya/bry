@@ -3,6 +3,9 @@ import Rightbar from "./components/Rightbar";
 import Sidebar from "./components/Sidbaer";
 import { Box, Stack } from "@mui/material"
 import Navbar from "./components/Navbar"
+import Login from "./components/Login";
+import Landing from "./components/Landing";
+
 
 function App() {
 
@@ -18,6 +21,8 @@ function App() {
         </Stack>
       </Box>
     </Box>
+    // <Login/>
+    // <Landing/>
   );
 }
 
