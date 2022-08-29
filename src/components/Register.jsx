@@ -1,11 +1,15 @@
-import { Box, Typography, TextField, Button, } from '@mui/material'
 import React from 'react'
+import { Box, Typography, TextField, Button, } from '@mui/material'
 import { useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-
-const Login = (props) => {
-    const [isSignup, setisSignup] = useState(false)
+const Register = (props) => {
+    const handleChange = (e) => {
+        setinputs((prevState) => ({
+            ...prevState,
+            [e.target.name]: [e.target.value]
+        }))
+    }
 
     const [inputs, setinputs] = useState({
         name: "",
@@ -14,17 +18,10 @@ const Login = (props) => {
         number: ""
     })
 
-    const handleChange = (e) => {
-        setinputs((prevState) => ({
-            ...prevState,
-            [e.target.name]: [e.target.value]
-        }))
-    }
-
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(inputs)
-        // const { name, email, password} =inputs
+        // const { name, email, password, number} =inputs
         // if(isSignup){
         //    const result = await fetch('/api/regiser',{
         //         method:"POST",
@@ -38,13 +35,6 @@ const Login = (props) => {
         //         })
         //     }).then((res)=>res.json())
         // }
-    }
-
-    const handleReset = (e) => {
-        setisSignup(!isSignup);
-        setinputs({
-            name: "", email: "", password: ""
-        })
     }
     return (
         <form onSubmit={handleSubmit}>
@@ -66,22 +56,21 @@ const Login = (props) => {
                 }}
             >
                 <Box display="flex" sx={{ alignItems: "center" }}>
-                    <Button onClick={props.setChange}>
+                    <Button onClick={props.setShow}>
                         <ArrowBackIcon />
                     </Button>
-                    <Typography variant='h5' fontWeight={100} padding={3}>{isSignup ? "Signup" : "Login"}</Typography>
+                    <Typography variant='h5' fontWeight={100} padding={3}>Signup</Typography>
                 </Box>
-                {isSignup && (<><TextField
+                <TextField
                     name='name'
                     onChange={handleChange}
                     value={inputs.name}
                     size='small' margin='normal' type={"text"} placeholder='Name' />
-                    <TextField
-                        name='number'
-                        onChange={handleChange}
-                        value={inputs.number}
-                        size='small' margin='normal' type={"text"} placeholder='Number' />
-                </>)}
+                <TextField
+                    name='number'
+                    onChange={handleChange}
+                    value={inputs.number}
+                    size='small' margin='normal' type={"text"} placeholder='Number' />
                 <TextField
                     value={inputs.email}
                     onChange={handleChange}
@@ -92,11 +81,11 @@ const Login = (props) => {
                     value={inputs.password}
                     onChange={handleChange}
                     size='small' margin='normal' type={"password"} placeholder='Password' />
-                <Button type="submit" variant='contained' sx={{ marginTop: 3 }}>{isSignup ? "Signup" : "Login"}</Button>
-                <Button sx={{ marginTop: 3 }} onClick={handleReset}>{isSignup ? "Login" : "Signup"}</Button>
+                <Button type="submit" variant='contained' sx={{ marginTop: 3 }}>Signup</Button>
+                {/* <Button sx={{ marginTop: 3 }} onClick={handleReset}>{"Signup"}</Button> */}
             </Box>
         </form>
     )
 }
 
-export default Login
+export default Register

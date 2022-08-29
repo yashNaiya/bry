@@ -37,7 +37,7 @@ const Navbar = () => {
   return (
     <AppBar position='sticky' color="secondary"sx={{boxShadow:"none", paddingY:"1%"}} >
       <StyledToolbar >
-        <Typography variant="h6" color="primary" sx={{ display: { xs: "none", sm: "block" } }}>B.ry</Typography>
+        <Typography variant="h6" color="primary" sx={{ display: { xs: "none", sm: "block" } }}>BVM</Typography>
         <Searchbar><InputBase placeholder='search..' /></Searchbar>
         <Icons>
           <Badge badgeContent={4} color="thirdCol">
