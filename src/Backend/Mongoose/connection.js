@@ -25,10 +25,10 @@ const Infouser = new mongoose.Schema({
         
     },
     number : {
-        type:Number,
+        type:String,
         required:true,
-        max : [10,"Maximun 10 Digits"],
-        min : [10,"Minimum 10 Digits"]
+        minlength : [10,"Enter Valid Number"],
+        maxlength : [10,"Enter Valid Number"]
     },
     email :{ 
          type:String,

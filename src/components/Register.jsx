@@ -30,20 +30,6 @@ const Register = (props) => {
          }else{
             alert("Invalid Input")}
 
-         
-        // if(isSignup){
-        //    const result = await fetch('/api/regiser',{
-        //         method:"POST",
-        //         headers:{
-        //             'Content-Type':'application/json'
-        //         },
-        //         body:JSON.stringify({
-        //             name,
-        //             email,
-        //             password
-        //         })
-        //     }).then((res)=>res.json())
-        // }
     }
     return (
         <form onSubmit={handleSubmit} >
