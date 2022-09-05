@@ -2,6 +2,7 @@ import { Box, Typography, TextField, Button, } from '@mui/material'
 import React from 'react'
 import { useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import axios from "axios"
 
 
 const Login = (props) => {
@@ -24,6 +25,15 @@ const Login = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(inputs)
+        const { email , password} = inputs
+        if (email && password){
+           alert("posted")
+           axios.post("/login",inputs)
+           .then(res => alert(res.data.message) )
+        }else{
+           alert("Invalid Input")}
+
+
         // const { name, email, password} =inputs
         // if(isSignup){
         //    const result = await fetch('/api/regiser',{

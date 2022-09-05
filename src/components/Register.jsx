@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Typography, TextField, Button, } from '@mui/material'
 import { useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import axios from "axios"
 
 const Register = (props) => {
     const handleChange = (e) => {
@@ -20,8 +21,16 @@ const Register = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(inputs)
-        // const { name, email, password, number} =inputs
+        // console.log(inputs)
+        const { name, email, password, number} = inputs
+         if (name && email && password && number){
+            alert("posted")
+            axios.post("/register",inputs)
+            .then(res => alert(res.data.message))
+         }else{
+            alert("Invalid Input")}
+
+         
         // if(isSignup){
         //    const result = await fetch('/api/regiser',{
         //         method:"POST",
@@ -37,7 +46,7 @@ const Register = (props) => {
         // }
     }
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} >
             <Box
                 display="flex"
                 flexDirection={'column'}
@@ -81,7 +90,7 @@ const Register = (props) => {
                     value={inputs.password}
                     onChange={handleChange}
                     size='small' margin='normal' type={"password"} placeholder='Password' />
-                <Button type="submit" variant='contained' sx={{ marginTop: 3 }}>Signup</Button>
+                <Button type="submit" variant='contained' sx={{ marginTop: 3 }} onClick={handleSubmit}>Signup</Button>
                 {/* <Button sx={{ marginTop: 3 }} onClick={handleReset}>{"Signup"}</Button> */}
             </Box>
         </form>
