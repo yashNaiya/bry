@@ -73,21 +73,25 @@ const Login = (props) => {
                 </Box>
                 {isSignup && (<><TextField
                     name='name'
+                    autoComplete='off'
                     onChange={handleChange}
                     value={inputs.name}
                     size='small' margin='normal' type={"text"} placeholder='Name' />
                     <TextField
                         name='number'
+                        autoComplete='off'
                         onChange={handleChange}
                         value={inputs.number}
                         size='small' margin='normal' type={"text"} placeholder='Number' />
                 </>)}
                 <TextField
+                    autoComplete='off'
                     value={inputs.email}
                     onChange={handleChange}
                     name='email'
                     size='small' margin='normal' type={"email"} placeholder='Email' />
                 <TextField
+                    autoComplete='off'
                     name='password'
                     value={inputs.password}
                     onChange={handleChange}

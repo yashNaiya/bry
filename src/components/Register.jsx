@@ -1,7 +1,8 @@
 import React from 'react'
-import { Box, Typography, TextField, Button, } from '@mui/material'
+import { Box, Typography, TextField, Button, MenuItem, Select } from '@mui/material'
 import { useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+
 
 const Register = (props) => {
     const handleChange = (e) => {
@@ -15,7 +16,10 @@ const Register = (props) => {
         name: "",
         email: "",
         password: "",
-        number: ""
+        number: "",
+        ID: "",
+        rePass: "",
+        batch:""
     })
 
     const handleSubmit = async (e) => {
@@ -39,14 +43,9 @@ const Register = (props) => {
     return (
         <form onSubmit={handleSubmit}>
             <Box
-                display="flex"
+                display='flex'
                 flexDirection={'column'}
-                maxWidth={400}
-                alignItems="center"
-                justifyContent={"center"}
-                margin="auto"
-                marginTop={5}
-                padding={3}
+                alignItems='center'
                 borderRadius={5}
                 boxShadow={"5px 5px 10px #ccc"}
                 sx={{
@@ -54,35 +53,77 @@ const Register = (props) => {
                         boxShadow: "10px 10px 20px #ccc"
                     }
                 }}
-            >
-                <Box display="flex" sx={{ alignItems: "center" }}>
+                maxWidth={700}
+                margin="auto"
+                marginTop={5}
+                padding={3}>
+                <Box display="flex" sx={{ alignItems: "center", margin: 'auto' }}>
                     <Button onClick={props.setShow}>
                         <ArrowBackIcon />
                     </Button>
                     <Typography variant='h5' fontWeight={100} padding={3}>Signup</Typography>
                 </Box>
-                <TextField
-                    name='name'
-                    onChange={handleChange}
-                    value={inputs.name}
-                    size='small' margin='normal' type={"text"} placeholder='Name' />
-                <TextField
-                    name='number'
-                    onChange={handleChange}
-                    value={inputs.number}
-                    size='small' margin='normal' type={"text"} placeholder='Number' />
-                <TextField
-                    value={inputs.email}
-                    onChange={handleChange}
-                    name='email'
-                    size='small' margin='normal' type={"email"} placeholder='Email' />
-                <TextField
-                    name='password'
-                    value={inputs.password}
-                    onChange={handleChange}
-                    size='small' margin='normal' type={"password"} placeholder='Password' />
+                <Box
+                    display="flex"
+                    flexDirection={'row'}
+                    alignItems="center"
+                    justifyContent={"space-evenly"}
+
+
+                >
+
+                    <Box display='flex' flexDirection={'column'} p={2}>
+                        <TextField
+                            autoComplete='off'
+                            name='name'
+                            onChange={handleChange}
+                            value={inputs.name}
+                            size='small' margin='normal' type={"text"} placeholder='Name' />
+                        <TextField
+                            autoComplete='off'
+                            name='number'
+                            onChange={handleChange}
+                            value={inputs.number}
+                            size='small' margin='normal' type={"text"} placeholder='Number' />
+                        <TextField
+                            autoComplete='off'
+                            name='ID'
+                            onChange={handleChange}
+                            value={inputs.ID}
+                            size='small' margin='normal' type={"text"} placeholder='ID' />
+                    </Box>
+                    <Box display='flex' flexDirection={'column'} p={2}>
+                        <TextField
+                            autoComplete='off'
+                            value={inputs.email}
+                            onChange={handleChange}
+                            name='email'
+                            size='small' margin='normal' type={"email"} placeholder='Email' />
+                        <TextField
+                            autoComplete='off'
+                            name='password'
+                            value={inputs.password}
+                            onChange={handleChange}
+                            size='small' margin='normal' type={"password"} placeholder='Password' />
+                        <TextField
+                            autoComplete='off'
+                            name='rePass'
+                            value={inputs.rePass}
+                            onChange={handleChange}
+                            size='small' margin='normal' type={"password"} placeholder='Confirm Password' />
+                    </Box>
+
+                    {/* <Button sx={{ marginTop: 3 }} onClick={handleReset}>{"Signup"}</Button> */}
+                </Box>
+                <Box display='flex' alignItems='center'>
+                    <TextField
+                        autoComplete='off'
+                        name='batch'
+                        onChange={handleChange}
+                        value={inputs.batch}
+                        size='small' margin='normal' type={"text"} placeholder='Batch' />
+                </Box>
                 <Button type="submit" variant='contained' sx={{ marginTop: 3 }}>Signup</Button>
-                {/* <Button sx={{ marginTop: 3 }} onClick={handleReset}>{"Signup"}</Button> */}
             </Box>
         </form>
     )
