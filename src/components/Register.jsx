@@ -24,8 +24,16 @@ const Register = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(inputs)
-        // const { name, email, password, number} =inputs
+        // console.log(inputs)
+        const { name, email, password, number} = inputs
+         if (name && email && password && number){
+            alert("posted")
+            axios.post("/register",inputs)
+            .then(res => alert(res.data.message))
+         }else{
+            alert("Invalid Input")}
+
+         
         // if(isSignup){
         //    const result = await fetch('/api/regiser',{
         //         method:"POST",
@@ -41,7 +49,7 @@ const Register = (props) => {
         // }
     }
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} >
             <Box
                 display='flex'
                 flexDirection={'column'}
