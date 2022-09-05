@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Typography, TextField, Button, MenuItem, Select } from '@mui/material'
 import { useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import axios from 'axios';
 
 
 const Register = (props) => {
@@ -33,20 +34,6 @@ const Register = (props) => {
          }else{
             alert("Invalid Input")}
 
-         
-        // if(isSignup){
-        //    const result = await fetch('/api/regiser',{
-        //         method:"POST",
-        //         headers:{
-        //             'Content-Type':'application/json'
-        //         },
-        //         body:JSON.stringify({
-        //             name,
-        //             email,
-        //             password
-        //         })
-        //     }).then((res)=>res.json())
-        // }
     }
     return (
         <form onSubmit={handleSubmit} >
