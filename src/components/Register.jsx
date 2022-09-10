@@ -26,8 +26,10 @@ const Register = (props) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         // console.log(inputs)
-        const { name, email, password, number} = inputs
-         if (name && email && password && number){
+        const { name, email, password, number,ID,rePass,batch} = inputs
+        // console.log(password)
+        // console.log(rePass);
+         if (name && email && password && number && ID && batch && (password[0]===rePass[0])){
             alert("posted")
             axios.post("/register",inputs)
             .then(res => alert(res.data.message))
