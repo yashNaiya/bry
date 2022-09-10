@@ -9,7 +9,6 @@ function App() {
     //  <Landing />
     // <JobMain/> 
     <App1/>
-
   
   );
 }
