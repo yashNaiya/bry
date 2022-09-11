@@ -1,8 +1,11 @@
 import { Box } from "@mui/material"
 import Landing from "./components/Landing";
 import JobMain from "./components/JobMain";
-import Authentication from "./components/Authentication";
+import App1 from "./components/App1";
+import Changepass from "./components/Changepass";
+
 import { Routes, Route } from "react-router-dom"
+
 function App() {
 
   return (
