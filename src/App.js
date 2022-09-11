@@ -9,10 +9,10 @@ function App() {
     <Routes>
       <Route path='/' element={<Landing/>}></Route>
       <Route path='/jobpage' element={<JobMain/>}></Route>
+      <Route path='/authentication' element={<Authentication/>}></Route>
     </Routes>
   );
 }
 
 export default App;
 
-{/* <Authentication /> */}

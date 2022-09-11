@@ -20,19 +20,20 @@ const Register = (props) => {
         number: "",
         ID: "",
         rePass: "",
-        batch:""
+        batch: ""
     })
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         // console.log(inputs)
-        const { name, email, password, number} = inputs
-         if (name && email && password && number){
+        const { name, email, password, number } = inputs
+        if (name && email && password && number) {
             alert("posted")
-            axios.post("/register",inputs)
-            .then(res => alert(res.data.message))
-         }else{
-            alert("Invalid Input")}
+            axios.post("/register", inputs)
+                .then(res => alert(res.data.message))
+        } else {
+            alert("Invalid Input")
+        }
 
     }
     return (
@@ -77,9 +78,16 @@ const Register = (props) => {
                         <TextField
                             autoComplete='off'
                             name='number'
+                            sx={{
+                                '& .MuiOutlinedInput-input': {
+                                    '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+                                        '-webkit-appearance': 'none',
+                                    },
+                                }
+                            }}
                             onChange={handleChange}
                             value={inputs.number}
-                            size='small' margin='normal' type={"text"} placeholder='Number' />
+                            size='small' margin='normal' type={"number"} placeholder='Number' />
                         <TextField
                             autoComplete='off'
                             name='ID'
