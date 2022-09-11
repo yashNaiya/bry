@@ -14,7 +14,8 @@ function App1() {
 
   const column = [
     { heading: 'Name', value: 'name' },
-    { heading: 'Id No', value: 'email' },
+    { heading: 'Id No', value: 'ID' },
+    { heading: 'E_mail', value: 'email' },
     { heading: 'Number', value: 'number' },
     { heading: 'Batch', value: 'Batch' },
   ]

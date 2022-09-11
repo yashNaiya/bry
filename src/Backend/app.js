@@ -110,6 +110,47 @@ app.get("/register/:id",async (req,res)=>{
     }
 })
 
+
+//Set State of Student to true
+app.patch("/register/:id",async (req,res)=>{
+    try{
+        const _id = req.params.id;
+        const OneUserDataStateUpdate = await User.findByIdAndUpdate(_id,{state:"true"},{
+            new:true
+        }) ;
+        //  console.log(OneUserData)
+        if(!OneUserData){
+            return res.status(404).send();
+        }
+        else{
+            res.send(OneUserDataStateUpdate);
+        }
+    }
+    catch(e){
+        res.send(e);
+    }
+})
+
+
+//Delete Student From Database
+app.delete("/register/:id",async (req,res)=>{
+    try{
+        const _id = req.params.id;
+        const OneUserDataDelete = await User.findByIdAndDelete(_id) ;
+        // console.log(OneUserDataDelete)
+        if(!OneUserData){
+            return res.status(404).send();
+        }
+        else{
+            res.send(OneUserDataDelete);
+        }
+    }
+    catch(e){
+        res.send(e);
+    }
+})
+
+
 app.listen(9002,()=>{
    console.log("Be Started at port 9002")
 })
