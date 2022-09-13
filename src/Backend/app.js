@@ -8,13 +8,12 @@ app.use(express.json());
 
 
 
-
 //Log In Post Method
 
 app.post("/login",(req,res)=>{
     const {email,password} = req.body
    //  console.log(req.body)
-    User.findOne({email:email},(err,user) =>{
+    User.findOne({email:email,state:true},(err,user) =>{
       if(user){
           if(password[0] === user.password){
       
@@ -148,6 +147,12 @@ app.delete("/register/:id",async (req,res)=>{
     catch(e){
         res.send(e);
     }
+})
+
+app.post('/forgotpass',async (req,res)=>{
+    const email = req.body
+    console.log(req.body)
+    res.send(email[0])
 })
 
 

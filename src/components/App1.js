@@ -22,7 +22,7 @@ function App1() {
 
   return (
     <div className="App1">
-      <h1>Dynamic Table</h1>
+      <h1>Alumini List</h1>
       <Table data = {dataTable} column={column}/>
     </div>
   );

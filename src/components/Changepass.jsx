@@ -2,6 +2,9 @@ import React from 'react'
 import { Box, Typography, TextField, Button, } from '@mui/material'
 import { useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import axios from 'axios';
+
+
 const Changepass = (props) => {
 
     const [showOtp, setOpt] = useState(false)
@@ -21,8 +24,16 @@ const Changepass = (props) => {
         }))
     }
 
-    const handleSubmit = async()=>{
-        
+    const handleSubmit = async(e)=>{
+        e.preventDefault();
+        // console.log(inputs)
+        const {email} = inputs
+         if (email){
+            alert("posted")
+            axios.post("/forgot-password",inputs)
+            .then(res => alert(res.data.message))
+         }else{
+            alert("Invalid Input")}
     }
 
     return (

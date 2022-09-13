@@ -10,7 +10,8 @@ function App() {
   return (
     <Routes>
       <Route path='/' element={<Landing/>}></Route>
-      <Route path='/jobpage' element={<JobMain/>}></Route>
+      <Route path='/jobpage' element={<JobMain/>}></Route> 
+      <Route path='/App1' element={<App1/>}></Route>
     </Routes>
   );
 }
