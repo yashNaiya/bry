@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Typography, styled, Button } from '@mui/material'
+import { Box, Typography, Button } from '@mui/material'
 import Login from './Login'
 import MainNav from './MainNav'
 import { Stack } from '@mui/system'
@@ -11,14 +11,6 @@ const Landing = () => {
     setShow(false)
   }
 
-  const CardStyle = styled("div")(({ theme }) => ({
-    display: "flex",
-    flexDirection: "column",
-    [theme.breakpoints.up("sm")]: {
-      display: "flex",
-      flexDirection: "row"
-    }
-  }))
   if (show) {
     return (
       <Box>

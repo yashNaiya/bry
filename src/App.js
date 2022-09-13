@@ -1,10 +1,8 @@
-import { Box } from "@mui/material"
 import Landing from "./components/Landing";
 import JobMain from "./components/JobMain";
-import App1 from "./components/App1";
-import Changepass from "./components/Changepass";
-
+import Authenticate from "./components/Authenticate";
 import { Routes, Route } from "react-router-dom"
+import ChatMain from "./components/ChatMain";
 
 function App() {
 
@@ -12,7 +10,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Landing/>}></Route>
       <Route path='/jobpage' element={<JobMain/>}></Route>
-      <Route path='/authentication' element={<Authentication/>}></Route>
+      <Route path='/authentication' element={<Authenticate/>}></Route>
     </Routes>
   );
 }

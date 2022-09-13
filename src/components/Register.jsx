@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Typography, TextField, Button, MenuItem, Select } from '@mui/material'
+import { Box, Typography, TextField, Button } from '@mui/material'
 import { useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios';
@@ -25,17 +25,8 @@ const Register = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // console.log(inputs)
-<<<<<<< HEAD
-        const { name, email, password, number } = inputs
-        if (name && email && password && number) {
-=======
         const { name, email, password, number,ID,rePass,batch} = inputs
-        // console.log(password)
-        // console.log(rePass);
          if (name && email && password && number && ID && batch && (password[0]===rePass[0])){
->>>>>>> ca84f8ad0ba85115ab3c8d3f1f8acebe54936ace
-            alert("posted")
             axios.post("/register", inputs)
                 .then(res => alert(res.data.message))
         } else {

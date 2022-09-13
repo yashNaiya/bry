@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import './App1.css';
-import Table  from './Table';
+import TableData  from './TableData';
+import {Box, Typography} from '@mui/material'
 
-function App1() {
+function Authenticate() {
   const [dataTable, setDataTable] = useState([]);
    console.log(dataTable)
   useEffect(() => {
@@ -21,11 +21,11 @@ function App1() {
   ]
 
   return (
-    <div className="App1">
-      <h1>Dynamic Table</h1>
-      <Table data = {dataTable} column={column}/>
-    </div>
+    <Box display={'flex'} alignItems='center' flexDirection={'column'} p={5}>
+      <Typography variant='h4' color={'primary'} fontWeight={500}>New User Registers</Typography>
+      <TableData data = {dataTable} column={column}/>
+    </Box>
   );
 }
 
-export default App1;
+export default Authenticate;
