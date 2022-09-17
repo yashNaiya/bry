@@ -43,6 +43,9 @@ const Infouser = new mongoose.Schema({
      state : {
         type:Boolean,
         default : false
+    },
+    verifytoken :{
+        type : String
     }
  })
  

@@ -5,6 +5,23 @@ const User = require("./Models/Student")
 
 app.use(express.urlencoded({extended: true})); 
 app.use(express.json());
+const keysecret = '8wliueinmuyswoi90nhhjgdfdfkuasakjfhdkjfhds8908987'
+
+//forgot Password
+const crypto = require("crypto");
+var jwt = require('jsonwebtoken');
+const nodemailer = require("nodemailer");
+const { appBarClasses } = require("@mui/material");
+
+const transporter = nodemailer.createTransport({
+    service:"gmail",
+    auth:{
+        user:'BVMAlumini1020',
+        pass:'rpratpmgdxtspmdl'
+    }
+}) 
+
+
 
 
 
@@ -149,11 +166,82 @@ app.delete("/register/:id",async (req,res)=>{
     }
 })
 
+
+//forgot Password get token send email
 app.post('/forgotpass',async (req,res)=>{
-    const email = req.body
     console.log(req.body)
-    res.send(email[0])
+
+    const {email} = req.body;
+
+    if(!email){
+        res.status(401).json({status:401,message:"Enter Your Email"})
+    }
+
+    try {
+        const userfind = await User.findOne({email:email});
+        // console.log(userfind)
+        //  console.log(keysecret)
+        // token generate for reset password
+        const token = jwt.sign({_id:userfind._id},keysecret,{
+            expiresIn:"1d"
+        });
+        
+        const setusertoken = await User.findByIdAndUpdate({_id:userfind._id},{verifytoken:token},{new:true});
+        // console.log(setusertoken)
+        
+        const Link = `http://localhost:9002/forgotpass/${userfind.id}/${setusertoken.verifytoken}`
+        // console.log("Hello")
+        if(setusertoken){
+            const mailOptions = {
+                from:'BVMAlumini1020',
+                to:email,
+                subject:"Sending Email For password Reset",
+                text:`This Link Valid For 2 MINUTES http://localhost:3000/forgotpass/${userfind.id}/${setusertoken.verifytoken}`
+            }
+            
+            transporter.sendMail(mailOptions,(error,info)=>{
+                if(error){
+                    console.log("error",error);
+                    res.status(401).json({status:401,message:"email not send"})
+                }else{
+                    console.log("Email sent",info.response);
+                    res.status(201).json({status:201,message:"Email sent Succsfully"})
+                }
+            })
+
+        }
+
+    } catch (error) {
+        res.status(401).json({status:401,message:"invalid user"})
+    }
+        
+    
+
 })
+
+app.get("/forgotpass/:id/:token",async(req,res)=>{
+    // const {id,token} = req.params;
+
+    try {
+        const validuser = await User.findOne({_id:id,verifytoken:token});
+        
+        const verifyToken = jwt.verify(token,keysecret);
+
+        console.log(verifyToken)
+
+        if(validuser && verifyToken._id){
+            res.status(201).json({status:201,validuser})
+        }else{
+            res.status(401).json({status:401,message:"user not exist"})
+        }
+
+    } catch (error) {
+        res.status(401).json({status:401,error})
+    }
+});
+
+
+
 
 
 app.listen(9002,()=>{
