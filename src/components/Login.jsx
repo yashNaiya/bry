@@ -33,7 +33,6 @@ const Login = (props) => {
         console.log(props.profile)
         const { email, password } = inputs
         if (email && password) {
-            alert("posted")
             axios.post("/login", inputs)
                 .then(res => alert(res.data.message))
         } else {
