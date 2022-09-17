@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Typography, TextField, Button, MenuItem, Select } from '@mui/material'
+import { Box, Typography, TextField, Button } from '@mui/material'
 import { useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios';
@@ -20,21 +20,18 @@ const Register = (props) => {
         number: "",
         ID: "",
         rePass: "",
-        batch:""
+        batch: ""
     })
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        // console.log(inputs)
         const { name, email, password, number,ID,rePass,batch} = inputs
-        // console.log(password)
-        // console.log(rePass);
          if (name && email && password && number && ID && batch && (password[0]===rePass[0])){
-            alert("posted")
-            axios.post("/register",inputs)
-            .then(res => alert(res.data.message))
-         }else{
-            alert("Invalid Input")}
+            axios.post("/register", inputs)
+                .then(res => alert(res.data.message))
+        } else {
+            alert("Invalid Input")
+        }
 
     }
     return (
@@ -79,9 +76,16 @@ const Register = (props) => {
                         <TextField
                             autoComplete='off'
                             name='number'
+                            sx={{
+                                '& .MuiOutlinedInput-input': {
+                                    '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+                                        '-webkit-appearance': 'none',
+                                    },
+                                }
+                            }}
                             onChange={handleChange}
                             value={inputs.number}
-                            size='small' margin='normal' type={"text"} placeholder='Number' />
+                            size='small' margin='normal' type={"number"} placeholder='Number' />
                         <TextField
                             autoComplete='off'
                             name='ID'

@@ -73,6 +73,11 @@ const Changepass = (props) => {
                         <TextField
                             autoComplete='off'
                             name='otp'
+                            sx={{'& .MuiOutlinedInput-input': {
+                                '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+                                  '-webkit-appearance': 'none',
+                              },
+                              }}}
                             value={inputs.otp}
                             onChange={handleChange}
                             size='small' margin='normal' type={"number"} placeholder='OTP' />
