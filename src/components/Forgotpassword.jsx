@@ -1,19 +1,11 @@
 import React from 'react'
-import { Box, Typography, TextField, Button, } from '@mui/material'
-import { useState } from 'react'
+import { Box, Typography, TextField, Button, Link } from '@mui/material'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import { useState } from 'react';
 import axios from 'axios';
 
+const Forgotpassword = () => {
 
-const Changepass = (props) => {
-
-    const [showOtp, setOpt] = useState(false)
-    const [inputs, setinputs] = useState({
-        email: "",
-    })
-    const onGetotpClick = () => {
-        setOpt(true)
-    }
     const handleChange = (e) => {
         setinputs((prevState) => ({
             ...prevState,
@@ -21,19 +13,14 @@ const Changepass = (props) => {
         }))
     }
 
-    const handleSubmit = async(e)=>{
-        e.preventDefault();
-        const {email} = inputs
-        console.log(email)
-         if (email){
-            axios.post("/forgotpass", inputs)
-                .then(res => alert(res.data.message))
-        } else {
-            alert("Invalid Input")
-        }
-        // console.log("hii")
+    const handleSubmit = () =>{
+
     }
 
+    const [inputs, setinputs] = useState({
+        password: "",
+        confirmPass:""
+    })
     return (
         <form onSubmit={handleSubmit}>
             <Box
@@ -54,21 +41,30 @@ const Changepass = (props) => {
                 }}
             >
                 <Box display="flex" sx={{ alignItems: "center" }}>
-                    <Button onClick={props.handleForgot}>
-                        <ArrowBackIcon />
-                    </Button>
+                    <Link href="/">
+                        <Button>
+                            <ArrowBackIcon />
+                        </Button>
+                    </Link>
                     <Typography variant='h5' fontWeight={100} padding={3}>{"Change"}</Typography>
                 </Box>
                 <TextField
                     autoComplete='off'
-                    value={inputs.email}
+                    value={inputs.password}
                     onChange={handleChange}
-                    name='email'
-                    size='small' margin='normal' type={"email"} placeholder='Email' />
-                        <Button variant='contained'  sx={{ marginTop: 3 }} type={"submit"}>{"Get Mail"}</Button>     
+                    name='password'
+                    size='small' margin='normal' type={"password"} placeholder='New Password' />
+                <TextField
+                    autoComplete='off'
+                    value={inputs.confirmPass}
+                    onChange={handleChange}
+                    name='confirmPass'
+                    size='small' margin='normal' type={"password"} placeholder='Confirm Password' />
+                <Button variant='contained' sx={{ marginTop: 3 }} type={"submit"}>{"Change"}</Button>
+
             </Box>
         </form>
     )
 }
 
-export default Changepass
+export default Forgotpassword
