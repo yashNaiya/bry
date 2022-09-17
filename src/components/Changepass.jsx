@@ -2,14 +2,14 @@ import React from 'react'
 import { Box, Typography, TextField, Button, } from '@mui/material'
 import { useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import axios from 'axios';
+
+
 const Changepass = (props) => {
 
     const [showOtp, setOpt] = useState(false)
     const [inputs, setinputs] = useState({
         email: "",
-        newPass: "",
-        changePass: "",
-        otp: ""
     })
     const onGetotpClick = () => {
         setOpt(true)
@@ -21,8 +21,17 @@ const Changepass = (props) => {
         }))
     }
 
-    const handleSubmit = async()=>{
-        
+    const handleSubmit = async(e)=>{
+        e.preventDefault();
+        const {email} = inputs
+        console.log(email)
+         if (email){
+            axios.post("/forgotpass", inputs)
+                .then(res => alert(res.data.message))
+        } else {
+            alert("Invalid Input")
+        }
+        // console.log("hii")
     }
 
     return (
@@ -56,8 +65,8 @@ const Changepass = (props) => {
                     onChange={handleChange}
                     name='email'
                     size='small' margin='normal' type={"email"} placeholder='Email' />
-                <Button variant='contained' sx={{ marginTop: 3 }} onClick={onGetotpClick}>{"get otp"}</Button>
-                {showOtp &&
+                {/* <Button variant='contained' sx={{ marginTop: 3 }} onClick={onGetotpClick}>{"get otp"}</Button>
+                { {showOtp &&
                     <>
                         <TextField
                             autoComplete='off'
@@ -81,9 +90,9 @@ const Changepass = (props) => {
                             name='newPass'
                             value={inputs.newPass}
                             onChange={handleChange}
-                            size='small' margin='normal' type={"password"} placeholder='Confirm' />
-                        <Button variant='contained' sx={{ marginTop: 3 }} type={"submit"}>{"Change"}</Button>
-                    </>}
+                            size='small' margin='normal' type={"password"} placeholder='Confirm' /> } */}
+                        <Button variant='contained'  sx={{ marginTop: 3 }} type={"submit"}>{"Change"}</Button>
+                    
             </Box>
         </form>
     )

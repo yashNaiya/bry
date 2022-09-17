@@ -10,7 +10,8 @@ const Infouser = new mongoose.Schema({
         type:String,
         required:true,
         minlength : [10,"Enter Valid Number"],
-        maxlength : [10,"Enter Valid Number"]
+        maxlength : [10,"Enter Valid Number"],
+        unique:true
     },
     email :{ 
          type:String,
@@ -26,7 +27,8 @@ const Infouser = new mongoose.Schema({
         type:String,
         required:true,
         minlength : [7,"Enter Valid Number"],
-        maxlength : [7,"Enter Valid Number"]
+        maxlength : [7,"Enter Valid Number"],
+        unique:true
     },
     Batch :{
         type:String,
@@ -41,6 +43,9 @@ const Infouser = new mongoose.Schema({
      state : {
         type:Boolean,
         default : false
+    },
+    verifytoken :{
+        type : String
     }
  })
  
