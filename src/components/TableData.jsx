@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
+import axios from 'axios'
 
 const TableData = ({ data, column }) => {
   return (
@@ -26,12 +27,15 @@ const TableData = ({ data, column }) => {
 }
 
 
-const AddListener = ()=>{
-
+const AddListener = (a)=>{
+    // console.log("add")
+    axios.patch(`/register/update/${a}`).then(res => alert(res.data.message))
 }
 
-const RemoveListener = ()=>{
-
+const RemoveListener = (a)=>{
+  // console.log("Remove")
+  axios.delete(`/register/Delete/${a}`).then(res => alert(res.data.message))
+  
 }
 
 const TableHeadItem = ({ item }) => <td align='center'>{item.heading}</td>
@@ -51,14 +55,16 @@ const TableRows = ({ item, column }) => (
       }
 
       return (
-        <TableCell align='center' >
-          {item[`${columnItem.value}`]}
-        </TableCell>
+         <TableCell align='center' >
+           {item[`${columnItem.value}`]} 
+         </TableCell>
+        
       )
+
     })}
     <TableCell align='center' sx={{display:'flex',justifyContent:'space-evenly'}}>
-      <Button onClick={AddListener} variant='contained'>Add</Button>
-      <Button onClick={RemoveListener} variant='contained'>Remove</Button>
+       <Button onClick={() => AddListener(item.ID)}   variant='contained'>Add</Button>
+      <Button onClick={() => RemoveListener(item.ID)} variant='contained'>Remove</Button> 
     </TableCell>
   </TableRow>
 )
