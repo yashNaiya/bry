@@ -182,11 +182,16 @@ app.post('/forgotpass',async (req,res)=>{
 
     try {
         const userfind = await User.findOne({email:email});
+        if(!userfind){
+            // console.log("Hello")
+            res.status(201).json({status:201,message:"User Not Found"})
+        }
+        else{
         // console.log(userfind)
         //  console.log(keysecret)
         // token generate for reset password
         const token = jwt.sign({_id:userfind._id},keysecret,{
-            expiresIn:"1d"
+            expiresIn:"2h"
         });
         
         const setusertoken = await User.findByIdAndUpdate({_id:userfind._id},{verifytoken:token},{new:true});
@@ -213,6 +218,7 @@ app.post('/forgotpass',async (req,res)=>{
             })
 
         }
+    }
 
     } catch (error) {
         res.status(401).json({status:401,message:"invalid user"})
@@ -223,7 +229,7 @@ app.post('/forgotpass',async (req,res)=>{
 })
 
 app.get("/forgotpass/:id/:token",async(req,res)=>{
-    // const {id,token} = req.params;
+     const {id,token} = req.params;
 
     try {
         const validuser = await User.findOne({_id:id,verifytoken:token});
@@ -246,6 +252,25 @@ app.get("/forgotpass/:id/:token",async(req,res)=>{
     }
 });
 
+//UpdateUserPassword
+
+app.post("/ResetPassword/:id",async(req,res) =>{
+    try{
+      _ID = req.params.id
+      pass = req.body.password
+      const UserpassUpdate = await User.findByIdAndUpdate(_ID,{password:pass[0]})
+    //   console.log(UserpassUpdate)
+      if(!UserpassUpdate){
+        return res.status(404).send(); }
+    else{
+        res.send({message:"Password Is Updated"}); }
+
+    }
+    catch(e){
+        res.send(e)
+    }
+      
+})
 
 
 

@@ -36,10 +36,6 @@ const Infouser = new mongoose.Schema({
         minlength : [4,"Enter Valid Year"],
         maxlength : [4,"Enter Valid Year"]
     },
-    rePass :{
-        type:String,
-        required:true
-    },
      state : {
         type:Boolean,
         default : false
