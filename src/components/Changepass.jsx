@@ -31,7 +31,6 @@ const Changepass = (props) => {
         } else {
             alert("Invalid Input")
         }
-        // console.log("hii")
     }
 
     return (

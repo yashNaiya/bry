@@ -40,13 +40,7 @@ const Navbar = () => {
         <Typography variant="h6" color="primary" sx={{ display: { xs: "none", sm: "block" } }}>BVM</Typography>
         <Searchbar><InputBase placeholder='search..' /></Searchbar>
         <Icons>
-          <Badge badgeContent={4} color="thirdCol">
-            <Mail/>
-          </Badge>
-          <Badge badgeContent={2} color="thirdCol">
-            <Notifications/>
-          </Badge>
-          <Avatar sx={{width:"30px", height:"30px"}} onClick={e=>setOpen(true)}/>
+          <Avatar sx={{width:"45px", height:"45px"}} onClick={e=>setOpen(true)}/>
         </Icons>
         <UserBox onClick={(e)=>setOpen(true)}>
           <Typography variant='span'>Yash</Typography>

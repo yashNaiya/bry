@@ -3,7 +3,7 @@ import React from 'react'
 import { useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from "axios"
-import Changepass from './Changepass';
+import Changepass from '../Changepass';
 
 
 const Login = (props) => {
