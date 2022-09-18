@@ -128,18 +128,20 @@ app.get("/register/:id",async (req,res)=>{
 
 
 //Set State of Student to true
-app.patch("/register/:id",async (req,res)=>{
+app.patch("/register/update/:ID",async (req,res)=>{
     try{
-        const _id = req.params.id;
-        const OneUserDataStateUpdate = await User.findByIdAndUpdate(_id,{state:"true"},{
+        // console.log(req.params)
+        const _id = req.params.ID;
+        // console.log(_id)
+        const OneUserDataStateUpdate = await User.findOneAndUpdate({ID:_id},{state:"true"},{
             new:true
         }) ;
-        //  console.log(OneUserData)
-        if(!OneUserData){
+        // console.log(OneUserDataStateUpdate)
+        if(!OneUserDataStateUpdate){
             return res.status(404).send();
         }
         else{
-            res.send(OneUserDataStateUpdate);
+            res.send({message:"User is Added"});
         }
     }
     catch(e){
@@ -149,16 +151,17 @@ app.patch("/register/:id",async (req,res)=>{
 
 
 //Delete Student From Database
-app.delete("/register/:id",async (req,res)=>{
+app.delete("/register/Delete/:ID",async (req,res)=>{
     try{
-        const _id = req.params.id;
-        const OneUserDataDelete = await User.findByIdAndDelete(_id) ;
-        // console.log(OneUserDataDelete)
-        if(!OneUserData){
+        // console.log(req.params)
+        const _id = req.params.ID;
+        const OneUserDataDelete = await User.findOneAndDelete({ID:_id}) ;
+        //   console.log(OneUserDataDelete)
+        if(!OneUserDataDelete){
             return res.status(404).send();
         }
         else{
-            res.send(OneUserDataDelete);
+            res.send({message:"User is Deleted"});
         }
     }
     catch(e){
@@ -169,7 +172,7 @@ app.delete("/register/:id",async (req,res)=>{
 
 //forgot Password get token send email
 app.post('/forgotpass',async (req,res)=>{
-    console.log(req.body)
+    // console.log(req.body)
 
     const {email} = req.body;
 
@@ -179,11 +182,16 @@ app.post('/forgotpass',async (req,res)=>{
 
     try {
         const userfind = await User.findOne({email:email});
+        if(!userfind){
+            // console.log("Hello")
+            res.status(201).json({status:201,message:"User Not Found"})
+        }
+        else{
         // console.log(userfind)
         //  console.log(keysecret)
         // token generate for reset password
         const token = jwt.sign({_id:userfind._id},keysecret,{
-            expiresIn:"1d"
+            expiresIn:"2h"
         });
         
         const setusertoken = await User.findByIdAndUpdate({_id:userfind._id},{verifytoken:token},{new:true});
@@ -210,6 +218,7 @@ app.post('/forgotpass',async (req,res)=>{
             })
 
         }
+    }
 
     } catch (error) {
         res.status(401).json({status:401,message:"invalid user"})
@@ -220,14 +229,17 @@ app.post('/forgotpass',async (req,res)=>{
 })
 
 app.get("/forgotpass/:id/:token",async(req,res)=>{
-    // const {id,token} = req.params;
+     const {id,token} = req.params;
 
     try {
         const validuser = await User.findOne({_id:id,verifytoken:token});
         
         const verifyToken = jwt.verify(token,keysecret);
+          
+        // console.log(verifyToken)
 
-        console.log(verifyToken)
+        //verifyToken will verify that token time is not expired
+        //If token time is expired it will not verify
 
         if(validuser && verifyToken._id){
             res.status(201).json({status:201,validuser})
@@ -240,6 +252,25 @@ app.get("/forgotpass/:id/:token",async(req,res)=>{
     }
 });
 
+//UpdateUserPassword
+
+app.post("/ResetPassword/:id",async(req,res) =>{
+    try{
+      _ID = req.params.id
+      pass = req.body.password
+      const UserpassUpdate = await User.findByIdAndUpdate(_ID,{password:pass[0]})
+    //   console.log(UserpassUpdate)
+      if(!UserpassUpdate){
+        return res.status(404).send(); }
+    else{
+        res.send({message:"Password Is Updated"}); }
+
+    }
+    catch(e){
+        res.send(e)
+    }
+      
+})
 
 
 
