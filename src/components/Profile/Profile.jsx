@@ -3,8 +3,11 @@ import { Box, Typography, TextField, Button, IconButton } from '@mui/material'
 import { useState } from 'react'
 import { PhotoCamera } from '@mui/icons-material';
 import image from '../../assets/profile.svg'
+
 const Profile = (props) => {
+
     const email = props.email
+    
     const [readMode, setMode] = useState(true)
 
     const handleSubmit = (e) => {
