@@ -35,16 +35,16 @@ app.post("/login",(req,res)=>{
           if(password[0] === user.password){
       
            // console.log("LogIn Sucessful")
-           res.send({message:"LogIn Sucessful",user})
+           res.send({message:"LogIn Sucessful",user,state:1})
           }
           else{
            //  console.log("Password Did Not Match")
           
-           res.send({message:"Password Did Not Match"})
+           res.send({message:"Password Did Not Match",state:0})
           }
       }else{
        //    console.log("User Not Registered")
-          res.send({message:"User Not Registered"})
+          res.send({message:"User Not Registered",state:0})
       }
 
     })
@@ -271,8 +271,6 @@ app.post("/ResetPassword/:id",async(req,res) =>{
     }
       
 })
-
-
 
 
 app.listen(9002,()=>{

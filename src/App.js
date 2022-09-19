@@ -5,6 +5,7 @@ import { Routes, Route } from "react-router-dom"
 import React  from 'react';
 import ForgotPassword from "./components/Forgotpassword";
 import ProfileMain from "./components/Profile/ProfileMain";
+import Register from "./components/Landing/Register";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path='/Authentication' element={<Authenticate/>}></Route>
       <Route path='/forgotpass/:id/:token' element={<ForgotPassword/>}></Route>
       <Route path='/profilepage' element={<ProfileMain/>}></Route>
+      <Route path='/register' element={<Register/>}></Route>
     </Routes>
   );
 }
