@@ -3,7 +3,7 @@ import FilterAltIcon from '@mui/icons-material/FilterAlt';
 import { Box, InputLabel, FormControl, Typography, FormControlLabel, Checkbox, FormGroup, Button } from '@mui/material'
 import { MenuItem } from '@mui/material';
 import Select from '@mui/material/Select';
-import MenuLists from '../../config/MenuLists';
+import MenuLists from '../../../config/MenuLists';
 
 const Rightbar = () => {
 

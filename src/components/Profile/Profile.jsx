@@ -2,11 +2,9 @@ import React from 'react'
 import { Box, Typography, TextField, Button, IconButton } from '@mui/material'
 import { useState } from 'react'
 import { PhotoCamera } from '@mui/icons-material';
-
-
-
-const Profile = () => {
-
+import image from '../../assets/profile.svg'
+const Profile = (props) => {
+    const email = props.email
     const [readMode, setMode] = useState(true)
 
     const handleSubmit = (e) => {
@@ -29,9 +27,11 @@ const Profile = () => {
     return (
         <Box flex={6}
             display='flex'
-            flexDirection={'column'}
+            flexDirection={'row'}
             alignItems='flex-start'
-            paddingLeft={10}>
+            sx={{
+                padding: { xs: 'none', sm: '10px' }
+            }}>
             <form onSubmit={handleSubmit}>
                 <Box width={200} display={'flex'} justifyContent={'space-evenly'}>
                     <Button variant='outlined' onClick={handleRead} >Read</Button>
@@ -43,14 +43,18 @@ const Profile = () => {
                         <Box>
                             <img src={file} width={'150'} height={'150'} />
                         </Box>
-                        <Button variant="contained" component="label">
-                            Upload
-                            <input hidden name='profilePic' onChange={handleChange} multiple type="file" />
-                        </Button>
-                        <IconButton color="primary" aria-label="upload picture" component="label">
-                            <input hidden name='profilePic' onChange={handleChange} type="file" />
-                            <PhotoCamera />
-                        </IconButton>
+                        {readMode ? <></> :
+                            <>
+                                <Button variant="contained" component="label">
+                                    Upload
+                                    <input hidden name='profilePic' onChange={handleChange} multiple type="file" />
+                                </Button>
+                                <IconButton color="primary" aria-label="upload picture" component="label">
+                                    <input hidden name='profilePic' onChange={handleChange} type="file" />
+                                    <PhotoCamera />
+                                </IconButton>
+                            </>
+                        }
                     </Box>
                 </Box>
                 <Box
@@ -186,14 +190,14 @@ const Profile = () => {
                     </Box>
 
                 </Box>
-                <Box display="flex" flexDirection={'column'} sx={{ alignItems: "center", margin: 'auto' }}>
+                <Box display="flex" flexDirection={'column'} sx={{ alignItems: "center", margin: '10px' }}>
                     <Button type="submit" variant='contained' sx={{ marginTop: 3 }}>Update</Button>
                 </Box>
 
-
-
-
             </form>
+            <>
+                <img src={image} height={'50%'} width='auto' />
+            </>
         </Box>
     )
 }

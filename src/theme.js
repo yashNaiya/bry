@@ -4,10 +4,10 @@ const theme = createTheme({
     palette:{
         primary:{
             main:"#A7BEAE",
-            light:'#dde3df'
+            light:'#dde3df',
         },
         secondary:{
-            main:"#fff",
+            main:"#fff", 
         },
         thirdCol:{
             main:"#A7BEAE",

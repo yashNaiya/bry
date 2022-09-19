@@ -1,5 +1,5 @@
 import Landing from "./components/Landing/Landing";
-import JobMain from "./components/Job/JobMain";
+import JobMain from "./components/Job/seeker/JobMain";
 import Authenticate from "./components/Authenticate/Authenticate";
 import { Routes, Route } from "react-router-dom"
 import React  from 'react';

@@ -11,9 +11,14 @@ import { NavLink } from 'react-router-dom';
 
 const Sidebar = () => {
   return (
-    <Box bgcolor={'primary.light'} maxHeight={'100%'} minHeight={"100vh"}  flex={1.5} sx={{ display: { xs: "none", sm: "flex" } }}>
+    <Box maxHeight={'100%'} minHeight={"100vh"} flex={1.5}
+      sx={{
+        display: { xs: "none", sm: "flex" },
+        borderRight: '2px solid #A7BEAE',
+        // boxShadow:'1px 3px 1px 2px #A7BEAE'
+      }}>
       <Box position="fixed">
-        <ListItemButton sx={{minWidth:'100%'}} NavLink to={'/jobpage'}>
+        <ListItemButton bgcolor={'primary.light'} NavLink to={'/jobpage'}>
           <ListItemIcon>
             <WorkIcon color='primary' />
           </ListItemIcon>
