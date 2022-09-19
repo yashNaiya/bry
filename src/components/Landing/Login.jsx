@@ -38,8 +38,9 @@ const Login = (props) => {
             axios.post("/login", inputs)
                 .then(res => {
                     alert(res.data.message)
-                    isSucess(true)
-                    // console.log(res.data.user.email)
+                    if(res.data.message === "LogIn Sucessful"){
+                       isSucess(true)
+                    }
                 })
         } else {
             alert("Invalid Input")

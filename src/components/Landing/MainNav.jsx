@@ -3,7 +3,7 @@ import { AppBar, styled, Toolbar, Typography, Button, Box } from '@mui/material'
 
 
 import React, { useState } from 'react'
-import Login from './Login'
+import { NavLink } from 'react-router-dom'
 import Register from './Register'
 
 const MainNav = () => {
@@ -21,7 +21,7 @@ const MainNav = () => {
             <AppBar position='sticky' color="secondary" sx={{ paddingY: "1%" }}>
                 <StyledToolbar >
                     <Typography variant="h4" color="primary" sx={{ display: { xs: "none", sm: "block" } }}>BVM</Typography>
-                    <Button variant='contained' onClick={handleClick}>Register</Button>
+                    <Button variant='contained' NavLink to={'/register'} onClick={handleClick}>Register</Button>
                 </StyledToolbar>
             </AppBar>
             </Box >)
