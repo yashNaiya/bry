@@ -3,6 +3,7 @@ import { Box, Typography, Button } from '@mui/material'
 import Login from './Login'
 import MainNav from './MainNav'
 import { Stack } from '@mui/system'
+import image from '../../assets/landing.svg'
 
 const Landing = () => {
 
@@ -15,11 +16,18 @@ const Landing = () => {
     return (
       <Box>
         <MainNav />
-        <Box paddingX="5%" paddingY="10%" sx={{ paddingX: { sm: "0" } }} >
+        <Box paddingX="5%" paddingY="10%"
+          sx={{
+            backgroundImage: `url(${image})`,
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat'
+          }}>
           <Stack direction={'row'}
-            spacing={4} justifyContent="space-around" p={8}>
+            margin='auto'
+            justifyContent={'space-around'}
+            p={8}>
             <Button
-              color={'primary'}
+              color={'secondary'}
               onClick={onCardClick}
               variant={'contained'}>
               <Typography variant='h4' fontWeight={100} padding={3}>Want The Job?</Typography>

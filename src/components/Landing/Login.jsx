@@ -4,9 +4,11 @@ import { useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from "axios"
 import Changepass from '../Changepass';
+import ProfileMain from '../Profile/ProfileMain';
 
 
 const Login = (props) => {
+    const [sucess, isSucess] = useState(false)
     const [forgot, setPass] = useState(false)
     const [inputs, setinputs] = useState({
         email: "",
@@ -34,7 +36,11 @@ const Login = (props) => {
         const { email, password } = inputs
         if (email && password) {
             axios.post("/login", inputs)
-                .then(res => alert(res.data.message))
+                .then(res => {
+                    alert(res.data.message)
+                    isSucess(true)
+                    // console.log(res.data.user.email)
+                })
         } else {
             alert("Invalid Input")
         }
@@ -45,7 +51,12 @@ const Login = (props) => {
             email: "", password: ""
         })
     }
-    if (!forgot) {
+    if(sucess){
+        return(
+            <ProfileMain email={inputs.email}/>
+        )
+    }
+    else if (!forgot) {
         return (
             <form onSubmit={handleSubmit}>
                 <Box
