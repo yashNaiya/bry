@@ -2,6 +2,7 @@ import React from 'react'
 import { Button, Table, TableBody, TableCell, TableHead, TableRow } from '@mui/material'
 import axios from 'axios'
 
+
 const TableData = ({ data, column }) => {
   return (
     <Table
@@ -27,9 +28,11 @@ const TableData = ({ data, column }) => {
 }
 
 
-const AddListener = (a)=>{
+const AddListener = (a,email)=>{
     // console.log("add")
-    axios.patch(`/register/update/${a}`).then(res => alert(res.data.message))
+    
+    axios.patch(`/register/update/${a}/${email}`).then(res => alert(res.data.message))
+
 }
 
 const RemoveListener = (a)=>{
@@ -63,7 +66,7 @@ const TableRows = ({ item, column }) => (
 
     })}
     <TableCell align='center' sx={{display:'flex',justifyContent:'space-evenly'}}>
-       <Button onClick={() => AddListener(item.ID)}   variant='contained'>Add</Button>
+       <Button onClick={() => AddListener(item.ID,item.email)}   variant='contained'>Add</Button>
       <Button onClick={() => RemoveListener(item.ID)} variant='contained'>Remove</Button> 
     </TableCell>
   </TableRow>
