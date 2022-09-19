@@ -6,7 +6,7 @@ import React, { Component }  from 'react';
 
 function Authenticate() {
   const [dataTable, setDataTable] = useState([]);
-   console.log(dataTable)
+  //  console.log(dataTable)
   useEffect(() => {
     axios('/register')
       .then(res => setDataTable(res.data))

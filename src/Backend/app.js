@@ -128,11 +128,13 @@ app.get("/register/:id",async (req,res)=>{
 
 
 //Set State of Student to true
-app.patch("/register/update/:ID",async (req,res)=>{
+app.patch("/register/update/:ID/:email",async (req,res)=>{
     try{
         // console.log(req.params)
         const _id = req.params.ID;
+        const email = req.params.email;
         // console.log(_id)
+        // console.log(req.body)
         const OneUserDataStateUpdate = await User.findOneAndUpdate({ID:_id},{state:"true"},{
             new:true
         }) ;
@@ -141,7 +143,25 @@ app.patch("/register/update/:ID",async (req,res)=>{
             return res.status(404).send();
         }
         else{
-            res.send({message:"User is Added"});
+            const mailOptions = {
+                from:'BVMAlumini1020',
+                to:email,
+                subject:"Successful Registration",
+                text: "Your Request to Register In our Website is accepted"
+            }
+            
+            transporter.sendMail(mailOptions,(error,info)=>{
+                if(error){
+                    console.log("error",error);
+                    res.status(401).json({status:401,message:"email not send"})
+                }else{
+                    console.log("Email sent",info.response);
+                    res.status(201).json({status:201,message:"Email sent Succsfully"})
+                    res.send({message:"User is Added"});
+                }
+            })
+
+           
         }
     }
     catch(e){
