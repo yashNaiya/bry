@@ -8,7 +8,8 @@ import ProfileMain from "./components/Profile/ProfileMain";
 import Register from "./components/Landing/Register";
 import AddJobMain from "./components/Job/Recruiter/AddJobMain";
 import Login from "./components/Landing/Login";
-
+import ReportMain from "./components/Reports/ReportMain";
+import DirectoryMain from "./components/Directory/DirectoryMain";
 function App() {
   return (
     <Routes>
@@ -20,6 +21,8 @@ function App() {
       <Route path='/register' element={<Register/>}></Route>
       <Route path='/addjob' element={<AddJobMain/>}></Route>
       <Route path='/login' element={<Login/>}></Route>
+      <Route path='/reports' element={<ReportMain/>}></Route>
+      <Route path='/friends' element={<DirectoryMain/>}></Route>
     </Routes>
   );
 }

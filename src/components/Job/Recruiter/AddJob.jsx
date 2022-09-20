@@ -1,9 +1,6 @@
 import React from 'react'
 import { Box, Typography, TextField, Button, MenuItem, Select, RadioGroup, Radio, FormControlLabel } from '@mui/material'
 import { useState } from 'react'
-import ArrowBackIcon from '@mui/icons-material/ArrowBack';
-import axios from 'axios';
-import Menu from '@mui/material/Menu';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import image from '../../../assets/job.svg'
@@ -16,7 +13,6 @@ const AddJob = (props) => {
             [e.target.name]: [e.target.value]
         }))
     }
-    const [age, setAge] = React.useState('');
     const [inputs, setinputs] = useState({
         tittle: "",
         type: "",
@@ -79,7 +75,7 @@ const AddJob = (props) => {
                             <Select
 
                                 name='Salary'
-                                value={age}
+                                value='alary'
                                 label="Salary"
                                 size='small'
                                 onChange={handleChange}
@@ -133,7 +129,7 @@ const AddJob = (props) => {
                 </Box>
             </form>
             <>
-                <img src={image} height={'50%'} paddingTop={'30px'} width='auto' />
+                <img src={image} alt={'img'} height={'50%'} paddingTop={'30px'} width='auto' />
             </>
         </Box>
     )

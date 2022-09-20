@@ -6,7 +6,6 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import ChatBubbleIcon from '@mui/icons-material/ChatBubble';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import WorkIcon from '@mui/icons-material/Work';
-import { NavLink } from 'react-router-dom';
 
 
 const Sidebar = () => {
@@ -18,17 +17,17 @@ const Sidebar = () => {
         // boxShadow:'1px 3px 1px 2px #A7BEAE'
       }}>
       <Box position="fixed">
-        <ListItemButton bgcolor={'primary.light'} NavLink to={'/jobpage'}>
+        <ListItemButton bgcolor={'primary.light'}  to={'/jobpage'}>
           <ListItemIcon>
             <WorkIcon color='primary' />
           </ListItemIcon>
           <ListItemText primary="Jobs" />
         </ListItemButton>
-        <ListItemButton>
+        <ListItemButton to={'/reports'}>
           <ListItemIcon>
             <SendIcon color='primary' />
           </ListItemIcon>
-          <ListItemText primary="Sent mail" />
+          <ListItemText primary="Reports" />
         </ListItemButton>
         <ListItemButton>
           <ListItemIcon >
@@ -36,13 +35,13 @@ const Sidebar = () => {
           </ListItemIcon>
           <ListItemText primary="Chat" />
         </ListItemButton>
-        <ListItemButton>
+        <ListItemButton to={'/friends'}>
           <ListItemIcon>
             <GroupsIcon color='primary' />
           </ListItemIcon>
           <ListItemText primary="Friends" />
         </ListItemButton>
-        <ListItemButton NavLink to={'/profilepage'}>
+        <ListItemButton  to={'/profilepage'}>
           <ListItemIcon>
             <AccountCircleIcon color='primary' />
           </ListItemIcon>

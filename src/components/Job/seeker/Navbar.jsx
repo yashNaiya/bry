@@ -1,7 +1,5 @@
 import React from 'react'
 import { AppBar, Avatar,Menu, InputBase, MenuItem, styled, Toolbar, Typography } from '@mui/material'
-import {Badge} from '@mui/material';
-import {Mail, Notifications} from '@mui/icons-material'
 import { useState } from 'react';
 
 const StyledToolbar = styled(Toolbar)({

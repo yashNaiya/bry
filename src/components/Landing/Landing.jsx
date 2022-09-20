@@ -1,6 +1,5 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { Box, Typography, Button, styled } from '@mui/material'
-import Login from './Login'
 import MainNav from './MainNav'
 import { Stack } from '@mui/system'
 import image from '../../assets/landing.svg'
@@ -27,7 +26,6 @@ const Landing = () => {
             <LoginLink to={'/login'}>
             <Button
               color={'secondary'}
-              NavLink to={'/login'}
               variant={'contained'}>
               <Typography variant='h4' fontWeight={100} padding={3}>Want The Job?</Typography>
             </Button>

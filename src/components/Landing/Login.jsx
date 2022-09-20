@@ -4,7 +4,6 @@ import { useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from "axios"
 import Changepass from '../Changepass';
-import ProfileMain from '../Profile/ProfileMain';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 

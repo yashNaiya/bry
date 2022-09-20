@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import TableData  from './TableData';
 import {Box, Typography} from '@mui/material'
-import React, { Component }  from 'react';
+import React  from 'react';
 
 
 function Authenticate() {

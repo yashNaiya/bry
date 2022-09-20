@@ -6,14 +6,11 @@ import axios from 'axios';
 
 
 const Changepass = (props) => {
-
-    const [showOtp, setOpt] = useState(false)
+    
     const [inputs, setinputs] = useState({
         email: "",
     })
-    const onGetotpClick = () => {
-        setOpt(true)
-    }
+
     const handleChange = (e) => {
         setinputs((prevState) => ({
             ...prevState,

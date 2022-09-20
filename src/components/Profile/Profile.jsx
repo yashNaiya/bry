@@ -44,7 +44,7 @@ const Profile = () => {
                     <Typography variant='h4' color={'primary'} fontWeight={100} padding={4}>Manage Profile</Typography>
                     <Box>
                         <Box>
-                            <img src={file} width={'150'} height={'150'} />
+                            <img src={file} alt={'profile'} width={'150'} height={'150'} />
                         </Box>
                         {readMode ? <></> :
                             <>

@@ -21,7 +21,7 @@ const Forgotpassword = () => {
       })
       const data = await res.json()
       console.log(data)
-      if(data.status == 201){
+      if(data.status === 201){
         console.log("User is Valid")
       }else{
         console.log("User Not Valid")

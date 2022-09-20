@@ -3,9 +3,10 @@ import { Box, Typography, TextField, Button } from '@mui/material'
 import { useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios';
+import { NavLink } from 'react-router-dom';
 
 
-const Register = (props) => {
+const Register = () => {
     const handleChange = (e) => {
         setinputs((prevState) => ({
             ...prevState,
@@ -52,9 +53,9 @@ const Register = (props) => {
                 marginTop={5}
                 padding={3}>
                 <Box display="flex" sx={{ alignItems: "center", margin: 'auto' }}>
-                    <Button onClick={props.setShow}>
+                    <NavLink to={'/'}>
                         <ArrowBackIcon />
-                    </Button>
+                    </NavLink>
                     <Typography variant='h5' fontWeight={100} padding={3}>Signup</Typography>
                 </Box>
                 <Box
