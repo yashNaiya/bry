@@ -4,9 +4,9 @@ import { useState } from 'react'
 import { PhotoCamera } from '@mui/icons-material';
 import image from '../../assets/profile.svg'
 
-const Profile = (props) => {
-
-    const email = props.email
+const Profile = () => {
+    let user = sessionStorage.getItem('sessionData')
+    user = JSON.parse(user)
     
     const [readMode, setMode] = useState(true)
 
@@ -72,6 +72,7 @@ const Profile = (props) => {
                             label="Name"
                             autoComplete='off'
                             name='name'
+                            defaultValue={user.name}
                             inputProps={
                                 { readOnly: readMode ? true : false }
                             }
@@ -83,6 +84,7 @@ const Profile = (props) => {
                             label="Number"
                             autoComplete='off'
                             name='number'
+                            value={user.number}
                             inputProps={
                                 { readOnly: readMode ? true : false }
                             }
@@ -99,6 +101,7 @@ const Profile = (props) => {
                             fullWidth
                             variant='filled'
                             label="ID"
+                            value={user.ID}
                             autoComplete='off'
                             name='ID'
                             inputProps={
@@ -112,6 +115,7 @@ const Profile = (props) => {
                             label="Email"
                             autoComplete='off'
                             name='email'
+                            value={user.email}
                             size='small' margin='normal' type={"email"}
                             inputProps={
                                 { readOnly: readMode ? true : false }
@@ -131,9 +135,20 @@ const Profile = (props) => {
                         <TextField
                             fullWidth
                             variant='filled'
-                            label="PassoutYear"
+                            label="Current Location"
                             autoComplete='off'
-                            name='Passoutyear'
+                            name='location'
+                            inputProps={
+                                { readOnly: readMode ? true : false }
+                            }
+                            size='small' margin='normal' type={"text"}
+                        />
+                         <TextField
+                            fullWidth
+                            variant='filled'
+                            label="Year of Joining"
+                            autoComplete='off'
+                            name='yearOfJoining'
                             inputProps={
                                 { readOnly: readMode ? true : false }
                             }
@@ -145,6 +160,96 @@ const Profile = (props) => {
                                 }
                             }}
                             size='small' margin='normal' type={"number"}
+                        />
+                        <TextField
+                            fullWidth
+                            variant='filled'
+                            label="Passout Year"
+                            autoComplete='off'
+                            name='PassoutYear'
+                            inputProps={
+                                { readOnly: readMode ? true : false }
+                            }
+                            sx={{
+                                '& .MuiOutlinedInput-input': {
+                                    '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+                                        '-webkit-appearance': 'none',
+                                    },
+                                }
+                            }}
+                            size='small' margin='normal' type={"number"}
+                        />
+                         <TextField
+                            fullWidth
+                            variant='filled'
+                            label="Job Role"
+                            autoComplete='off'
+                            name='jobRole'
+                            inputProps={
+                                { readOnly: readMode ? true : false }
+                            }
+                            sx={{
+                                '& .MuiOutlinedInput-input': {
+                                    '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+                                        '-webkit-appearance': 'none',
+                                    },
+                                }
+                            }}
+                            size='small' margin='normal' type={"text"}
+                        />
+                         <TextField
+                            fullWidth
+                            variant='filled'
+                            label="Company"
+                            autoComplete='off'
+                            name='company'
+                            inputProps={
+                                { readOnly: readMode ? true : false }
+                            }
+                            sx={{
+                                '& .MuiOutlinedInput-input': {
+                                    '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+                                        '-webkit-appearance': 'none',
+                                    },
+                                }
+                            }}
+                            size='small' margin='normal' type={"text"}
+                        />
+                         <TextField
+                            fullWidth
+                            variant='filled'
+                            label="Designation"
+                            autoComplete='off'
+                            name='designation'
+                            inputProps={
+                                { readOnly: readMode ? true : false }
+                            }
+                            sx={{
+                                '& .MuiOutlinedInput-input': {
+                                    '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+                                        '-webkit-appearance': 'none',
+                                    },
+                                }
+                            }}
+                            size='small' margin='normal' type={"text"}
+                        />
+                         <TextField
+                            fullWidth
+                            variant='filled'
+                            label="Work Industry"
+                            autoComplete='off'
+                            name='workIndustry'
+                            inputProps={
+                                { readOnly: readMode ? true : false }
+                            }
+                            sx={{
+                                '& .MuiOutlinedInput-input': {
+                                    '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+                                        '-webkit-appearance': 'none',
+                                    },
+                                }
+                            }}
+                            size='small' margin='normal' type={"text"}
                         />
                         <TextField
                             fullWidth
@@ -182,7 +287,7 @@ const Profile = (props) => {
                         <TextField
                             fullWidth
                             variant='filled'
-                            label="BirthDate"
+                            label="Birth Date"
                             autoComplete='off'
                             name='BDate'
                             inputProps={
@@ -199,7 +304,7 @@ const Profile = (props) => {
 
             </form>
             <>
-                <img src={image} height={'50%'} width='auto' />
+                <img src={image} height={'40%'} width='auto' />
             </>
         </Box>
     )

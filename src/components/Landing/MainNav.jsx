@@ -11,7 +11,7 @@ const MainNav = () => {
         display: "flex",
         justifyContent: "space-between"
     })
-
+   
     const handleClick = function (e) {
         setShow(false)
     }

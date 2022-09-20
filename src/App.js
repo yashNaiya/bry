@@ -6,6 +6,8 @@ import React  from 'react';
 import ForgotPassword from "./components/Forgotpassword";
 import ProfileMain from "./components/Profile/ProfileMain";
 import Register from "./components/Landing/Register";
+import AddJobMain from "./components/Job/Recruiter/AddJobMain";
+import Login from "./components/Landing/Login";
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
       <Route path='/forgotpass/:id/:token' element={<ForgotPassword/>}></Route>
       <Route path='/profilepage' element={<ProfileMain/>}></Route>
       <Route path='/register' element={<Register/>}></Route>
+      <Route path='/addjob' element={<AddJobMain/>}></Route>
+      <Route path='/login' element={<Login/>}></Route>
     </Routes>
   );
 }

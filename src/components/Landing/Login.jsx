@@ -1,20 +1,23 @@
-import { Box, Typography, TextField, Button, } from '@mui/material'
+import { Box, Typography, TextField, Button, styled, } from '@mui/material'
 import React from 'react'
 import { useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from "axios"
 import Changepass from '../Changepass';
 import ProfileMain from '../Profile/ProfileMain';
+import { NavLink, useNavigate } from 'react-router-dom';
 
 
-const Login = (props) => {
-    const [sucess, isSucess] = useState(false)
+const Login = () => {
+    const navigate = useNavigate()
     const [forgot, setPass] = useState(false)
     const [inputs, setinputs] = useState({
         email: "",
         password: "",
     })
-
+    const LandingLink = styled(NavLink)({
+        color:'primary'
+    })
     const handleChange = (e) => {
         setinputs((prevState) => ({
             ...prevState,
@@ -31,15 +34,14 @@ const Login = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(inputs)
-        console.log(props.profile)
         const { email, password } = inputs
         if (email && password) {
             axios.post("/login", inputs)
                 .then(res => {
                     alert(res.data.message)
                     if(res.data.message === "LogIn Sucessful"){
-                       isSucess(true)
+                        navigate('/profilepage')
+                        sessionStorage.setItem('sessionData',JSON.stringify(res.data.user))
                     }
                 })
         } else {
@@ -52,12 +54,7 @@ const Login = (props) => {
             email: "", password: ""
         })
     }
-    if(sucess){
-        return(
-            <ProfileMain email={inputs.email}/>
-        )
-    }
-    else if (!forgot) {
+    if(!forgot) {
         return (
             <form onSubmit={handleSubmit}>
                 <Box
@@ -78,9 +75,9 @@ const Login = (props) => {
                     }}
                 >
                     <Box display="flex" sx={{ alignItems: "center" }}>
-                        <Button onClick={props.setChange}>
+                        <LandingLink to={'/'}>
                             <ArrowBackIcon />
-                        </Button>
+                        </LandingLink>
                         <Typography variant='h5' fontWeight={100} padding={3}>{"Login"}</Typography>
                     </Box>
                     <TextField

@@ -1,18 +1,16 @@
 import React, { useState } from 'react'
-import { Box, Typography, Button } from '@mui/material'
+import { Box, Typography, Button, styled } from '@mui/material'
 import Login from './Login'
 import MainNav from './MainNav'
 import { Stack } from '@mui/system'
 import image from '../../assets/landing.svg'
+import { NavLink } from 'react-router-dom'
 
 const Landing = () => {
+  const LoginLink = styled(NavLink)({
+    textDecoration:'none'
+})
 
-  const [show, setShow] = useState(true)
-  const onCardClick = function (e) {
-    setShow(false)
-  }
-
-  if (show) {
     return (
       <Box>
         <MainNav />
@@ -26,28 +24,25 @@ const Landing = () => {
             margin='auto'
             justifyContent={'space-around'}
             p={8}>
+            <LoginLink to={'/login'}>
             <Button
               color={'secondary'}
-              onClick={onCardClick}
+              NavLink to={'/login'}
               variant={'contained'}>
               <Typography variant='h4' fontWeight={100} padding={3}>Want The Job?</Typography>
             </Button>
+            </LoginLink>
+            <LoginLink to={'/login'}>
             <Button
               color={'primary'}
-              variant={'contained'}
-              onClick={onCardClick}>
+              variant={'contained'}>
               <Typography variant='h4' fontWeight={100} padding={3}>Want To Hier?</Typography>
             </Button>
+            </LoginLink>
           </Stack>
         </Box>
       </Box>
     )
-  }
-  else {
-    return (
-      <Login setChange={setShow} />
-    )
-  }
 }
 
 export default Landing
