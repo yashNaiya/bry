@@ -3,15 +3,28 @@ import { Box, Typography, TextField, Button, IconButton } from '@mui/material'
 import { useState } from 'react'
 import { PhotoCamera } from '@mui/icons-material';
 import image from '../../assets/profile.svg'
+import axios from 'axios';
 
 const Profile = () => {
-    let user = sessionStorage.getItem('sessionData')
-    user = JSON.parse(user)
+    const [user,setUser] = useState(JSON.parse(sessionStorage.getItem('sessionData')))
     
     const [readMode, setMode] = useState(true)
 
+    // const [newImage,setNewImage] = useState({
+    //     photo:'',
+    // });
+    const handleChange = (e) => {
+
+        setUser((prevState) => ({
+            ...prevState,
+            [e.target.name]: [e.target.value]
+        }))
+        console.log(user)
+    }
+
     const handleSubmit = (e) => {
         e.preventDefault();
+        axios.post("/UpdateProfile",user).then(res => alert(res.data.message))
 
     }
     const handleRead = function (e) {
@@ -22,10 +35,13 @@ const Profile = () => {
         setMode(false)
     }
 
-    const [file, setFile] = useState();
-    function handleChange(e) {
-        console.log(e.target.files);
-        setFile(URL.createObjectURL(e.target.files[0]));
+    const [file, setFile] = useState( );
+    function handleImage(e) {
+        // console.log(e.target.files);
+        // setFile({...file,url:URL.createObjectURL(e.target.files[0])});
+        setFile(e.target.files[0])
+
+    
     }
     return (
         <Box flex={6}
@@ -44,16 +60,16 @@ const Profile = () => {
                     <Typography variant='h4' color={'primary'} fontWeight={100} padding={4}>Manage Profile</Typography>
                     <Box>
                         <Box>
-                            <img src={file} alt={'profile'} width={'150'} height={'150'} />
+                            <img  alt={'profile'} width={'150'} height={'150'} />
                         </Box>
                         {readMode ? <></> :
                             <>
                                 <Button variant="contained" component="label">
                                     Upload
-                                    <input hidden name='profilePic' onChange={handleChange} multiple type="file" />
+                                    <input hidden name='photo' onChange={handleImage} multiple type="file" />
                                 </Button>
                                 <IconButton color="primary" aria-label="upload picture" component="label">
-                                    <input hidden name='profilePic' onChange={handleChange} type="file" />
+                                    <input hidden name='photo' onChange={handleImage} type="file" />
                                     <PhotoCamera />
                                 </IconButton>
                             </>
@@ -68,6 +84,7 @@ const Profile = () => {
                     <Box minWidth={300} display='flex' flexDirection={'column'} p={2} alignItems={'center'}>
                         <TextField
                             fullWidth
+                            onChange={handleChange}
                             variant='filled'
                             label="Name"
                             autoComplete='off'
@@ -80,6 +97,7 @@ const Profile = () => {
                         />
                         <TextField
                             fullWidth
+                            onChange={handleChange}
                             variant='filled'
                             label="Number"
                             autoComplete='off'
@@ -99,6 +117,7 @@ const Profile = () => {
                         />
                         <TextField
                             fullWidth
+                            onChange={handleChange}
                             variant='filled'
                             label="ID"
                             value={user.ID}
@@ -111,6 +130,7 @@ const Profile = () => {
                         />
                         <TextField
                             fullWidth
+                            onChange={handleChange}
                             variant='filled'
                             label="Email"
                             autoComplete='off'
@@ -123,10 +143,12 @@ const Profile = () => {
                         />
                         <TextField
                             fullWidth
+                            onChange={handleChange}
                             variant='filled'
                             label="Address"
                             autoComplete='off'
                             name='Address'
+                            value={user.Address}
                             inputProps={
                                 { readOnly: readMode ? true : false }
                             }
@@ -134,10 +156,12 @@ const Profile = () => {
                         />
                         <TextField
                             fullWidth
+                            onChange={handleChange}
                             variant='filled'
                             label="Current Location"
                             autoComplete='off'
-                            name='location'
+                            value={user.Curr_loc}
+                            name='Curr_loc'
                             inputProps={
                                 { readOnly: readMode ? true : false }
                             }
@@ -145,8 +169,10 @@ const Profile = () => {
                         />
                          <TextField
                             fullWidth
+                            onChange={handleChange}
                             variant='filled'
                             label="Year of Joining"
+                            value={user.Batch}
                             autoComplete='off'
                             name='yearOfJoining'
                             inputProps={
@@ -163,10 +189,12 @@ const Profile = () => {
                         />
                         <TextField
                             fullWidth
+                            onChange={handleChange}
                             variant='filled'
                             label="Passout Year"
                             autoComplete='off'
-                            name='PassoutYear'
+                            value={user.Passyear}
+                            name='Passyear'
                             inputProps={
                                 { readOnly: readMode ? true : false }
                             }
@@ -181,10 +209,12 @@ const Profile = () => {
                         />
                          <TextField
                             fullWidth
+                            onChange={handleChange}
                             variant='filled'
-                            label="Job Role"
+                            label="Job role"
                             autoComplete='off'
-                            name='jobRole'
+                            name='Job_role'
+                            value={user.Job_role}
                             inputProps={
                                 { readOnly: readMode ? true : false }
                             }
@@ -199,10 +229,12 @@ const Profile = () => {
                         />
                          <TextField
                             fullWidth
+                            onChange={handleChange}
                             variant='filled'
                             label="Company"
                             autoComplete='off'
                             name='company'
+                            value={user.company}
                             inputProps={
                                 { readOnly: readMode ? true : false }
                             }
@@ -217,10 +249,12 @@ const Profile = () => {
                         />
                          <TextField
                             fullWidth
+                            onChange={handleChange}
                             variant='filled'
                             label="Designation"
                             autoComplete='off'
-                            name='designation'
+                            name='Designation'
+                            value={user.Designation}
                             inputProps={
                                 { readOnly: readMode ? true : false }
                             }
@@ -235,10 +269,12 @@ const Profile = () => {
                         />
                          <TextField
                             fullWidth
+                            onChange={handleChange}
                             variant='filled'
                             label="Work Industry"
                             autoComplete='off'
-                            name='workIndustry'
+                            name='Work_Ind'
+                            value={user.Work_Ind}
                             inputProps={
                                 { readOnly: readMode ? true : false }
                             }
@@ -253,10 +289,12 @@ const Profile = () => {
                         />
                         <TextField
                             fullWidth
+                            onChange={handleChange}
                             variant='filled'
                             label="Branch"
                             autoComplete='off'
-                            name='branch'
+                            name='Branch'
+                            value={user.Branch}
                             inputProps={
                                 { readOnly: readMode ? true : false }
                             }
@@ -265,9 +303,11 @@ const Profile = () => {
                         <TextField
                             label="Password"
                             fullWidth
+                            onChange={handleChange}
                             variant='filled'
                             autoComplete='off'
                             name='password'
+                            value={user.password}
                             inputProps={
                                 { readOnly: readMode ? true : false }
                             }
@@ -275,10 +315,12 @@ const Profile = () => {
                         />
                         <TextField
                             fullWidth
+                            onChange={handleChange}
                             variant='filled'
                             label="Field Of Interest"
                             autoComplete='off'
-                            name='foi'
+                            name='Interest'
+                            value={user.Interest}
                             inputProps={
                                 { readOnly: readMode ? true : false }
                             }
@@ -286,10 +328,12 @@ const Profile = () => {
                         />
                         <TextField
                             fullWidth
+                            onChange={handleChange}
                             variant='filled'
                             label="Birth Date"
                             autoComplete='off'
-                            name='BDate'
+                            value={user.DOB}
+                            name='DOB'
                             inputProps={
                                 { readOnly: readMode ? true : false }
                             }

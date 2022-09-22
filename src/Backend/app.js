@@ -288,6 +288,47 @@ app.post("/ResetPassword/:id",async(req,res) =>{
       
 })
 
+app.post("/UpdateProfile", async(req,res) => {
+    // console.log(req.body)
+    try{
+    const _ID = req.body._id
+    const name = req.body.name.toString()
+    const number = req.body.number.toString()
+    const email = req.body.email.toString()
+    const password = req.body.password.toString()
+    const ID = req.body.ID.toString()
+    const Batch = req.body.Batch.toString()
+    const Address = req.body.Address.toString()
+    const Branch = req.body.Branch.toString()
+    const Curr_loc = req.body.Curr_loc.toString()
+    const DOB = req.body.DOB.toString()
+    const Passyear = req.body.Passyear.toString()
+    const Work_Ind = req.body.Work_Ind.toString()
+    const company = req.body.company.toString()
+    const Job_role = req.body.Job_role.toString()
+    const Designation = req.body.Designation.toString()
+    const Interest = req.body.Interest.toString()
+    // console.log(req.body)
+    // console.log(_ID)
+
+    const Updateprofile = await User.findByIdAndUpdate({_id:_ID},{$set:{name:name,number:number,email:email,password:password
+        ,ID:ID,Batch:Batch,Address:Address,Branch:Branch,Curr_loc:Curr_loc,DOB:DOB,Passyear:Passyear,Work_Ind:Work_Ind,
+        company:company,Job_role:Job_role,Designation:Designation,Interest:Interest}})
+   
+    // console.log(Updateprofile)
+
+    if(!Updateprofile){
+        return res.status(404).send(); }
+    else{
+        res.send({message:"Profile Is Updated"}); }
+
+    }
+    catch(e){
+        res.send(e)
+    }
+
+})
+
 
 app.listen(9002,()=>{
    console.log("Be Started at port 9002")

@@ -36,6 +36,44 @@ const Infouser = new mongoose.Schema({
         minlength : [4,"Enter Valid Year"],
         maxlength : [4,"Enter Valid Year"]
     },
+    Address:{
+       type:String
+    },
+
+   Curr_loc:{
+      type:String
+   },
+   Passyear:{
+     type:String
+   },
+   Job_role:{
+     type:String
+   },
+    company:{
+        type:String
+    },
+
+   Designation:{
+    type:String
+   },
+   Work_Ind:{
+    type:String
+   },
+   Branch:{
+    type:String
+   },
+    Interest:{
+     type:String   
+    },
+    Image:{
+        type:String
+    },
+    DOB:{
+        type:String
+    },
+   userType:{
+       type:String
+   },
      state : {
         type:Boolean,
         default : false
