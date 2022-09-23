@@ -3,6 +3,7 @@ import { Box, Typography, TextField, Button, IconButton } from '@mui/material'
 import { useState } from 'react'
 import { PhotoCamera } from '@mui/icons-material';
 import image from '../../assets/profile.svg'
+
 import axios from 'axios';
 
 const Profile = () => {
@@ -10,9 +11,8 @@ const Profile = () => {
     
     const [readMode, setMode] = useState(true)
 
-    // const [newImage,setNewImage] = useState({
-    //     photo:'',
-    // });
+    const [ImagePath,setImagePath] = useState('')
+
     const handleChange = (e) => {
 
         setUser((prevState) => ({
@@ -24,7 +24,12 @@ const Profile = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("/UpdateProfile",user).then(res => alert(res.data.message))
+        // axios.post("/UpdateProfile",user).then(res => alert(res.data.message))
+        const formdata = new FormData()
+        formdata.append("photo",file)
+        formdata.append("ID",user._id)
+        axios.post("/UploadPhoto",formdata).then(res => alert(res.data.message))
+        // setImagePath(`http://localhost:9002/images/${user.Image}`)
 
     }
     const handleRead = function (e) {
@@ -66,7 +71,7 @@ const Profile = () => {
                             <>
                                 <Button variant="contained" component="label">
                                     Upload
-                                    <input hidden name='photo' onChange={handleImage} multiple type="file" />
+                                    <input  name='photo' onChange={handleImage}  type="file" />
                                 </Button>
                                 <IconButton color="primary" aria-label="upload picture" component="label">
                                     <input hidden name='photo' onChange={handleImage} type="file" />

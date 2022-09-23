@@ -3,6 +3,14 @@ const app = express();
 require("./database/connection")
 const User = require("./Models/Student")
 
+const bodyParser = require("body-parser");
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+app.use(express.json());
+
+const path = require("path");  
+app.use("/images", express.static(path.join("Upload/images")));  
+
 app.use(express.urlencoded({extended: true})); 
 app.use(express.json());
 const keysecret = '8wliueinmuyswoi90nhhjgdfdfkuasakjfhdkjfhds8908987'
@@ -22,7 +30,19 @@ const transporter = nodemailer.createTransport({
 }) 
 
 
+//multer store Image
+const multer = require("multer")
 
+var storage = multer.diskStorage({   
+    destination: function(req, file, cb) { 
+       cb(null, './Upload/images');    
+    }, 
+    filename: function (req, file, cb) { 
+       cb(null , Date.now()+'_'+file.originalname);   
+    }
+ });
+
+ var upload = multer({ storage: storage })
 
 
 //Log In Post Method
@@ -328,6 +348,20 @@ app.post("/UpdateProfile", async(req,res) => {
     }
 
 })
+
+app.post("/UploadPhoto",upload.single("photo"), async(req,res) => {
+    // console.log("Hello")
+    //  console.log(req.file)
+     const imagename = req.file.filename
+     const ID = req.body.ID
+    //  console.log(imagename)
+    //  console.log(req.body)
+     const UpdateImage = await User.findByIdAndUpdate({_id:ID},{$set:{Image:imagename}})
+   
+     
+})
+
+
 
 
 app.listen(9002,()=>{
