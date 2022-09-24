@@ -4,14 +4,17 @@ import { useState } from 'react'
 import { PhotoCamera } from '@mui/icons-material';
 import image from '../../assets/profile.svg'
 
+
 import axios from 'axios';
 
 const Profile = () => {
     const [user,setUser] = useState(JSON.parse(sessionStorage.getItem('sessionData')))
-    
+    const SERVER_HOST = 'http://localhost:9002/images/'
+    // const post_img_path = 'images/profiledefault.png'
     const [readMode, setMode] = useState(true)
 
-    const [ImagePath,setImagePath] = useState('')
+    // const ImagePath =  process.env.REACT_APP_IMAGE_PATH+user.image
+   
 
     const handleChange = (e) => {
 
@@ -19,17 +22,20 @@ const Profile = () => {
             ...prevState,
             [e.target.name]: [e.target.value]
         }))
-        console.log(user)
+        
+     
     }
 
     const handleSubmit = (e) => {
+        // sessionStorage.setItem('sessionData',user)
+        // setUser(JSON.parse(sessionStorage.getItem('sessionData')))
+
         e.preventDefault();
-        // axios.post("/UpdateProfile",user).then(res => alert(res.data.message))
+        axios.post("/UpdateProfile",user).then(res => alert(res.data.message))
         const formdata = new FormData()
         formdata.append("photo",file)
         formdata.append("ID",user._id)
         axios.post("/UploadPhoto",formdata).then(res => alert(res.data.message))
-        // setImagePath(`http://localhost:9002/images/${user.Image}`)
 
     }
     const handleRead = function (e) {
@@ -65,7 +71,7 @@ const Profile = () => {
                     <Typography variant='h4' color={'primary'} fontWeight={100} padding={4}>Manage Profile</Typography>
                     <Box>
                         <Box>
-                            <img  alt={'profile'} width={'150'} height={'150'} />
+                            <img src={SERVER_HOST+user.Image} alt={'profile'} width={'150'} height={'150'} />
                         </Box>
                         {readMode ? <></> :
                             <>

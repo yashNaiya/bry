@@ -362,11 +362,13 @@ app.post("/UpdateProfile", async(req,res) => {
 app.post("/UploadPhoto",upload.single("photo"), async(req,res) => {
     // console.log("Hello")
     //  console.log(req.file)
+    if(req.file!=undefined){
      const imagename = req.file.filename
      const ID = req.body.ID
     //  console.log(imagename)
     //  console.log(req.body)
      const UpdateImage = await User.findByIdAndUpdate({_id:ID},{$set:{Image:imagename}})
+    }
    
      
 })
