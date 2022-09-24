@@ -6,7 +6,8 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 
 const UserCard = (props) => {
 
-    const user = JSON.parse(sessionStorage.getItem('sessionData'))
+    const user = props.user
+    console.log(user)
 
     const handleClick = () =>{
         props.setCard(false)
@@ -45,7 +46,7 @@ const UserCard = (props) => {
                         label="Name"
                         autoComplete='off'
                         name='name'
-                        defaultValue={user.name}
+                        defaultValue={user[0]}
                         size='small' margin='normal' type={"text"}
                     />
                     <TextField

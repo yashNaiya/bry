@@ -1,12 +1,13 @@
 import React from 'react'
-import { Box, Typography, TextField, Button, MenuItem, Select, RadioGroup, Radio, FormControlLabel } from '@mui/material'
+import { Box, Typography, TextField, Button, MenuItem, Select, RadioGroup, Radio, FormControlLabel, FormLabel } from '@mui/material'
 import { useState } from 'react'
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import image from '../../../assets/job.svg'
+import MenuLists from '../../../config/MenuLists';
 
+const AddJob = () => {
 
-const AddJob = (props) => {
     const handleChange = (e) => {
         setinputs((prevState) => ({
             ...prevState,
@@ -14,12 +15,12 @@ const AddJob = (props) => {
         }))
     }
     const [inputs, setinputs] = useState({
-        tittle: "",
         type: "",
-        Cname: "",
-        Jdes: "",
-        CWeb: "",
-        Salary: ""
+        title: "",
+        salary: "",
+        companyName: "",
+        jobDescription: "",
+        website: ""
     })
 
     const handleSubmit = async (e) => {
@@ -52,62 +53,58 @@ const AddJob = (props) => {
                     justifyContent={"space-evenly"}>
                     <Box minWidth={300} display='flex' flexDirection={'column'} p={2}>
 
-                        <FormControl component="fieldset">
-                            <RadioGroup value={'Job Type'}>
-                                <FormControlLabel
-                                    value="credit"
-                                    control={<Radio />}
-                                    label="Internship"
-                                />
-                                <FormControlLabel
-                                    value="purchase-order"
-                                    control={<Radio />}
-                                    label="Full Time"
-                                />
+                        <FormControl
+                            margin='normal'>
+                            <FormLabel id="demo-radio-buttons-group-label">Type</FormLabel>
+                            <RadioGroup
+                                aria-labelledby="demo-radio-buttons-group-label"
+                                value={inputs.type}
+                                onChange={handleChange}
+                                name="type"
+                                row>
+                                <FormControlLabel value="job" control={<Radio />} label="Full time" />
+                                <FormControlLabel value="internship" control={<Radio />} label="Internship" />
                             </RadioGroup>
                         </FormControl>
-
-                        <FormControl
+                        <TextField
                             margin='normal'
+                            autoComplete='off'
+                            name='title'
                             fullWidth
-                            variant='filled'>
-                            <InputLabel id="demo-simple-select-label">Salary</InputLabel>
+                            variant='filled'
+                            onChange={handleChange}
+                            value={inputs.title}
+                            size='small' type={"text"} placeholder='Job Tittle' />
+                        <FormControl size='small' sx={{ m: 1, width: "100%", marginLeft: "0" }}>
+                            <InputLabel id="demo-simple-select-autowidth-label">Salary</InputLabel>
                             <Select
-
-                                name='Salary'
-                                value='alary'
-                                label="Salary"
-                                size='small'
+                                labelId="demo-simple-select-autowidth-label"
+                                id="demo-simple-select-autowidth"
+                                value={inputs.salary}
+                                variant={'filled'}
                                 onChange={handleChange}
+                                label="Salary"
+                                name="salary"
                             >
-                                <MenuItem value={'2-4'}>2-4</MenuItem>
-                                <MenuItem value={'4-6'}>4-6</MenuItem>
-                                <MenuItem value={'6-8'}>6-8</MenuItem>
-                                <MenuItem value={'8+'}>8+</MenuItem>
+                                {MenuLists.salary.map(item => (
+                                    <MenuItem key={item.value} value={item.value}>{item.name}</MenuItem>
+                                ))}
                             </Select>
                         </FormControl>
+
                         <TextField
-                            margin='normal'
                             autoComplete='off'
-                            name='tittle'
+                            name='companyName'
                             fullWidth
                             variant='filled'
                             onChange={handleChange}
-                            value={inputs.name}
-                            size='small' type={"text"} placeholder='Job Tittle' />
-                        <TextField
-                            autoComplete='off'
-                            name='Cname'
-                            fullWidth
-                            variant='filled'
-                            onChange={handleChange}
-                            value={inputs.Cname}
+                            value={inputs.companyName}
                             size='small' margin='normal' type={"text"} placeholder='Company Name' />
 
                         <TextField
                             autoComplete='off'
-                            name='JDes'
-                            value={inputs.JDes}
+                            name='jobDescription'
+                            value={inputs.jobDescription}
                             onChange={handleChange}
                             size='small' margin='normal' type={"password"} placeholder='Job Description'
                             multiline
@@ -116,16 +113,16 @@ const AddJob = (props) => {
                         />
                         <TextField
                             autoComplete='off'
-                            name='CWeb'
+                            name='website'
                             fullWidth
                             variant='filled'
                             onChange={handleChange}
-                            value={inputs.Cname}
+                            value={inputs.website}
                             size='small' margin='normal' type={"text"} placeholder='Company Website' />
                     </Box>
                 </Box>
                 <Box display="flex" flexDirection={'column'} sx={{ alignItems: "center", margin: '10px' }}>
-                    <Button type="submit" variant='contained' sx={{ marginTop: 3 }}>Update</Button>
+                    <Button type="submit" variant='contained' sx={{ marginTop: 3 }}>Upload</Button>
                 </Box>
             </form>
             <>

@@ -63,6 +63,22 @@ const MenuLists = {
             name:"Include all internships",
             value:"Include all internships"
         }
+    ],
+    salary:[
+        {
+            name:'2-4',
+            value:'2-4'
+        },
+        {
+            name:'4-6',
+            value:'4-6'
+        }, {
+            name:'6-8',
+            value:'6-8'
+        }, {
+            name:'8+',
+            value:'8+'
+        }
     ]
 }
 
