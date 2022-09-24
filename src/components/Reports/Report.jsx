@@ -1,11 +1,21 @@
 import { Box } from '@mui/material'
 import React from 'react'
+import { useEffect, useState } from 'react';
 import MUIDataTable from 'mui-datatables'
+import axios from 'axios';
 
 const Report = () => {
+    const [dataTable, setDataTable] = useState([]);
+    //  console.log(dataTable)
+    useEffect(() => {
+      axios('/register/valid')
+        .then(res => setDataTable(res.data))
+        .catch(err => console.log(err))
+    }, []);
+   
+     console.log(dataTable)
 
-
-    const columns = ["Name", "Company", "City", "State"];
+     const columns = ["name", "ID", "Interest", "ID","Batch","_id"]
     const options = {
         filter: true,
         selectableRows: true,
@@ -16,10 +26,8 @@ const Report = () => {
         pagination:false
     }
     const data = [
-        ["Joe James", "Test Corp", "Yonkers", "NY"],
-        ["John Walsh", "Test Corp", "Hartford", "CT"],
-        ["Bob Herm", "Test Corp", "Tampa", "FL"],
-        ["James Houston", "Test Corp", "Dallas", "TX"],
+        ["Joe James", "Test Corp", "Yonkers"],
+        
     ];
 
     return (
@@ -32,7 +40,7 @@ const Report = () => {
             
                 <MUIDataTable
                     title={'Reports'}
-                    data={data}
+                    data={dataTable}
                     columns={columns}
                     options={options} />
             

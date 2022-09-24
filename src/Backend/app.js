@@ -123,6 +123,16 @@ app.get("/register",async(req,res)=>{
         res.send(e)
     }
 })
+app.get("/register/valid",async(req,res)=>{
+    try{
+        const usersData = await User.find({state:"true"});
+        // usersData = usersData.pretty();
+        res.send(usersData);
+
+    }catch(e){
+        res.send(e)
+    }
+})
 
 //Get One Student Data
 app.get("/register/:email",async (req,res)=>{

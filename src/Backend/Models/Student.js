@@ -66,7 +66,8 @@ const Infouser = new mongoose.Schema({
      type:String   
     },
     Image:{
-        type:String
+        type:String,
+        default :'profiledefault.png'
     },
     DOB:{
         type:String
