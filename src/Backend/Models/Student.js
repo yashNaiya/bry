@@ -54,33 +54,34 @@ const Infouser = new mongoose.Schema({
         type: String
     },
 
-    Designation: {
-        type: String
+   Designation:{
+    type:String
+   },
+   Work_Ind:{
+    type:String
+   },
+   Branch:{
+    type:String
+   },
+    Interest:{
+     type:String   
     },
-    Work_Ind: {
-        type: String
+    Image:{
+        type:String,
+        default :'profiledefault.png'
     },
-    Branch: {
-        type: String
+    DOB:{
+        type:String
     },
-    Interest: {
-        type: String
+   userType:{
+       type:String
+   },
+     state : {
+        type:Boolean,
+        default : false
     },
-    Image: {
-        type: String
-    },
-    DOB: {
-        type: String
-    },
-    userType: {
-        type: String
-    },
-    state: {
-        type: Boolean,
-        default: false
-    },
-    verifytoken: {
-        type: String
+    verifytoken :{
+        type : String
     }
 })
 
