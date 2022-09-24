@@ -10,6 +10,7 @@ import AddJobMain from "./components/Job/Recruiter/AddJobMain";
 import Login from "./components/Landing/Login";
 import ReportMain from "./components/Reports/ReportMain";
 import DirectoryMain from "./components/Directory/DirectoryMain";
+import UserCard from "./components/UserCard";
 function App() {
   return (
     <Routes>
@@ -23,6 +24,7 @@ function App() {
       <Route path='/login' element={<Login/>}></Route>
       <Route path='/reports' element={<ReportMain/>}></Route>
       <Route path='/friends' element={<DirectoryMain/>}></Route>
+      <Route path='card' element={<UserCard/>}></Route>
     </Routes>
   );
 }
