@@ -4,6 +4,7 @@ import { useState } from 'react'
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import image from '../../../assets/job.svg'
+import axios from 'axios';
 
 
 const AddJob = (props) => {
@@ -18,13 +19,21 @@ const AddJob = (props) => {
         type: "",
         Cname: "",
         Jdes: "",
-        CWeb: "",
-        Salary: ""
+        Cweb: "",
+        salary: ""
     })
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log(inputs)
+        const { tittle, type, Cname, Jdes,Cweb,salary} = inputs
+        if (tittle && type && Cname && Jdes && Cweb && salary ){
+           axios.post("/addjob", inputs)
+               .then(res => alert(res.data.message))
+       } else {
+           alert("Invalid Input")
+       }
+
     }
     return (
         <Box
@@ -52,19 +61,22 @@ const AddJob = (props) => {
                     justifyContent={"space-evenly"}>
                     <Box minWidth={300} display='flex' flexDirection={'column'} p={2}>
 
-                        <FormControl component="fieldset">
-                            <RadioGroup value={'Job Type'}>
-                                <FormControlLabel
-                                    value="credit"
-                                    control={<Radio />}
-                                    label="Internship"
-                                />
-                                <FormControlLabel
-                                    value="purchase-order"
-                                    control={<Radio />}
-                                    label="Full Time"
-                                />
-                            </RadioGroup>
+                    <FormControl
+                            margin='normal'
+                            fullWidth
+                            variant='filled'>
+                            <InputLabel id="demo-simple-select-label">Type</InputLabel>
+                            <Select
+
+                                name='type'
+                                value='type'
+                                label="type"
+                                size='small'
+                                onChange={handleChange}
+                            >
+                                <MenuItem value={'Internship'}>Internship</MenuItem>
+                                <MenuItem value={'Job'}>JOb</MenuItem>
+                            </Select>
                         </FormControl>
 
                         <FormControl
@@ -74,9 +86,9 @@ const AddJob = (props) => {
                             <InputLabel id="demo-simple-select-label">Salary</InputLabel>
                             <Select
 
-                                name='Salary'
-                                value='alary'
-                                label="Salary"
+                                name='salary'
+                                value='salary'
+                                label="salary"
                                 size='small'
                                 onChange={handleChange}
                             >
@@ -93,7 +105,7 @@ const AddJob = (props) => {
                             fullWidth
                             variant='filled'
                             onChange={handleChange}
-                            value={inputs.name}
+                            value={inputs.tittle}
                             size='small' type={"text"} placeholder='Job Tittle' />
                         <TextField
                             autoComplete='off'
@@ -106,8 +118,8 @@ const AddJob = (props) => {
 
                         <TextField
                             autoComplete='off'
-                            name='JDes'
-                            value={inputs.JDes}
+                            name='Jdes'
+                            value={inputs.Jdes}
                             onChange={handleChange}
                             size='small' margin='normal' type={"password"} placeholder='Job Description'
                             multiline
@@ -116,11 +128,11 @@ const AddJob = (props) => {
                         />
                         <TextField
                             autoComplete='off'
-                            name='CWeb'
+                            name='Cweb'
                             fullWidth
                             variant='filled'
                             onChange={handleChange}
-                            value={inputs.Cname}
+                            value={inputs.Cweb}
                             size='small' margin='normal' type={"text"} placeholder='Company Website' />
                     </Box>
                 </Box>

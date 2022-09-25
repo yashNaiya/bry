@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 require("./database/connection")
 const User = require("./Models/Student")
+const JOBS = require("./Models/Jobs");
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json({limit: '50mb'}));
@@ -371,7 +372,40 @@ app.post("/UploadPhoto",upload.single("photo"), async(req,res) => {
      
 })
 
+//addjob
+app.post("/addjob",(req,res)=>{
 
+    try{
+   const {tittle, type, Cname, Jdes,Cweb,salary} = req.body
+   console.log(req.body)
+
+  
+       const job = new JOBS({
+        tittle:tittle[0],
+        type:type[0],
+        Cname:Cname[0],
+        Jdes:Jdes[0],
+        Cweb:Cweb[0],
+        salary:salary[0],
+           
+       })
+       job.save(err =>{
+           if(err){
+            //   console.log(err)
+            console.log("Hello")
+                 res.send(err)
+           }
+           else{
+               console.log("Hiii")
+               res.send({message:"Successfully Registration"})
+               
+           }
+       })
+   }
+    catch(e){
+     console.log(e)
+      }
+    })
 
 
 app.listen(9002,()=>{
