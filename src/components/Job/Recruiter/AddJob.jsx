@@ -1,12 +1,19 @@
 import React from 'react'
-import { Box, Typography, TextField, Button, MenuItem, Select, RadioGroup, Radio, FormControlLabel, FormLabel } from '@mui/material'
+import { Box, Typography, TextField, Button, MenuItem, Select, RadioGroup, Radio, FormControlLabel, FormLabel, Checkbox } from '@mui/material'
 import { useState } from 'react'
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import image from '../../../assets/job.svg'
 import MenuLists from '../../../config/MenuLists';
 
+
 const AddJob = () => {
+
+    const [isChecked, setIsChecked] = useState(true);
+    const handleCheck = () => {
+        isChecked ? setIsChecked(false) : setIsChecked(true)
+        inputs.workFromHome = isChecked
+    };
 
     const handleChange = (e) => {
         setinputs((prevState) => ({
@@ -20,10 +27,12 @@ const AddJob = () => {
         salary: "",
         companyName: "",
         jobDescription: "",
-        website: ""
+        website: "",
+        lastDate: "",
+        workFromHome: false
     })
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
         console.log(inputs)
     }
@@ -91,7 +100,6 @@ const AddJob = () => {
                                 ))}
                             </Select>
                         </FormControl>
-
                         <TextField
                             autoComplete='off'
                             name='companyName'
@@ -119,6 +127,26 @@ const AddJob = () => {
                             onChange={handleChange}
                             value={inputs.website}
                             size='small' margin='normal' type={"text"} placeholder='Company Website' />
+
+                        <TextField
+                            id="date"
+                            label="Last Date"
+                            type="date"
+                            name="lastDate"
+                            value={inputs.lastDate}
+                            onChange= {handleChange}
+                            defaultValue="2017-05-24"
+                            sx={{ width: 220 }}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
+                        />
+                        <FormControlLabel
+                            defaultChecked={false}
+                            value={isChecked}
+                            onChange={handleCheck}
+                            control={<Checkbox />} label="Work From Home" />
+
                     </Box>
                 </Box>
                 <Box display="flex" flexDirection={'column'} sx={{ alignItems: "center", margin: '10px' }}>
@@ -126,7 +154,7 @@ const AddJob = () => {
                 </Box>
             </form>
             <>
-                <img src={image} alt={'img'} height={'50%'} paddingTop={'30px'} width='auto' />
+                <img src={image} alt={'img'} height={'50%'} width='auto' />
             </>
         </Box>
     )
