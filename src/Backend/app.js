@@ -338,12 +338,14 @@ app.post("/UpdateProfile", async(req,res) => {
     const Job_role = req.body.Job_role.toString()
     const Designation = req.body.Designation.toString()
     const Interest = req.body.Interest.toString()
+    const Workshop = req.body.Workshop.toString()
+    const Lecture = req.body.Lecture.toString()
     // console.log(req.body)
     // console.log(_ID)
 
     const Updateprofile = await User.findByIdAndUpdate({_id:_ID},{$set:{name:name,number:number,email:email,password:password
         ,ID:ID,Batch:Batch,Address:Address,Branch:Branch,Curr_loc:Curr_loc,DOB:DOB,Passyear:Passyear,Work_Ind:Work_Ind,
-        company:company,Job_role:Job_role,Designation:Designation,Interest:Interest}})
+        company:company,Job_role:Job_role,Designation:Designation,Interest:Interest,Workshop:Workshop,Lecture:Lecture}})
    
     // console.log(Updateprofile)
 
