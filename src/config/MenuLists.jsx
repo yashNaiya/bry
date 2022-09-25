@@ -24,61 +24,103 @@ const MenuLists = {
             value: 'software engineer',
         },
     ],
-    location:[
+    location: [
         {
-            name:'None',
-            value:''
+            name: 'None',
+            value: ''
         },
         {
-            name:'Delhi',
-            value:'Delhi'
+            name: 'Delhi',
+            value: 'Delhi'
         },
         {
-            name:'Benglore',
-            value:'Benglore'
+            name: 'Benglore',
+            value: 'Benglore'
         },
         {
-            name:'Pune',
-            value:'Pune'
+            name: 'Pune',
+            value: 'Pune'
         },
         {
-            name:'Mumbai',
-            value:'Mumbai'
+            name: 'Mumbai',
+            value: 'Mumbai'
         },
     ],
-    mode:[
+    mode: [
         {
-            name:"Work from home",
-            value:"Work from home"
+            name: "Work from home",
+            value: "Work from home"
         },
         {
-            name:"Fresher jobs",
-            value:"Fresher jobs"
+            name: "Fresher jobs",
+            value: "Fresher jobs"
         },
         {
-            name:"Show only 3 LPA+ jobs",
-            value:"Show only 3 LPA+ jobs"
+            name: "Show only 3 LPA+ jobs",
+            value: "Show only 3 LPA+ jobs"
         },
         {
-            name:"Include all internships",
-            value:"Include all internships"
+            name: "Include all internships",
+            value: "Include all internships"
         }
     ],
-    salary:[
+    salary: [
         {
-            name:'2-4',
-            value:'2-4'
+            name: '2-4',
+            value: '2-4'
         },
         {
-            name:'4-6',
-            value:'4-6'
+            name: '4-6',
+            value: '4-6'
         }, {
-            name:'6-8',
-            value:'6-8'
+            name: '6-8',
+            value: '6-8'
         }, {
-            name:'8+',
-            value:'8+'
+            name: '8+',
+            value: '8+'
         }
+    ],
+    recruiter: [
+        {
+            name: "My Jobs",
+            icon: "WorkIcon"
+        },
+        {
+            name: "Add Job",
+            icon: "WorkIcon"
+        },
+        {
+            name: "Chat",
+            icon:"WorkIcon"
+        },
+        {
+            name: "Friends",
+            icon:"WorkIcon"
+        },
+        {
+            name: "Profile",
+            icon: "WorkIcon"
+        },
+        {
+            name: "Settings",
+            icon: "WorkIcon"
+        }
+    ],
+    // seeker: [
+    //     { "Jobs", }
+    //     { "My Applications", }
+    //     { "Chat", }
+    //     { "Friends", }
+    //     { "Profile", }
+    //     { "Settings"}
+    // ],
+    admin: [
+        "Reports",
+        "Authenticate",
+        "Chat",
+        "Friends",
+        "Profile",
+        "Settings"
     ]
 }
 

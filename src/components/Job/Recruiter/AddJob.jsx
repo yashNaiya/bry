@@ -129,14 +129,16 @@ const AddJob = () => {
                             size='small' margin='normal' type={"text"} placeholder='Company Website' />
 
                         <TextField
-                            id="date"
+                            size='small' 
+                            margin='normal'
                             label="Last Date"
                             type="date"
                             name="lastDate"
+                            variant='filled'
                             value={inputs.lastDate}
                             onChange= {handleChange}
                             defaultValue="2017-05-24"
-                            sx={{ width: 220 }}
+                            fullWidth
                             InputLabelProps={{
                                 shrink: true,
                             }}

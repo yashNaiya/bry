@@ -330,7 +330,10 @@ const Profile = () => {
                             inputProps={
                                 { readOnly: readMode ? true : false }
                             }
-                            size='small' margin='normal' type={"text"}
+                            size='small' margin='normal' type={"date"}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
                         />
                         <Box display={'flex'} flexDirection={'column'} >
 
