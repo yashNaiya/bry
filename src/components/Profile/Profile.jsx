@@ -10,8 +10,11 @@ import axios from 'axios';
 const Profile = () => {
     const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('sessionData')))
     const SERVER_HOST = 'http://localhost:9002/images/'
+    
 
     const [readMode, setMode] = useState(true)
+
+    const [value,setvalue] = useState(0)
 
     const [ImagePath, setImagePath] = useState('')
 
@@ -33,10 +36,15 @@ const Profile = () => {
 
         e.preventDefault();
         axios.post("/UpdateProfile",user).then(res => alert(res.data.message))
+        
+        if(value==1){
         const formdata = new FormData()
         formdata.append("photo", file)
         formdata.append("ID", user._id)
         axios.post("/UploadPhoto", formdata).then(res => alert(res.data.message))
+        
+        }
+        setvalue(0)
         // setImagePath(`http://localhost:9002/images/${user.Image}`)
 
     }
@@ -53,7 +61,7 @@ const Profile = () => {
         // console.log(e.target.files);
         // setFile({...file,url:URL.createObjectURL(e.target.files[0])});
         setFile(e.target.files[0])
-
+        setvalue(1)
 
     }
     return (
