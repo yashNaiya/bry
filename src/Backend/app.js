@@ -399,18 +399,24 @@ app.post("/UpdateProfile", async(req,res) => {
     const company = req.body.company[0]
     // console.log(company)
 
-    const Job_role = req.body.Job_role[0]
-    // console.log(Job_role)
-    const Designation = req.body.Designation[0]
-    // console.log(Designation)
-    const Interest = req.body.Interest[0]
-    // console.log(Interest)
+    const Job_role = req.body.Job_role.toString()
+    console.log(Job_role)
+    const Designation = req.body.Designation.toString()
+    console.log(Designation)
+    const Interest = req.body.Interest.toString()
+    console.log(Interest)
+    const Lecture = req.body.Lecture.toString()
+    console.log(Lecture)
+    const Workshop = req.body.Workshop.toString()
+    console.log(Workshop)
+
+
 
     // console.log(req.body)
 
     const Updateprofile = await User.findByIdAndUpdate({_id:_ID},{$set:{name:name,number:number,email:email,password:password
         ,ID:ID,Batch:Batch,Address:Address,Branch:Branch,Curr_loc:Curr_loc,DOB:DOB,Passyear:Passyear,Work_Ind:Work_Ind,
-        company:company,Job_role:Job_role,Designation:Designation,Interest:Interest}})
+        company:company,Job_role:Job_role,Designation:Designation,Interest:Interest,Lecture:Lecture,Workshop:Workshop}})
    
         // console.log(Updateprofile)
     
@@ -439,7 +445,40 @@ app.post("/UploadPhoto",upload.single("photo"), async(req,res) => {
      
 })
 
+//addjob
+app.post("/addjob",(req,res)=>{
 
+    try{
+   const {tittle, type, Cname, Jdes,Cweb,salary} = req.body
+   console.log(req.body)
+
+  
+       const job = new JOBS({
+        tittle:tittle[0],
+        type:type[0],
+        Cname:Cname[0],
+        Jdes:Jdes[0],
+        Cweb:Cweb[0],
+        salary:salary[0],
+           
+       })
+       job.save(err =>{
+           if(err){
+            //   console.log(err)
+            console.log("Hello")
+                 res.send(err)
+           }
+           else{
+               console.log("Hiii")
+               res.send({message:"Successfully Registration"})
+               
+           }
+       })
+   }
+    catch(e){
+     console.log(e)
+      }
+    })
 
 //Display Job
 app.get("/jobpage",async(req,res)=>{
