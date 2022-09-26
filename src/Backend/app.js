@@ -75,7 +75,7 @@ app.post("/login",(req,res)=>{
 app.post("/register",(req,res)=>{
     // res.send("Hello From Other Side")
    const {name, email, password, number,ID,rePass,batch} = req.body
-//    console.log(req.body)
+
 
    User.findOne({email:email},(err,user)=>{
    if(user){
