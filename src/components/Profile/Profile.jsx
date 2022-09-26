@@ -9,11 +9,12 @@ import axios from 'axios';
 
 const Profile = () => {
     const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('sessionData')))
+    const SERVER_HOST = 'http://localhost:9002/images/'
+    
 
     const [readMode, setMode] = useState(true)
 
-    const [ImagePath, setImagePath] = useState('')
-
+    const [value,setvalue] = useState(0)
 
     const handleChange = (e) => {
 
@@ -21,16 +22,25 @@ const Profile = () => {
             ...prevState,
             [e.target.name]: [e.target.value]
         }))
-        console.log(user)
+        
+     
     }
 
     const handleSubmit = (e) => {
+        // sessionStorage.setItem('sessionData',user)
+        // setUser(JSON.parse(sessionStorage.getItem('sessionData')))
+        console.log(user)
+
         e.preventDefault();
         axios.post("/UpdateProfile",user).then(res => alert(res.data.message))
+        
+        // if(value===1){
         const formdata = new FormData()
         formdata.append("photo", file)
         formdata.append("ID", user._id)
         axios.post("/UploadPhoto", formdata).then(res => alert(res.data.message))
+        
+        setvalue(0)
         // setImagePath(`http://localhost:9002/images/${user.Image}`)
 
     }
@@ -47,7 +57,7 @@ const Profile = () => {
         // console.log(e.target.files);
         // setFile({...file,url:URL.createObjectURL(e.target.files[0])});
         setFile(e.target.files[0])
-
+        // setvalue(1)
 
     }
     return (
@@ -67,7 +77,7 @@ const Profile = () => {
                     <Typography variant='h4' color={'primary'} fontWeight={100} padding={4}>Manage Profile</Typography>
                     <Box>
                         <Box>
-                            <img alt={'profile'} width={'150'} height={'150'} />
+                            <img src={SERVER_HOST+user.Image} alt='profile' width={'150'} height={'150'} />
                         </Box>
                         {readMode ? <></> :
                             <>
@@ -156,6 +166,18 @@ const Profile = () => {
                             autoComplete='off'
                             name='Address'
                             value={user.Address}
+                            inputProps={
+                                { readOnly: readMode ? true : false }
+                            }
+                            size='small' margin='normal' type={"text"}/>
+                            <TextField
+                            fullWidth
+                            onChange={handleChange}
+                            variant='filled'
+                            label="Current Location"
+                            autoComplete='off'
+                            name='Curr_loc'
+                            value={user.Curr_loc}
                             inputProps={
                                 { readOnly: readMode ? true : false }
                             }
@@ -330,12 +352,12 @@ const Profile = () => {
                             inputProps={
                                 { readOnly: readMode ? true : false }
                             }
-                            size='small' margin='normal' type={"date"}
+                            size='small' margin='normal' 
                             InputLabelProps={{
                                 shrink: true,
                             }}
                         />
-                        <Box display={'flex'} flexDirection={'column'} >
+                        {/* <Box display={'flex'} flexDirection={'column'} >
 
                             <Typography variant={'h6'} color={'primary'} m={4} >Connect with college</Typography>
                             <FormControl
@@ -368,7 +390,7 @@ const Profile = () => {
                                     <FormControlLabel value="no" control={<Radio />} label="No" />
                                 </RadioGroup>
                             </FormControl>
-                        </Box>
+                        </Box> */}
                     </Box>
                 </Box>
                 <Box display="flex" flexDirection={'column'} sx={{ alignItems: "center", margin: '10px' }}>

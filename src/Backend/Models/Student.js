@@ -76,6 +76,14 @@ const Infouser = new mongoose.Schema({
    userType:{
        type:String
    },
+//    Workshop:{
+//        type:String,
+//        default : "yes"
+//    },
+//    Lecture:{
+//        type:String,
+//        default:"yes"
+//    },
      state : {
         type:Boolean,
         default : false

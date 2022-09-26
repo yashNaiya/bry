@@ -12,8 +12,10 @@ const Report = (props) => {
             .then(res => setDataTable(res.data))
             .catch(err => console.log(err))
     }, []);
+   
+    //  console.log(dataTable)
 
-    const columns = ["name", "ID", "Interest", "email", "Batch", "_id"]
+     const columns = ["name", "email", "ID", "Interest","Workshop","Lecture"]
     const options = {
         filter: true,
         selectableRows: false,
@@ -23,23 +25,29 @@ const Report = (props) => {
         print: false,
         pagination: false,
         onRowClick: (rowData) => {
-            console.log(rowData)
-            console.log(columns[0])
-            props.setUser(rowData)
+
+            axios.get(`/register/${rowData[1]}`)   
+           .then(response => {
+            props.setUser(JSON.stringify(response.data))
             props.setCard(true)
+           
+            
+        })
+           .catch(err => console.log(err))
+
+            // console.log(rowData[1])
+            // console.log(columns[0])
+           
         }
     }
-    const data = [
-        ["Joe James", "Test Corp", "Yonkers"],
 
-    ];
-    return (
-        <Box flex={6}
-            display='flex'
-            flexDirection={'column'}
-            sx={{
-                padding: { xs: 'none', sm: '10px' }
-            }}>
+        return (
+            <Box flex={6}
+                display='flex'
+                flexDirection={'column'}
+                sx={{
+                    padding: { xs: 'none', sm: '10px' }
+                }}>
 
             <MUIDataTable
                 title={'Reports'}
