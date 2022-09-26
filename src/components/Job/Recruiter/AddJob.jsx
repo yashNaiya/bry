@@ -40,7 +40,15 @@ const AddJob = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("/AddJob", user).then(res => alert(res.data.message))
+        console.log(inputs)
+        const { tittle, type, Cname, Jdes,Cweb,salary} = inputs
+        if (tittle && type && Cname && Jdes && Cweb && salary ){
+           axios.post("/addjob", inputs)
+               .then(res => alert(res.data.message))
+       } else {
+           alert("Invalid Input")
+       }
+
     }
     return (
         <Box
