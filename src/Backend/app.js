@@ -351,7 +351,6 @@ app.post("/UpdateProfile", async(req,res) => {
         return res.status(404).send(); }
     else{
         res.send({message:"Profile Is Updated"}); }
-
     }
     catch(e){
         res.send(e)
@@ -362,13 +361,14 @@ app.post("/UpdateProfile", async(req,res) => {
 app.post("/UploadPhoto",upload.single("photo"), async(req,res) => {
     // console.log("Hello")
     //  console.log(req.file)
+    if(!req.file){
      const imagename = req.file.filename
      const ID = req.body.ID
     //  console.log(imagename)
     //  console.log(req.body)
      const UpdateImage = await User.findByIdAndUpdate({_id:ID},{$set:{Image:imagename}})
-   
-     
+    }
+
 })
 
 

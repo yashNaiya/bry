@@ -26,7 +26,7 @@ const Profile = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // axios.post("/UpdateProfile",user).then(res => alert(res.data.message))
+        axios.post("/UpdateProfile",user).then(res => alert(res.data.message))
         const formdata = new FormData()
         formdata.append("photo", file)
         formdata.append("ID", user._id)
