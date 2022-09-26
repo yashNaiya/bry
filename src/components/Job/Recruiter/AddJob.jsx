@@ -12,7 +12,7 @@ const AddJob = () => {
     const user = JSON.parse(sessionStorage.getItem('sessionData'))
     const [isChecked, setIsChecked] = useState(true);
     const handleCheck = () => {
-        isChecked === "true" ? setIsChecked("false") : setIsChecked("true")
+        isChecked ==="true" ? setIsChecked("false") : setIsChecked("true")
         inputs.workFromHome = isChecked
     };
 
@@ -40,11 +40,14 @@ const AddJob = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(inputs)
-        const { tittle, type, Cname, Jdes,Cweb,salary} = inputs
-        if (tittle && type && Cname && Jdes && Cweb && salary ){
-           axios.post("/addjob", inputs)
-               .then(res => alert(res.data.message))
+       
+        const { title, type,companyName, jobDescription, website  , salary,lastDate} = inputs
+        
+        
+        if (title && type && companyName &&  jobDescription &&  website  && salary && lastDate){
+            axios.post("/addjob", inputs)
+            .then(res => alert(res.data.message))
+            
        } else {
            alert("Invalid Input")
        }
@@ -193,6 +196,7 @@ const AddJob = () => {
                         <FormControlLabel
                             defaultChecked={false}
                             value={isChecked}
+                            name = 'WorkFromHome'
                             onChange={handleCheck}
                             control={<Checkbox />} label="Work From Home" />
 
