@@ -4,46 +4,57 @@ import { useEffect, useState } from 'react';
 import MUIDataTable from 'mui-datatables'
 import axios from 'axios';
 
-const Report = () => {
+const Report = (props) => {
     const [dataTable, setDataTable] = useState([]);
     //  console.log(dataTable)
     useEffect(() => {
-      axios('/register/valid')
-        .then(res => setDataTable(res.data))
-        .catch(err => console.log(err))
+        axios('/register/valid')
+            .then(res => setDataTable(res.data))
+            .catch(err => console.log(err))
     }, []);
    
-     console.log(dataTable)
+    //  console.log(dataTable)
 
-     const columns = ["name", "ID", "Interest", "ID","Batch","_id"]
+     const columns = ["name", "email", "ID", "Interest","Workshop","Lecture"]
     const options = {
         filter: true,
-        selectableRows: true,
+        selectableRows: false,
         filterType: "dropdown",
-        responsive: "stacked",
+        responsive: "standard",
         rowsPerPage: 10,
-        print:false,
-        pagination:false
-    }
-    const data = [
-        ["Joe James", "Test Corp", "Yonkers"],
-        
-    ];
+        print: false,
+        pagination: false,
+        onRowClick: (rowData) => {
 
-    return (
-        <Box flex={6}
-            display='flex'
-            flexDirection={'column'}
-            sx={{
-                padding: { xs: 'none', sm: '10px' }
-            }}>
+            axios.get(`/register/${rowData[1]}`)   
+           .then(response => {
+            props.setUser(JSON.stringify(response.data))
+            props.setCard(true)
+           
             
-                <MUIDataTable
-                    title={'Reports'}
-                    data={dataTable}
-                    columns={columns}
-                    options={options} />
-            
+        })
+           .catch(err => console.log(err))
+
+            // console.log(rowData[1])
+            // console.log(columns[0])
+           
+        }
+    }
+
+        return (
+            <Box flex={6}
+                display='flex'
+                flexDirection={'column'}
+                sx={{
+                    padding: { xs: 'none', sm: '10px' }
+                }}>
+
+            <MUIDataTable
+                title={'Reports'}
+                data={dataTable}
+                columns={columns}
+                options={options} />
+
         </Box>
     )
 }

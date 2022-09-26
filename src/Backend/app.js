@@ -138,9 +138,10 @@ app.get("/register/valid",async(req,res)=>{
 //Get One Student Data
 app.get("/register/:email",async (req,res)=>{
     try{
+        
         const email = req.params.email;
-        const OneUserData = await User.findOne(email);
-         console.log(OneUserData)
+        const OneUserData = await User.findOne({email,email});
+        //  console.log(OneUserData)
         if(!OneUserData){
             return res.status(404).send();
         }
@@ -323,51 +324,77 @@ app.post("/UpdateProfile", async(req,res) => {
     // console.log(req.body)
     try{
     const _ID = req.body._id
+    console.log(_ID)
     const name = req.body.name.toString()
+    console.log(name)
     const number = req.body.number.toString()
+    console.log(number)
     const email = req.body.email.toString()
+    console.log(email)
     const password = req.body.password.toString()
+    console.log(password)
     const ID = req.body.ID.toString()
+    console.log(ID)
     const Batch = req.body.Batch.toString()
+    console.log(Batch)
     const Address = req.body.Address.toString()
+    console.log(Address)
     const Branch = req.body.Branch.toString()
+    console.log(Branch)
     const Curr_loc = req.body.Curr_loc.toString()
+    console.log(Curr_loc)
     const DOB = req.body.DOB.toString()
+    console.log(DOB)
     const Passyear = req.body.Passyear.toString()
+    console.log(Passyear)
     const Work_Ind = req.body.Work_Ind.toString()
+    console.log(Work_Ind)
     const company = req.body.company.toString()
+    console.log(company)
+
     const Job_role = req.body.Job_role.toString()
+    console.log(Job_role)
     const Designation = req.body.Designation.toString()
+    console.log(Designation)
     const Interest = req.body.Interest.toString()
+    console.log(Interest)
+    const Lecture = req.body.Lecture.toString()
+    console.log(Lecture)
+    const Workshop = req.body.Workshop.toString()
+    console.log(Workshop)
+
+
+
     // console.log(req.body)
-    // console.log(_ID)
 
     const Updateprofile = await User.findByIdAndUpdate({_id:_ID},{$set:{name:name,number:number,email:email,password:password
         ,ID:ID,Batch:Batch,Address:Address,Branch:Branch,Curr_loc:Curr_loc,DOB:DOB,Passyear:Passyear,Work_Ind:Work_Ind,
-        company:company,Job_role:Job_role,Designation:Designation,Interest:Interest}})
+        company:company,Job_role:Job_role,Designation:Designation,Interest:Interest,Lecture:Lecture,Workshop:Workshop}})
    
-    // console.log(Updateprofile)
 
-    if(!Updateprofile){
-        return res.status(404).send(); }
-    else{
-        res.send({message:"Profile Is Updated"}); }
-
-    }
-    catch(e){
-        res.send(e)
-    }
-
+        console.log(Updateprofile)
+    
+        if(!Updateprofile){
+            return res.status(404).send(); }
+        else{
+            res.send({message:"Profile Is Updated"}); }
+        }
+        catch(e){
+            res.send(e.message)
+        }
+    
 })
 
 app.post("/UploadPhoto",upload.single("photo"), async(req,res) => {
     // console.log("Hello")
     //  console.log(req.file)
+    if(req.file!=undefined){
      const imagename = req.file.filename
      const ID = req.body.ID
     //  console.log(imagename)
     //  console.log(req.body)
      const UpdateImage = await User.findByIdAndUpdate({_id:ID},{$set:{Image:imagename}})
+    }
    
      
 })

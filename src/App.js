@@ -10,6 +10,7 @@ import AddJobMain from "./components/Job/Recruiter/AddJobMain";
 import Login from "./components/Landing/Login";
 import ReportMain from "./components/Reports/ReportMain";
 import DirectoryMain from "./components/Directory/DirectoryMain";
+require('dotenv').config();
 function App() {
   return (
     <Routes>

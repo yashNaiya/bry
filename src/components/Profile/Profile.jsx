@@ -1,17 +1,20 @@
 import React from 'react'
-import { Box, Typography, TextField, Button, IconButton } from '@mui/material'
+import { Box, Typography, TextField, Button, IconButton, FormControl, Radio, FormControlLabel, FormLabel, RadioGroup } from '@mui/material'
 import { useState } from 'react'
 import { PhotoCamera } from '@mui/icons-material';
 import image from '../../assets/profile.svg'
 
+
 import axios from 'axios';
 
 const Profile = () => {
-    const [user,setUser] = useState(JSON.parse(sessionStorage.getItem('sessionData')))
-    
+    const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('sessionData')))
+    const SERVER_HOST = 'http://localhost:9002/images/'
+
+
     const [readMode, setMode] = useState(true)
 
-    const [ImagePath,setImagePath] = useState('')
+    const [value, setvalue] = useState(0)
 
     const handleChange = (e) => {
 
@@ -19,16 +22,27 @@ const Profile = () => {
             ...prevState,
             [e.target.name]: [e.target.value]
         }))
-        console.log(user)
+
+
     }
 
     const handleSubmit = (e) => {
+        sessionStorage.setItem('sessionData',JSON.stringify(user))
+        // user = JSON.parse(sessionStorage.getItem('sessionData'))
+        console.log(user)
+        console.log(JSON.parse(sessionStorage.getItem('sessionData')))
+
         e.preventDefault();
-        // axios.post("/UpdateProfile",user).then(res => alert(res.data.message))
-        const formdata = new FormData()
-        formdata.append("photo",file)
-        formdata.append("ID",user._id)
-        axios.post("/UploadPhoto",formdata).then(res => alert(res.data.message))
+        axios.post("/UpdateProfile", user).then(res => alert(res.data.message))
+
+        if (value === 1) {
+            const formdata = new FormData()
+            formdata.append("photo", file)
+            formdata.append("ID", user._id)
+            axios.post("/UploadPhoto", formdata).then(res => alert(res.data.message))
+
+        }
+        setvalue(0)
         // setImagePath(`http://localhost:9002/images/${user.Image}`)
 
     }
@@ -40,13 +54,13 @@ const Profile = () => {
         setMode(false)
     }
 
-    const [file, setFile] = useState( );
+    const [file, setFile] = useState();
     function handleImage(e) {
         // console.log(e.target.files);
         // setFile({...file,url:URL.createObjectURL(e.target.files[0])});
         setFile(e.target.files[0])
+        setvalue(1)
 
-    
     }
     return (
         <Box flex={6}
@@ -65,13 +79,13 @@ const Profile = () => {
                     <Typography variant='h4' color={'primary'} fontWeight={100} padding={4}>Manage Profile</Typography>
                     <Box>
                         <Box>
-                            <img  alt={'profile'} width={'150'} height={'150'} />
+                            <img src={SERVER_HOST + user.Image} alt='profile' width={'150'} height={'150'} />
                         </Box>
                         {readMode ? <></> :
                             <>
                                 <Button variant="contained" component="label">
                                     Upload
-                                    <input  name='photo' onChange={handleImage}  type="file" />
+                                    <input hidden name='photo' onChange={handleImage} type="file" />
                                 </Button>
                                 <IconButton color="primary" aria-label="upload picture" component="label">
                                     <input hidden name='photo' onChange={handleImage} type="file" />
@@ -157,22 +171,22 @@ const Profile = () => {
                             inputProps={
                                 { readOnly: readMode ? true : false }
                             }
-                            size='small' margin='normal' type={"text"}
-                        />
+                            size='small' margin='normal' type={"text"} />
+
                         <TextField
                             fullWidth
                             onChange={handleChange}
                             variant='filled'
                             label="Current Location"
                             autoComplete='off'
-                            value={user.Curr_loc}
                             name='Curr_loc'
+                            value={user.Curr_loc}
                             inputProps={
                                 { readOnly: readMode ? true : false }
                             }
-                            size='small' margin='normal' type={"text"}
-                        />
-                         <TextField
+                            size='small' margin='normal' type={"text"} />
+
+                        <TextField
                             fullWidth
                             onChange={handleChange}
                             variant='filled'
@@ -212,7 +226,7 @@ const Profile = () => {
                             }}
                             size='small' margin='normal' type={"number"}
                         />
-                         <TextField
+                        <TextField
                             fullWidth
                             onChange={handleChange}
                             variant='filled'
@@ -232,7 +246,7 @@ const Profile = () => {
                             }}
                             size='small' margin='normal' type={"text"}
                         />
-                         <TextField
+                        <TextField
                             fullWidth
                             onChange={handleChange}
                             variant='filled'
@@ -252,7 +266,7 @@ const Profile = () => {
                             }}
                             size='small' margin='normal' type={"text"}
                         />
-                         <TextField
+                        <TextField
                             fullWidth
                             onChange={handleChange}
                             variant='filled'
@@ -272,7 +286,7 @@ const Profile = () => {
                             }}
                             size='small' margin='normal' type={"text"}
                         />
-                         <TextField
+                        <TextField
                             fullWidth
                             onChange={handleChange}
                             variant='filled'
@@ -342,10 +356,46 @@ const Profile = () => {
                             inputProps={
                                 { readOnly: readMode ? true : false }
                             }
-                            size='small' margin='normal' type={"text"}
+                            size='small' margin='normal' type={"date"}
+                            InputLabelProps={{
+                                shrink: true,
+                            }}
                         />
-                    </Box>
+                        <Box display={'flex'} flexDirection={'column'} >
 
+                            <Typography variant={'h6'} color={'primary'} m={4} >Connect with college</Typography>
+                            <FormControl
+                                margin='normal'
+                            >
+                                <FormLabel id="demo-radio-buttons-group-label">Take WorkShop</FormLabel>
+                                <RadioGroup
+                                    aria-labelledby="demo-radio-buttons-group-label"
+                                    defaultValue="yes"
+                                    onChange={handleChange}
+                                    name="Workshop"
+                                    row
+                                >
+                                    <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+                                    <FormControlLabel value="no" control={<Radio />} label="No" />
+                                </RadioGroup>
+                            </FormControl>
+                            <FormControl
+                                margin='normal'
+                            >
+                                <FormLabel id="demo-radio-buttons-group-label">Take a Lecture</FormLabel>
+                                <RadioGroup
+                                    aria-labelledby="demo-radio-buttons-group-label"
+                                    defaultValue="yes"
+                                    onChange={handleChange}
+                                    name="Lecture"
+                                    row
+                                >
+                                    <FormControlLabel value="yes" control={<Radio />} label="Yes" />
+                                    <FormControlLabel value="no" control={<Radio />} label="No" />
+                                </RadioGroup>
+                            </FormControl>
+                        </Box>
+                    </Box>
                 </Box>
                 <Box display="flex" flexDirection={'column'} sx={{ alignItems: "center", margin: '10px' }}>
                     <Button type="submit" variant='contained' sx={{ marginTop: 3 }}>Update</Button>
@@ -353,7 +403,7 @@ const Profile = () => {
 
             </form>
             <>
-                <img src={image} height={'40%'} width='auto' />
+                <img src={image} height={'35%'} width='auto' />
             </>
         </Box>
     )

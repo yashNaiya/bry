@@ -3,7 +3,7 @@ import { Box, Typography, TextField, Button } from '@mui/material'
 import { useState } from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import axios from 'axios';
-import { NavLink } from 'react-router-dom';
+import { Navigate, NavLink } from 'react-router-dom';
 
 
 const Register = () => {
@@ -26,10 +26,13 @@ const Register = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const { name, email, password, number,ID,rePass,batch} = inputs
-         if (name && email && password && number && ID && batch && (password[0]===rePass[0])){
+        const { name, email, password, number, ID, rePass, batch } = inputs
+        if (name && email && password && number && ID && batch && (password[0] === rePass[0])) {
             axios.post("/register", inputs)
-                .then(res => alert(res.data.message))
+                .then(res => {
+                    alert(res.data.message)
+                })
+
         } else {
             alert("Invalid Input")
         }
