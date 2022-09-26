@@ -1,5 +1,5 @@
 import React from 'react'
-import { AppBar, Avatar,Menu, InputBase, MenuItem, styled, Toolbar, Typography } from '@mui/material'
+import { AppBar, Avatar, Menu, InputBase, MenuItem, styled, Toolbar, Typography } from '@mui/material'
 import { useState } from 'react';
 
 const StyledToolbar = styled(Toolbar)({
@@ -7,49 +7,61 @@ const StyledToolbar = styled(Toolbar)({
   justifyContent: "space-between"
 })
 
+const SERVER_HOST = 'http://localhost:9002/images/'
+const user = JSON.parse(sessionStorage.getItem('sessionData'))
+
+
 const Searchbar = styled("div")(({ theme }) => ({
   backgroundColor: "#e1e1e1",
   borderRadius: theme.shape.borderRadius,
   padding: "0 10px",
   width: "30%",
-  
+
 }))
 const UserBox = styled("div")(({ theme }) => ({
-  display:"flex",
-  gap:"20px",
-  alignItems:"center",
-  [theme.breakpoints.up("sm")]:{
-    display:"none"
+  display: "flex",
+  gap: "20px",
+  alignItems: "center",
+  [theme.breakpoints.up("sm")]: {
+    display: "none"
   }
 }))
 const Icons = styled("div")(({ theme }) => ({
-  display:"none",
-  gap:"10px",
-  alignItems:"center",
-  [theme.breakpoints.up("sm")]:{
-    display:"flex"
+  display: "none",
+  gap: "10px",
+  alignItems: "center",
+  [theme.breakpoints.up("sm")]: {
+    display: "flex"
   }
 }))
 const Navbar = () => {
-  const [open,setOpen] = useState(false);
+  const [open, setOpen] = useState(false);
   return (
-    <AppBar position='sticky' color="secondary"sx={{boxShadow:"none", paddingY:"1%"}} >
+    <AppBar position='sticky' color="secondary" sx={{ boxShadow: "none", paddingY: "1%" }} >
       <StyledToolbar >
         <Typography variant="h6" color="primary" sx={{ display: { xs: "none", sm: "block" } }}>BVM</Typography>
         <Searchbar><InputBase placeholder='search..' /></Searchbar>
         <Icons>
-          <Avatar sx={{width:"45px", height:"45px"}} onClick={e=>setOpen(true)}/>
+          <Avatar src={SERVER_HOST + user.Image} sx={{
+            width: "45px", height: "45px", 
+            textAlign: "center",
+            display: "block",
+            justifyContent: "center",
+            alignItems: "center",
+            margin: "auto",
+          }}
+            onClick={e => setOpen(true)} />
         </Icons>
-        <UserBox onClick={(e)=>setOpen(true)}>
+        <UserBox onClick={(e) => setOpen(true)}>
           <Typography variant='span'>Yash</Typography>
-          <Avatar sx={{width:"30px", height:"30px"}} />
+          <Avatar sx={{ width: "30px", height: "30px" }} />
         </UserBox>
       </StyledToolbar>
       <Menu
         id="demo-positioned-menu"
         aria-labelledby="demo-positioned-button"
         open={open}
-        onClose={(e)=>setOpen(false)}
+        onClose={(e) => setOpen(false)}
         anchorOrigin={{
           vertical: 'top',
           horizontal: 'right',

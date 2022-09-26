@@ -8,7 +8,7 @@ import MenuLists from '../../../config/MenuLists';
 
 
 const AddJob = () => {
-
+    const user = JSON.parse(sessionStorage.getItem('sessionData'))
     const [isChecked, setIsChecked] = useState(true);
     const handleCheck = () => {
         isChecked ? setIsChecked(false) : setIsChecked(true)
@@ -22,6 +22,7 @@ const AddJob = () => {
         }))
     }
     const [inputs, setinputs] = useState({
+        _id: user._id,
         type: "",
         title: "",
         salary: "",
