@@ -6,7 +6,6 @@ import axios from "axios"
 import Changepass from '../Changepass';
 import { NavLink, useNavigate } from 'react-router-dom';
 
-
 const Login = () => {
     const navigate = useNavigate()
     const [forgot, setPass] = useState(false)
@@ -15,7 +14,7 @@ const Login = () => {
         password: "",
     })
     const LandingLink = styled(NavLink)({
-        color:'primary'
+        color: 'primary'
     })
     const handleChange = (e) => {
         setinputs((prevState) => ({
@@ -25,7 +24,7 @@ const Login = () => {
     }
 
     const handleForgot = (e) => {
-        if(forgot)
+        if (forgot)
             setPass(false)
         else
             setPass(true)
@@ -38,9 +37,15 @@ const Login = () => {
             axios.post("/login", inputs)
                 .then(res => {
                     alert(res.data.message)
-                    if(res.data.message === "LogIn Sucessful"){
-                        navigate('/profilepage')
-                        sessionStorage.setItem('sessionData',JSON.stringify(res.data.user))
+                    if (res.data.message === "LogIn Sucessful") {
+                        const viewer = sessionStorage.getItem('viewer')
+                        if(viewer === '1'){
+                            navigate('/addjob')
+                        }
+                        else if(viewer === '2'){
+                            navigate('/jobpage')
+                        }
+                        sessionStorage.setItem('sessionData', JSON.stringify(res.data.user))
                     }
                 })
         } else {
@@ -53,7 +58,7 @@ const Login = () => {
             email: "", password: ""
         })
     }
-    if(!forgot) {
+    if (!forgot) {
         return (
             <form onSubmit={handleSubmit}>
                 <Box
@@ -102,7 +107,7 @@ const Login = () => {
     }
     else {
         return (
-           <Changepass handleForgot={handleForgot}/>
+            <Changepass handleForgot={handleForgot} />
         )
     }
 
