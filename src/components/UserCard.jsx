@@ -7,6 +7,7 @@ import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 const UserCard = (props) => {
 
     const user = JSON.parse(sessionStorage.getItem('sessionData'))
+    // console.log(user)
 
     const handleClick = () =>{
         props.setCard(false)

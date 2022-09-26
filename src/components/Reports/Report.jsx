@@ -13,9 +13,9 @@ const Report = (props) => {
         .catch(err => console.log(err))
     }, []);
    
-     console.log(dataTable)
+    //  console.log(dataTable)
 
-     const columns = ["name", "ID", "Interest", "ID","Batch","_id"]
+     const columns = ["name", "email", "ID", "Interest","Workshop","Lecture"]
     const options = {
         filter: true,
         selectableRows: false,
@@ -25,16 +25,23 @@ const Report = (props) => {
         print: false,
         pagination: false,
         onRowClick: (rowData) => {
-            console.log(rowData[0])
-            // console.log(columns[0])
+
+            axios.get(`/register/${rowData[1]}`)   
+           .then(response => {
+            sessionStorage.setItem('sessionData',JSON.stringify(response.data))
             props.setUser(rowData)
             props.setCard(true)
+           
+            
+        })
+           .catch(err => console.log(err))
+
+            // console.log(rowData[1])
+            // console.log(columns[0])
+           
         }
     }
-    const data = [
-        ["Joe James", "Test Corp", "Yonkers"],
-        
-    ];
+
         return (
             <Box flex={6}
                 display='flex'
