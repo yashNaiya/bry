@@ -42,15 +42,7 @@ const Navbar = () => {
         <Typography variant="h6" color="primary" sx={{ display: { xs: "none", sm: "block" } }}>BVM</Typography>
         <Searchbar><InputBase placeholder='search..' /></Searchbar>
         <Icons>
-          <Avatar src={SERVER_HOST + user.Image} sx={{
-            width: "45px", height: "45px", 
-            textAlign: "center",
-            display: "block",
-            justifyContent: "center",
-            alignItems: "center",
-            margin: "auto",
-          }}
-            onClick={e => setOpen(true)} />
+          <Avatar onClick={e => setOpen(true)} />
         </Icons>
         <UserBox onClick={(e) => setOpen(true)}>
           <Typography variant='span'>Yash</Typography>

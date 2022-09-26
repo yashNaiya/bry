@@ -5,13 +5,14 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import image from '../../../assets/job.svg'
 import MenuLists from '../../../config/MenuLists';
+import axios from 'axios';
 
 
 const AddJob = () => {
     const user = JSON.parse(sessionStorage.getItem('sessionData'))
     const [isChecked, setIsChecked] = useState(true);
     const handleCheck = () => {
-        isChecked ? setIsChecked(false) : setIsChecked(true)
+        isChecked === "true" ? setIsChecked("false") : setIsChecked("true")
         inputs.workFromHome = isChecked
     };
 
@@ -23,6 +24,8 @@ const AddJob = () => {
     }
     const [inputs, setinputs] = useState({
         _id: user._id,
+        recruterName:user.name,
+        recruterDesignation:user.Designation,
         type: "",
         title: "",
         salary: "",
@@ -30,12 +33,14 @@ const AddJob = () => {
         jobDescription: "",
         website: "",
         lastDate: "",
-        workFromHome: false
+        totalOpening: "",
+        experiance: "",
+        workFromHome: "false"
     })
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(inputs)
+        axios.post("/AddJob", user).then(res => alert(res.data.message))
     }
     return (
         <Box
@@ -84,7 +89,23 @@ const AddJob = () => {
                             variant='filled'
                             onChange={handleChange}
                             value={inputs.title}
-                            size='small' type={"text"} placeholder='Job Tittle' />
+                            size='small' type={"text"} label='Job Tittle' />
+                        <TextField
+                            margin='normal'
+                            autoComplete='off'
+                            name='totalOpening'
+                            fullWidth
+                            variant='filled'
+                            onChange={handleChange}
+                            value={inputs.totalOpening}
+                            size='small' type={"number"} label='Total Opening'
+                            sx={{
+                                '& .MuiOutlinedInput-input': {
+                                    '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+                                        '-webkit-appearance': 'none',
+                                    },
+                                }
+                            }} />
                         <FormControl size='small' sx={{ m: 1, width: "100%", marginLeft: "0" }}>
                             <InputLabel id="demo-simple-select-autowidth-label">Salary</InputLabel>
                             <Select
@@ -101,6 +122,7 @@ const AddJob = () => {
                                 ))}
                             </Select>
                         </FormControl>
+
                         <TextField
                             autoComplete='off'
                             name='companyName'
@@ -108,14 +130,14 @@ const AddJob = () => {
                             variant='filled'
                             onChange={handleChange}
                             value={inputs.companyName}
-                            size='small' margin='normal' type={"text"} placeholder='Company Name' />
+                            size='small' margin='normal' type={"text"} label='Company Name' />
 
                         <TextField
                             autoComplete='off'
                             name='jobDescription'
                             value={inputs.jobDescription}
                             onChange={handleChange}
-                            size='small' margin='normal' type={"password"} placeholder='Job Description'
+                            size='small' margin='normal' type={"password"} label='Job Description'
                             multiline
                             fullWidth
                             variant='filled'
@@ -127,23 +149,39 @@ const AddJob = () => {
                             variant='filled'
                             onChange={handleChange}
                             value={inputs.website}
-                            size='small' margin='normal' type={"text"} placeholder='Company Website' />
+                            size='small' margin='normal' type={"text"} label='Company Website' />
 
                         <TextField
-                            size='small' 
+                            size='small'
                             margin='normal'
                             label="Last Date"
                             type="date"
                             name="lastDate"
                             variant='filled'
                             value={inputs.lastDate}
-                            onChange= {handleChange}
+                            onChange={handleChange}
                             defaultValue="2017-05-24"
                             fullWidth
                             InputLabelProps={{
                                 shrink: true,
                             }}
                         />
+                        <FormControl size='small' sx={{ m: 1, width: "100%", marginLeft: "0" }}>
+                            <InputLabel id="demo-simple-select-autowidth-label">Experience</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-autowidth-label"
+                                id="demo-simple-select-autowidth"
+                                value={inputs.experiance}
+                                variant={'filled'}
+                                onChange={handleChange}
+                                label="experience"
+                                name="experience"
+                            >
+                                {MenuLists.experience.map(item => (
+                                    <MenuItem key={item.value} value={item.value}>{item.name}</MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
                         <FormControlLabel
                             defaultChecked={false}
                             value={isChecked}

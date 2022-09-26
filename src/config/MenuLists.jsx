@@ -80,48 +80,22 @@ const MenuLists = {
             value: '8+'
         }
     ],
-    recruiter: [
+    experience: [
         {
-            name: "My Jobs",
-            icon: "WorkIcon"
+            name: 'fresher',
+            value: 'fresher'
         },
         {
-            name: "Add Job",
-            icon: "WorkIcon"
-        },
-        {
-            name: "Chat",
-            icon:"WorkIcon"
-        },
-        {
-            name: "Friends",
-            icon:"WorkIcon"
-        },
-        {
-            name: "Profile",
-            icon: "WorkIcon"
-        },
-        {
-            name: "Settings",
-            icon: "WorkIcon"
+            name: '1+',
+            value: '1+'
+        }, {
+            name: '2+',
+            value: '2+'
+        }, {
+            name: '4+',
+            value: '4+'
         }
     ],
-    // seeker: [
-    //     { "Jobs", }
-    //     { "My Applications", }
-    //     { "Chat", }
-    //     { "Friends", }
-    //     { "Profile", }
-    //     { "Settings"}
-    // ],
-    admin: [
-        "Reports",
-        "Authenticate",
-        "Chat",
-        "Friends",
-        "Profile",
-        "Settings"
-    ]
 }
 
 export default MenuLists

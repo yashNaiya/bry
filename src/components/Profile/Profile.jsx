@@ -3,8 +3,6 @@ import { Box, Typography, TextField, Button, IconButton, FormControl, Radio, For
 import { useState } from 'react'
 import { PhotoCamera } from '@mui/icons-material';
 import image from '../../assets/profile.svg'
-
-
 import axios from 'axios';
 
 const Profile = () => {
