@@ -38,52 +38,62 @@ const Infouser = new mongoose.Schema({
         maxlength: [4, "Enter Valid Year"]
     },
     Address: {
-        type: String
+        type: String,
+        default :' '
     },
 
     Curr_loc: {
-        type: String
+        type: String,
+        default :' '
     },
     Passyear: {
-        type: String
+        type: String,
+        default :' '
     },
     Job_role: {
-        type: String
+        type: String,
+        default :' '
     },
     company: {
-        type: String
+        type: String,
+        default :' '
     },
 
    Designation:{
-    type:String
+    type:String,
+    default :' '
    },
    Work_Ind:{
-    type:String
+    type:String,
+    default :' '
    },
    Branch:{
-    type:String
+    type:String,
+    default :' '
    },
     Interest:{
-     type:String   
+     type:String,
+     default :' '   
     },
     Image:{
         type:String,
         default :'profiledefault.png'
     },
     DOB:{
-        type:String
+        type:String,
+        default :' '
     },
    userType:{
        type:String
    },
-//    Workshop:{
-//        type:String,
-//        default : "yes"
-//    },
-//    Lecture:{
-//        type:String,
-//        default:"yes"
-//    },
+   Workshop:{
+       type:String,
+       default : "yes"
+   },
+   Lecture:{
+       type:String,
+       default:"yes"
+   },
      state : {
         type:Boolean,
         default : false

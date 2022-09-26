@@ -5,13 +5,14 @@ import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import image from '../../../assets/job.svg'
 import MenuLists from '../../../config/MenuLists';
+import axios from 'axios';
 
 
 const AddJob = () => {
 
     const [isChecked, setIsChecked] = useState(true);
     const handleCheck = () => {
-        isChecked ? setIsChecked(false) : setIsChecked(true)
+        isChecked ==="true" ? setIsChecked("false") : setIsChecked("true")
         inputs.workFromHome = isChecked
     };
 
@@ -29,12 +30,23 @@ const AddJob = () => {
         jobDescription: "",
         website: "",
         lastDate: "",
-        workFromHome: false
+        // workFromHome: "false"
     })
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(inputs)
+       
+        const { title, type,companyName, jobDescription, website  , salary,lastDate} = inputs
+        
+        
+        if (title && type && companyName &&  jobDescription &&  website  && salary && lastDate){
+            axios.post("/addjob", inputs)
+            .then(res => alert(res.data.message))
+            
+       } else {
+           alert("Invalid Input")
+       }
+
     }
     return (
         <Box
@@ -146,6 +158,7 @@ const AddJob = () => {
                         <FormControlLabel
                             defaultChecked={false}
                             value={isChecked}
+                            name = 'WorkFromHome'
                             onChange={handleCheck}
                             control={<Checkbox />} label="Work From Home" />
 

@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 require("./database/connection")
 const User = require("./Models/Student")
+const JOBS = require("./Models/job")
 
 const bodyParser = require("body-parser");
 app.use(bodyParser.json({limit: '50mb'}));
@@ -110,6 +111,53 @@ app.post("/register",(req,res)=>{
    
 })
 
+
+// Add Job
+
+app.post("/addjob",(req,res)=>{
+
+    // console.log("Hello")
+    // console.log(req.body)
+    const companyName = req.body.companyName[0]
+    const title = req.body.title[0]
+    const type = req.body.type[0]
+    const salary = req.body.salary[0]
+    const jobDescription = req.body.jobDescription[0]
+    const website = req.body.website[0]
+    const lastDate = req.body.lastDate[0]
+    // console.log(companyName)
+
+   
+    try{
+
+       const job = new JOBS({
+        title:title,
+        type:type,
+        companyName:companyName,
+        jobDescription:jobDescription,
+        website:website,
+        lastDate:lastDate,
+        // WorkFromHome:WorkFromHome[0],
+        salary:salary   
+       })
+       job.save(err =>{
+           if(err){
+            //   console.log(err)
+            // console.log("Hello")
+                 res.send(err)
+           }
+           else{
+            //    console.log("Hiii")
+               res.send({message:"Successfully Registration"})
+               
+           }
+       })
+   }
+    catch(e){
+     console.log(e)
+      }
+
+})
 
 
 // Get Data At Port
@@ -323,40 +371,40 @@ app.post("/UpdateProfile", async(req,res) => {
     // console.log(req.body)
     try{
     const _ID = req.body._id
-    console.log(_ID)
-    const name = req.body.name.toString()
-    console.log(name)
-    const number = req.body.number.toString()
-    console.log(number)
-    const email = req.body.email.toString()
-    console.log(email)
-    const password = req.body.password.toString()
-    console.log(password)
-    const ID = req.body.ID.toString()
-    console.log(ID)
-    const Batch = req.body.Batch.toString()
-    console.log(Batch)
-    const Address = req.body.Address.toString()
-    console.log(Address)
-    const Branch = req.body.Branch.toString()
-    console.log(Branch)
-    const Curr_loc = req.body.Curr_loc.toString()
-    console.log(Curr_loc)
-    const DOB = req.body.DOB.toString()
-    console.log(DOB)
-    const Passyear = req.body.Passyear.toString()
-    console.log(Passyear)
-    const Work_Ind = req.body.Work_Ind.toString()
-    console.log(Work_Ind)
-    const company = req.body.company.toString()
-    console.log(company)
+    // console.log(_ID)
+    const name = req.body.name[0]
+    // console.log(name)
+    const number = req.body.number[0]
+    // console.log(number)
+    const email = req.body.email[0]
+    // console.log(email)
+    const password = req.body.password[0]
+    // console.log(password)
+    const ID = req.body.ID[0]
+    // console.log(ID)
+    const Batch = req.body.Batch[0]
+    // console.log(Batch)
+    const Address = req.body.Address[0]
+    // console.log(Address)
+    const Branch = req.body.Branch[0]
+    // console.log(Branch)
+    const Curr_loc = req.body.Curr_loc[0]
+    // console.log(Curr_loc)
+    const DOB = req.body.DOB[0]
+    // console.log(DOB)
+    const Passyear = req.body.Passyear[0]
+    // console.log(Passyear)
+    const Work_Ind = req.body.Work_Ind[0]
+    // console.log(Work_Ind)
+    const company = req.body.company[0]
+    // console.log(company)
 
-    const Job_role = req.body.Job_role.toString()
-    console.log(Job_role)
-    const Designation = req.body.Designation.toString()
-    console.log(Designation)
-    const Interest = req.body.Interest.toString()
-    console.log(Interest)
+    const Job_role = req.body.Job_role[0]
+    // console.log(Job_role)
+    const Designation = req.body.Designation[0]
+    // console.log(Designation)
+    const Interest = req.body.Interest[0]
+    // console.log(Interest)
 
     // console.log(req.body)
 
@@ -364,8 +412,7 @@ app.post("/UpdateProfile", async(req,res) => {
         ,ID:ID,Batch:Batch,Address:Address,Branch:Branch,Curr_loc:Curr_loc,DOB:DOB,Passyear:Passyear,Work_Ind:Work_Ind,
         company:company,Job_role:Job_role,Designation:Designation,Interest:Interest}})
    
-
-        console.log(Updateprofile)
+        // console.log(Updateprofile)
     
         if(!Updateprofile){
             return res.status(404).send(); }
@@ -390,6 +437,20 @@ app.post("/UploadPhoto",upload.single("photo"), async(req,res) => {
     }
    
      
+})
+
+
+
+//Display Job
+app.get("/jobpage",async(req,res)=>{
+    try{
+        const Jobs = await JOBS.find({state:"false"});
+        // usersData = usersData.pretty();
+        res.send(Jobs);
+
+    }catch(e){
+        res.send(e)
+    }
 })
 
 
