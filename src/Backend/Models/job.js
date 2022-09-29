@@ -3,7 +3,13 @@ const Jobs = new mongoose.Schema({
    UserID : {
     type:String,
    },
-    tittle : {
+   recruterName:{
+    type:String
+   },
+   recruterDesignation:{
+    type:String
+   },
+    title : {
         type:String,
         // required : true,
         
@@ -41,9 +47,15 @@ const Jobs = new mongoose.Schema({
         type:String,
         // require:true
     },
-    JobLocation:{
+    location:{
         type:String
         // require : true
+    },
+    totalOpening:{
+        type:String
+    },
+    experiance:{
+        type:String
     }
     
  })

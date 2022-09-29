@@ -116,15 +116,19 @@ app.post("/register",(req,res)=>{
 
 app.post("/addjob",(req,res)=>{
 
-    // console.log("Hello")
-    // console.log(req.body)
     const companyName = req.body.companyName[0]
     const title = req.body.title[0]
     const type = req.body.type[0]
     const salary = req.body.salary[0]
     const jobDescription = req.body.jobDescription[0]
     const website = req.body.website[0]
-    const lastDate = req.body.lastDate[0]
+    const lastdate = req.body.lastdate[0]
+    const location = req.body.location[0]
+    const WorkFromHome = req.body.workFromHome
+    const experiance = req.body.experiance[0]
+    const totalOpening = req.body.totalOpening[0]
+    const recruterDesignation = req.body.recruterDesignation
+    const recruterName = req.body.recruterName
     // console.log(companyName)
 
    
@@ -136,9 +140,14 @@ app.post("/addjob",(req,res)=>{
         companyName:companyName,
         jobDescription:jobDescription,
         website:website,
-        lastDate:lastDate,
-        // WorkFromHome:WorkFromHome[0],
-        salary:salary   
+        lastDate:lastdate,
+        WorkFromHome:WorkFromHome,
+        salary:salary,
+        location:location,
+        totalOpening:totalOpening,
+        experiance:experiance,
+        recruterDesignation:recruterDesignation,
+        recruterName:recruterName  
        })
        job.save(err =>{
            if(err){
