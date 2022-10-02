@@ -11,26 +11,27 @@ import { useEffect, useState } from 'react';
 
 const Post1 = (data) => {
     // console.log(data.location)
-    const [loc, setloc] = useState('');
+    const [place, setPlace] = useState('');
     // if(data.WorkFromHome == true){
     //      setloc("work from home")
     // }
     // else{
     //      setloc(loca)
     // }
-
-
+    const wfm = data.WorkFromHome
+    // console.log(wfm)
+    
     return (
         <Card sx={{ margin: "1%" }} >
             <CardHeader
                 action={
                     <Typography variant='h5' color='primary.main' fontWeight={100} >
                         {/* {data.data_salary} */}
-                        {data.salary}
+                        Rs {data.salary}
                     </Typography>
                 }
                 title={data.title}
-                subheader= {data.WorkFromHome+"/"+data.location}
+                subheader= {data.WorkFromHome === 't'?'Work From Home' : data.location}
             />
             <CardContent>
                 <Typography variant='button'>
