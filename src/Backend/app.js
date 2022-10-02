@@ -490,9 +490,9 @@ app.post("/addjob",(req,res)=>{
     })
 
 //Display Job
-app.get("/jobpage",async(req,res)=>{
+app.get("/addjob",async(req,res)=>{
     try{
-        const Jobs = await JOBS.find({state:"false"});
+        const Jobs = await JOBS.find();
         // usersData = usersData.pretty();
         res.send(Jobs);
 

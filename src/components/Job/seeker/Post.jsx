@@ -7,44 +7,34 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import { Button } from '@mui/material';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import Post1 from './post1';
 
 const Post = () => {
-    return (
-        <Card sx={{ margin: "1%" }} >
-            <CardHeader
-                action={
-                    <Typography variant='h5' color='primary.main' fontWeight={100} >
-                        Rs. 8+
-                    </Typography>
-                }
-                title="Web Development"
-                subheader="work from home/location"
-            />
-            <CardContent>
-                <Typography variant='button'>
-                    type
-                </Typography>
-                <Typography paddingY={'1rem'}>
-                    company name
-                </Typography>
-                <Typography paddingRight={'1rem'} display={'inline'}>
-                    Recruiter name
-                </Typography>
-                <Typography display={'inline'}>
-                    Recruiter designation
-                </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-                <IconButton>
-                    <Button>Apply</Button>
-                </IconButton>
-                <IconButton >
-                    <ReadMoreIcon />
-                </IconButton>
-            </CardActions>
-        </Card>
+    
+    const [dataTable, setDataTable] = useState([]);
+    //  console.log(dataTable)
+    useEffect(() => {
+      axios.get('/addjob')
+        .then(res => setDataTable(res.data))
+        .catch(err => console.log(err))
+    }, []);
+    // console.log(dataTable)
 
+    // const JobData = dataTable.map((data) => {
+    //      return data
+    // } )
+
+    
+    return (
+        dataTable.map((data,i) => {
+            // console.log(i)
+            return <Post1 type = {data.type} companyName={data.companyName}  salary={data.salary} recruterName={data.recruterName} recruterDesignation={data.recruterDesignation} title={data.title} WorkFromHome={data.WorkFromHome} location={data.location} />
+        })
     )
 }
+       
+    
 
 export default Post
