@@ -1,57 +1,45 @@
 import * as React from 'react';
 import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
-import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-import Avatar from '@mui/material/Avatar';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
-import Checkbox from '@mui/material/Checkbox';
-import FavoriteBorder from '@mui/icons-material/FavoriteBorder';
-import Favorite from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-
+import ReadMoreIcon from '@mui/icons-material/ReadMore';
+import { Button } from '@mui/material';
 
 const Post = () => {
     return (
-        <Card sx={{margin:"1%"}} >
+        <Card sx={{ margin: "1%" }} >
             <CardHeader
-                avatar={
-                    <Avatar sx={{ bgcolor: red[300] }} aria-label="recipe">
-                        R
-                    </Avatar>
-                }
                 action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                    </IconButton>
+                    <Typography variant='h5' color='primary.main' fontWeight={100} >
+                        Rs. 8+
+                    </Typography>
                 }
-                title="Shrimp and Chorizo Paella"
-                subheader="September 14, 2016"
-            />
-            <CardMedia
-                component="img"
-                height="10%"
-                image="https://thumbs.dreamstime.com/b/job-opportunity-24549521.jpg"
-                alt="Paella dish"
-                widrh="100%"
+                title="Web Development"
+                subheader="work from home/location"
             />
             <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                    This impressive paella is a perfect party dish and a fun meal to cook
-                    together with your guests. Add 1 cup of frozen peas along with the mussels,
-                    if you like.
+                <Typography variant='button'>
+                    type
+                </Typography>
+                <Typography paddingY={'1rem'}>
+                    company name
+                </Typography>
+                <Typography paddingRight={'1rem'} display={'inline'}>
+                    Recruiter name
+                </Typography>
+                <Typography display={'inline'}>
+                    Recruiter designation
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
-                <IconButton aria-label="add to favorites">
-                <Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />}/>
+                <IconButton>
+                    <Button>Apply</Button>
                 </IconButton>
-                <IconButton aria-label="share">
-                    <ShareIcon />
+                <IconButton >
+                    <ReadMoreIcon />
                 </IconButton>
             </CardActions>
         </Card>

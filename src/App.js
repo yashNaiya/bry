@@ -9,6 +9,7 @@ import Register from "./components/Landing/Register";
 import AddJobMain from "./components/Job/Recruiter/AddJobMain";
 import Login from "./components/Landing/Login";
 import ReportMain from "./components/Reports/ReportMain";
+import PostPage from "./components/Job/seeker/PostPage";
 import DirectoryMain from "./components/Directory/DirectoryMain";
 require('dotenv').config();
 function App() {
@@ -24,6 +25,7 @@ function App() {
       <Route path='/login' element={<Login/>}></Route>
       <Route path='/reports' element={<ReportMain/>}></Route>
       <Route path='/friends' element={<DirectoryMain/>}></Route>
+      <Route path='/postpage' element={<PostPage/>}></Route>  
     </Routes>
   );
 }

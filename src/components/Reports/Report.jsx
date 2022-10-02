@@ -30,8 +30,6 @@ const Report = (props) => {
            .then(response => {
             props.setUser(JSON.stringify(response.data))
             props.setCard(true)
-           
-            
         })
            .catch(err => console.log(err))
 

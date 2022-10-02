@@ -10,10 +10,11 @@ import axios from 'axios';
 
 const AddJob = () => {
     const user = JSON.parse(sessionStorage.getItem('sessionData'))
-    const [isChecked, setIsChecked] = useState(true);
+    const [isChecked, setIsChecked] = useState("true");
     const handleCheck = () => {
-        isChecked ==="true" ? setIsChecked("false") : setIsChecked("true")
+        isChecked ==="false" ? setIsChecked("true") : setIsChecked("false")
         inputs.workFromHome = isChecked
+        console.log(inputs.workFromHome)
     };
 
     const handleChange = (e) => {
@@ -32,19 +33,20 @@ const AddJob = () => {
         companyName: "",
         jobDescription: "",
         website: "",
-        lastDate: "",
+        location: "",
         totalOpening: "",
         experiance: "",
-        workFromHome: "false"
+        lastdate:"",
+        workFromHome: isChecked
     })
 
     const handleSubmit = (e) => {
         e.preventDefault();
        
-        const { title, type,companyName, jobDescription, website  , salary,lastDate} = inputs
+        const { title, type,companyName, jobDescription, website  , salary,location} = inputs
         
         
-        if (title && type && companyName &&  jobDescription &&  website  && salary && lastDate){
+        if (title && type && companyName &&  jobDescription &&  website  && salary && location){
             axios.post("/addjob", inputs)
             .then(res => alert(res.data.message))
             
@@ -167,15 +169,27 @@ const AddJob = () => {
                             margin='normal'
                             label="Last Date"
                             type="date"
-                            name="lastDate"
+                            name="lastdate"
                             variant='filled'
-                            value={inputs.lastDate}
+                            value={inputs.lastdate}
                             onChange={handleChange}
                             defaultValue="2017-05-24"
                             fullWidth
                             InputLabelProps={{
                                 shrink: true,
                             }}
+                        />
+                        <TextField
+                            autoComplete='off'
+                            size='small'
+                            margin='normal'
+                            label="Location"
+                            type="text"
+                            name="location"
+                            variant='filled'
+                            value={inputs.location}
+                            onChange={handleChange}
+                            fullWidth
                         />
                         <FormControl size='small' sx={{ m: 1, width: "100%", marginLeft: "0" }}>
                             <InputLabel id="demo-simple-select-autowidth-label">Experience</InputLabel>
@@ -185,8 +199,8 @@ const AddJob = () => {
                                 value={inputs.experiance}
                                 variant={'filled'}
                                 onChange={handleChange}
-                                label="experience"
-                                name="experience"
+                                label="Experience"
+                                name="experiance"
                             >
                                 {MenuLists.experience.map(item => (
                                     <MenuItem key={item.value} value={item.value}>{item.name}</MenuItem>
