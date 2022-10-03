@@ -12,14 +12,14 @@ import { useEffect, useState } from 'react';
 const Post1 = (data) => {
     // console.log(data.location)
     const [place, setPlace] = useState('');
-    // if(data.WorkFromHome == true){
-    //      setloc("work from home")
-    // }
-    // else{
-    //      setloc(loca)
-    // }
-    const wfm = data.WorkFromHome
-    // console.log(wfm)
+
+    const handleApply = ()=>{
+
+    }
+    const handleView = ()=>{
+
+    }
+
     
     return (
         <Card sx={{ margin: "1%" }} >
@@ -48,10 +48,10 @@ const Post1 = (data) => {
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
-                <IconButton>
-                    <Button>Apply</Button>
-                </IconButton>
-                <IconButton >
+                <Button onClick={handleApply}>
+                    Apply
+                </Button>
+                <IconButton onClick={handleView} >
                     <ReadMoreIcon />
                 </IconButton>
             </CardActions>
