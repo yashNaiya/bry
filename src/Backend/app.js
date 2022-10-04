@@ -112,62 +112,6 @@ app.post("/register",(req,res)=>{
 })
 
 
-// Add Job
-
-app.post("/addjob",(req,res)=>{
-
-    const companyName = req.body.companyName[0]
-    const title = req.body.title[0]
-    const type = req.body.type[0]
-    const salary = req.body.salary[0]
-    const jobDescription = req.body.jobDescription[0]
-    const website = req.body.website[0]
-    const lastdate = req.body.lastdate[0]
-    const location = req.body.location[0]
-    const WorkFromHome = req.body.workFromHome
-    const experiance = req.body.experiance[0]
-    const totalOpening = req.body.totalOpening[0]
-    const recruterDesignation = req.body.recruterDesignation
-    const recruterName = req.body.recruterName
-    // console.log(companyName)
-
-   
-    try{
-
-       const job = new JOBS({
-        title:title,
-        type:type,
-        companyName:companyName,
-        jobDescription:jobDescription,
-        website:website,
-        lastDate:lastdate,
-        WorkFromHome:WorkFromHome,
-        salary:salary,
-        location:location,
-        totalOpening:totalOpening,
-        experiance:experiance,
-        recruterDesignation:recruterDesignation,
-        recruterName:recruterName  
-       })
-       job.save(err =>{
-           if(err){
-            //   console.log(err)
-            // console.log("Hello")
-                 res.send(err)
-           }
-           else{
-            //    console.log("Hiii")
-               res.send({message:"Successfully Registration"})
-               
-           }
-       })
-   }
-    catch(e){
-     console.log(e)
-      }
-
-})
-
 
 // Get Data At Port
 app.get("/register",async(req,res)=>{
@@ -454,31 +398,53 @@ app.post("/UploadPhoto",upload.single("photo"), async(req,res) => {
      
 })
 
-//addjob
+// Add Job
+
 app.post("/addjob",(req,res)=>{
+    // console.log(req.body)
+    const UserID = req.body.UserID
+    const companyName = req.body.companyName[0]
+    const title = req.body.title[0]
+    const type = req.body.type[0]
+    const salary = req.body.salary[0]
+    const jobDescription = req.body.jobDescription[0]
+    const website = req.body.website[0]
+    const lastdate = req.body.lastdate[0]
+    const location = req.body.location[0]
+    const WorkFromHome = req.body.workFromHome
+    const experiance = req.body.experiance[0]
+    const totalOpening = req.body.totalOpening[0]
+    const recruterDesignation = req.body.recruterDesignation
+    const recruterName = req.body.recruterName
+    // console.log(companyName)
 
+   
     try{
-   const {tittle, type, Cname, Jdes,Cweb,salary} = req.body
-   console.log(req.body)
 
-  
        const job = new JOBS({
-        tittle:tittle[0],
-        type:type[0],
-        Cname:Cname[0],
-        Jdes:Jdes[0],
-        Cweb:Cweb[0],
-        salary:salary[0],
-           
+        UserID:UserID,
+        title:title,
+        type:type,
+        companyName:companyName,
+        jobDescription:jobDescription,
+        website:website,
+        lastDate:lastdate,
+        WorkFromHome:WorkFromHome,
+        salary:salary,
+        location:location,
+        totalOpening:totalOpening,
+        experiance:experiance,
+        recruterDesignation:recruterDesignation,
+        recruterName:recruterName  
        })
        job.save(err =>{
            if(err){
             //   console.log(err)
-            console.log("Hello")
+            // console.log("Hello")
                  res.send(err)
            }
            else{
-               console.log("Hiii")
+            //    console.log("Hiii")
                res.send({message:"Successfully Registration"})
                
            }
@@ -487,7 +453,10 @@ app.post("/addjob",(req,res)=>{
     catch(e){
      console.log(e)
       }
-    })
+
+})
+
+
 
 //Display Job
 app.get("/addjob",async(req,res)=>{
@@ -501,7 +470,38 @@ app.get("/addjob",async(req,res)=>{
     }
 })
 
+//Filter
+app.post("/getfilterJob" , async (req,res)=>{
+    console.log(req.body)
+})
 
+//AddUserForJob
+app.post('/ApplyForJob/:Job_id/:user_id', async (req,res)=>{
+    
+    // console.log(req.params)
+    try{
+        // console.log("Hello")
+    user_id = req.params.user_id
+    Job_id = req.params.Job_id
+    const findAppliedOrNot = await JOBS.findOne({_id:Job_id,Appliedusers:user_id})
+   
+    if(findAppliedOrNot===null){
+        // console.log("null")
+    const AppliedUsersInJob= await JOBS.findByIdAndUpdate({_id:Job_id},{$push:{Appliedusers:user_id}})
+    const AppliedJobsInUsers = await User.findByIdAndUpdate({_id:user_id},{$push:{AppliedJobs:Job_id}})
+   if(!AppliedUsersInJob){
+        return res.status(404).send(); }
+    else{
+        res.send({message:"Application Is Successful"}); }
+    }
+    else{
+        // console.log("Not Null")
+        res.send({message:"Already Applied For This Job"});
+    }
+    }catch(e){
+        console.log(e)
+    }
+})
 
 
 app.listen(9002,()=>{

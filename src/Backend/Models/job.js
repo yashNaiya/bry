@@ -1,7 +1,9 @@
 const mongoose = require("mongoose")
 const Jobs = new mongoose.Schema({
    UserID : {
-    type:String,
+    type:mongoose.Schema.Types.ObjectId,
+    ref : "Info",
+    required :true
    },
    recruterName:{
     type:String
@@ -56,7 +58,12 @@ const Jobs = new mongoose.Schema({
     },
     experiance:{
         type:String
-    }
+    },
+    Appliedusers :[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref : "Info",
+        unique: true
+    }]
     
  })
  

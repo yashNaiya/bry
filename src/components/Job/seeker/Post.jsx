@@ -13,6 +13,8 @@ import Post1 from './post1';
 
 const Post = () => {
     
+   
+
     const [dataTable, setDataTable] = useState([]);
     //  console.log(dataTable)
     useEffect(() => {
@@ -30,7 +32,7 @@ const Post = () => {
     return (
         dataTable.map((data,i) => {
             // console.log(i)
-            return <Post1 type = {data.type} companyName={data.companyName}  salary={data.salary} recruterName={data.recruterName} recruterDesignation={data.recruterDesignation} title={data.title} WorkFromHome={data.WorkFromHome} location={data.location} />
+            return <Post1  user_id_In_Job={data.UserID}   Job_id={data._id} type = {data.type} companyName={data.companyName}  salary={data.salary} recruterName={data.recruterName} recruterDesignation={data.recruterDesignation} title={data.title} WorkFromHome={data.WorkFromHome} location={data.location} />
         })
     )
 }
