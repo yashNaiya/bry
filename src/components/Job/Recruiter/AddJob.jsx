@@ -10,6 +10,7 @@ import axios from 'axios';
 
 const AddJob = () => {
     const user = JSON.parse(sessionStorage.getItem('sessionData'))
+    console.log(user)
     const [isChecked, setIsChecked] = useState("true");
     const handleCheck = () => {
         isChecked ==="false" ? setIsChecked("true") : setIsChecked("false")
@@ -24,7 +25,7 @@ const AddJob = () => {
         }))
     }
     const [inputs, setinputs] = useState({
-        _id: user._id,
+        UserID: user._id,
         recruterName:user.name,
         recruterDesignation:user.Designation,
         type: "",
@@ -43,10 +44,9 @@ const AddJob = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
        
-        const { title, type,companyName, jobDescription, website  , salary,location} = inputs
+        const { UserID,title, type,companyName, jobDescription, website , salary,location} = inputs
         
-        
-        if (title && type && companyName &&  jobDescription &&  website  && salary && location){
+        if (title && type && companyName &&  jobDescription &&  website  && salary && location && UserID){
             axios.post("/addjob", inputs)
             .then(res => alert(res.data.message))
             

@@ -4,6 +4,7 @@ import { Box, InputLabel, FormControl, Typography, FormControlLabel, Checkbox, F
 import { MenuItem } from '@mui/material';
 import Select from '@mui/material/Select';
 import MenuLists from '../../../config/MenuLists';
+import axios from 'axios';
 
 const Rightbar = (props) => {
 
@@ -22,6 +23,11 @@ const Rightbar = (props) => {
     })
   }
 
+  const handleApply = () => {
+    // console.log(location, category,mode);
+    axios.post('/getfilterJob')
+    .then(res => res.data)
+  }
   return (
     <Box flex={2} height="100vh" p={2} sx={{ display: { xs: "none", sm: "block" } }} >
       <form>

@@ -8,30 +8,44 @@ import Typography from '@mui/material/Typography';
 import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import { Button } from '@mui/material';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Post1 = (data) => {
     // console.log(data.location)
     const [place, setPlace] = useState('');
+    const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('sessionData')))
 
-    const handleApply = ()=>{
+    const handleApply = (Job_id, user_id) => {
+        console.log(user_id)
+        console.log(data.user_id_In_Job)
+        if (user_id === data.user_id_In_Job) {
+            alert("You Can Not Apply Jobs You Posted")
+            return
+        }
+        axios.post(`/ApplyForJob/${Job_id}/${user_id}`, user_id, Job_id)
+            .then(response => {
+                alert(response.data.message)
+            })
+            .catch(err => console.log(err))
+
+        // console.log('The link was clicked.');
+    }
+    const handleView = () => {
 
     }
-    const handleView = ()=>{
 
-    }
 
-    
     return (
         <Card sx={{ margin: "1%" }} >
             <CardHeader
                 action={
                     <Typography variant='h5' color='primary.main' fontWeight={100} >
                         {/* {data.data_salary} */}
-                        Rs {data.salary}
+                        {data.salary + " LPA"}
                     </Typography>
                 }
                 title={data.title}
-                subheader= {data.WorkFromHome === 't'?'Work From Home' : data.location}
+                subheader={data.WorkFromHome === 't' ? 'Work From Home' : data.location}
             />
             <CardContent>
                 <Typography variant='button'>
