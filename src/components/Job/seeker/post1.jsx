@@ -7,13 +7,12 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import { Button } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import axios from 'axios';
+import {  useNavigate } from 'react-router-dom';
+import PostPage from './PostPage';
 
 const Post1 = (data) => {
-    // console.log(data.location)
-    const [place, setPlace] = useState('');
-    const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('sessionData')))
 
     const handleApply = (Job_id, user_id) => {
         console.log(user_id)
@@ -27,11 +26,10 @@ const Post1 = (data) => {
                 alert(response.data.message)
             })
             .catch(err => console.log(err))
-
-        // console.log('The link was clicked.');
     }
     const handleView = () => {
-
+        // data.setJob()
+        data.showPost(true)
     }
 
 
@@ -40,7 +38,6 @@ const Post1 = (data) => {
             <CardHeader
                 action={
                     <Typography variant='h5' color='primary.main' fontWeight={100} >
-                        {/* {data.data_salary} */}
                         {data.salary + " LPA"}
                     </Typography>
                 }

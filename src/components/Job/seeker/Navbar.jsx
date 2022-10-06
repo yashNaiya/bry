@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { AppBar, Avatar, Menu, InputBase, MenuItem, styled, Toolbar, Typography } from '@mui/material'
 import { useState } from 'react';
 import ReactRoundedImage from "react-rounded-image";
@@ -8,8 +8,8 @@ const StyledToolbar = styled(Toolbar)({
   justifyContent: "space-between"
 })
 
-const SERVER_HOST = 'http://localhost:9002/images/'
-const user = JSON.parse(sessionStorage.getItem('sessionData'))
+
+
 
 
 const Searchbar = styled("div")(({ theme }) => ({
@@ -37,14 +37,16 @@ const Icons = styled("div")(({ theme }) => ({
 }))
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const SERVER_HOST = 'http://localhost:9002/images/'
+  const user = JSON.parse(sessionStorage.getItem('sessionData'))
   return (
     <AppBar position='sticky' color="secondary" sx={{ boxShadow: "none", paddingY: "1%" }} >
       <StyledToolbar >
         <Typography variant="h6" color="primary" sx={{ display: { xs: "none", sm: "block" } }}>BVM</Typography>
         <Searchbar><InputBase placeholder='search..' /></Searchbar>
         <Icons>
-        <ReactRoundedImage image={SERVER_HOST + user.Image} roundedSize="0" imageWidth="50"
-  imageHeight="50" />
+          <ReactRoundedImage image={SERVER_HOST + user.Image} roundedSize="0" imageWidth="50"
+            imageHeight="50" />
         </Icons>
         <UserBox onClick={(e) => setOpen(true)}>
           <Typography variant='span'>Yash</Typography>
@@ -71,6 +73,7 @@ const Navbar = () => {
       </Menu>
     </AppBar>
   )
+
 }
 
 export default Navbar

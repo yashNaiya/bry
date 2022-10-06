@@ -75,7 +75,7 @@ const Sidebar = () => {
           
         }}>
         <Box position="fixed">
-          <ListItemButton>
+          <ListItemButton to='/myjobs'>
             <ListItemIcon>
               <WorkIcon color='primary' />
             </ListItemIcon>
@@ -93,11 +93,11 @@ const Sidebar = () => {
             </ListItemIcon>
             <ListItemText primary="Chat" />
           </ListItemButton>
-          <ListItemButton to={'/friends'}>
+          <ListItemButton to={'/connect'}>
             <ListItemIcon>
               <GroupsIcon color='primary' />
             </ListItemIcon>
-            <ListItemText primary="Friends" />
+            <ListItemText primary="Connect" />
           </ListItemButton>
           <ListItemButton to={'/profilepage'}>
             <ListItemIcon>
@@ -142,11 +142,11 @@ const Sidebar = () => {
             </ListItemIcon>
             <ListItemText primary="Chat" />
           </ListItemButton>
-          <ListItemButton to={'/friends'}>
+          <ListItemButton to={'/connect'}>
             <ListItemIcon>
               <GroupsIcon color='primary' />
             </ListItemIcon>
-            <ListItemText primary="Friends" />
+            <ListItemText primary="Connect" />
           </ListItemButton>
           <ListItemButton to={'/profilepage'}>
             <ListItemIcon>

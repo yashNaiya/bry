@@ -4,6 +4,7 @@ import Rightbar from "./Rightbar";
 import Sidebar from "../../Sidebar";
 import { Box, Stack } from "@mui/material"
 import Navbar from "./Navbar"
+import PostPage from './PostPage';
 
 
 const JobMain = () => {
@@ -14,22 +15,28 @@ const JobMain = () => {
     category:""
   });
 
-  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('sessionData')))
+  const [post,showPost] = useState(false)
+  const [job,setJob] = useState()
 
-
-
-  return (
-    <Box>
-      <Navbar />
-      <Box paddingX="5%" sx={{paddingX:{sm:"0"}}}>
-        <Stack direction="row" spacing={4} justifyContent="space-between">
-          <Sidebar />
-          <Feed filter={filter}  />
-          <Rightbar filter={filter} setFilter={setFilter}/>
-        </Stack>
+  if(post){
+    return(
+      <PostPage job={job} showPost={showPost}/>
+    )
+  }
+  else{
+    return (
+      <Box>
+        <Navbar />
+        <Box paddingX="5%" sx={{paddingX:{sm:"0"}}}>
+          <Stack direction="row" spacing={4} justifyContent="space-between">
+            <Sidebar />
+            <Feed filter={filter}  showPost={showPost} setJob={setJob}/>
+            <Rightbar filter={filter} setFilter={setFilter}/>
+          </Stack>
+        </Box>
       </Box>
-    </Box>
-  )
+    )
+  }
 }
 
 export default JobMain

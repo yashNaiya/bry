@@ -13,7 +13,7 @@ const MainNav = () => {
     }
         return (< Box >
             <AppBar position='sticky' color="secondary" sx={{ paddingY: "1%" }}>
-                <StyledToolbar >
+                <StyledToolbar>
                     <Typography variant="h4" color="primary" sx={{ display: { xs: "none", sm: "block" } }}>BVM</Typography>
                         <Button variant='contained' onClick={handleClick}>Register</Button>
                 </StyledToolbar>
