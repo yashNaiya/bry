@@ -1,17 +1,24 @@
 import { Box } from '@mui/material'
 import MUIDataTable from 'mui-datatables'
 import React from 'react'
+import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const Applications = () => {
 
-    const columns = ["Name", "Company", "City", "State"];
+    const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('sessionData')))
+    const [dataTable, setDataTable] = useState([]);
+  //  console.log(dataTable)
+  useEffect(() => {
+    axios.post(`/getAppliedJob/${user._id}`)
+      .then(res => setDataTable(res.data))
+      .catch(err => console.log(err))
+  }, []);
 
-    const data = [
-     ["Joe James", "Test Corp", "Yonkers", "NY"],
-     ["John Walsh", "Test Corp", "Hartford", "CT"],
-     ["Bob Herm", "Test Corp", "Tampa", "FL"],
-     ["James Houston", "Test Corp", "Dallas", "TX"],
-    ];
+   console.log(dataTable)
+
+    const columns = ["companyName","website","recruterName","salary","location","title"];
+
 
     const options = {
         filter: false,
@@ -36,7 +43,7 @@ const Applications = () => {
 
             <MUIDataTable
                 title={'My Applications'}
-                data={data}
+                data={dataTable}
                 columns={columns}
                 options={options} />
 

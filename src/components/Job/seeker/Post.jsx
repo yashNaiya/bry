@@ -14,7 +14,7 @@ const Post = (props) => {
 
     return (
         dataTable.map((data, i) => {
-            return <Post1 type={data.type} companyName={data.companyName} salary={data.salary} recruterName={data.recruterName} recruterDesignation={data.recruterDesignation} title={data.title} WorkFromHome={data.WorkFromHome} location={data.location} />
+            return <Post1  Job_id={data._id} user_id_In_Job={data.UserID} type={data.type} companyName={data.companyName} salary={data.salary} recruterName={data.recruterName} recruterDesignation={data.recruterDesignation} title={data.title} WorkFromHome={data.WorkFromHome} location={data.location} />
         })
     )
 }

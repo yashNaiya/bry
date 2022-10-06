@@ -32,7 +32,8 @@ const transporter = nodemailer.createTransport({
 
 
 //multer store Image
-const multer = require("multer")
+const multer = require("multer");
+const { default: mongoose } = require("mongoose");
 
 var storage = multer.diskStorage({   
     destination: function(req, file, cb) { 
@@ -483,8 +484,9 @@ app.post('/ApplyForJob/:Job_id/:user_id', async (req,res)=>{
         // console.log("Hello")
     user_id = req.params.user_id
     Job_id = req.params.Job_id
+
     const findAppliedOrNot = await JOBS.findOne({_id:Job_id,Appliedusers:user_id})
-   
+    
     if(findAppliedOrNot===null){
         // console.log("null")
     const AppliedUsersInJob= await JOBS.findByIdAndUpdate({_id:Job_id},{$push:{Appliedusers:user_id}})
@@ -501,6 +503,33 @@ app.post('/ApplyForJob/:Job_id/:user_id', async (req,res)=>{
     }catch(e){
         console.log(e)
     }
+})
+const ObjectId = mongoose.Types.ObjectId;
+
+app.post("/getAppliedJob/:user_id",async(req,res)=>{
+
+    try{
+    // console.log(req.params)
+    user_id = req.params.user_id
+    const data = await User.aggregate([
+        { $match: { _id : ObjectId(user_id) } },
+        {
+            $lookup: { 
+                from: 'jobs', 
+                localField: 'AppliedJobs', 
+                foreignField: '_id', 
+                as: 'Company' 
+            } 
+        }
+        
+    ])
+    // console.log(data[0].Company)
+    res.send(data[0].Company)
+    // console.log(data.name)
+   }catch(e){
+    res.send(e)
+   }
+
 })
 
 
