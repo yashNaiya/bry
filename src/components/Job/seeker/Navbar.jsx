@@ -1,6 +1,7 @@
 import React from 'react'
 import { AppBar, Avatar, Menu, InputBase, MenuItem, styled, Toolbar, Typography } from '@mui/material'
 import { useState } from 'react';
+import ReactRoundedImage from "react-rounded-image";
 
 const StyledToolbar = styled(Toolbar)({
   display: "flex",
@@ -42,7 +43,8 @@ const Navbar = () => {
         <Typography variant="h6" color="primary" sx={{ display: { xs: "none", sm: "block" } }}>BVM</Typography>
         <Searchbar><InputBase placeholder='search..' /></Searchbar>
         <Icons>
-          <Avatar onClick={e => setOpen(true)} />
+        <ReactRoundedImage image={SERVER_HOST + user.Image} roundedSize="0" imageWidth="50"
+  imageHeight="50" />
         </Icons>
         <UserBox onClick={(e) => setOpen(true)}>
           <Typography variant='span'>Yash</Typography>

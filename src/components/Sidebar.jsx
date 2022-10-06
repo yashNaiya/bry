@@ -32,7 +32,7 @@ const Sidebar = () => {
             </ListItemIcon>
             <ListItemText primary="Jobs" />
           </ListItemButton>
-          <ListItemButton >
+          <ListItemButton to={'/myapplications'}>
             <ListItemIcon>
               <WorkHistoryIcon color='primary' />
             </ListItemIcon>
@@ -44,11 +44,11 @@ const Sidebar = () => {
             </ListItemIcon>
             <ListItemText primary="Chat" />
           </ListItemButton>
-          <ListItemButton to={'/friends'}>
+          <ListItemButton to={'/connect'}>
             <ListItemIcon>
               <GroupsIcon color='primary' />
             </ListItemIcon>
-            <ListItemText primary="Friends" />
+            <ListItemText primary="Connect" />
           </ListItemButton>
           <ListItemButton to={'/profilepage'}>
             <ListItemIcon>

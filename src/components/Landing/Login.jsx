@@ -39,13 +39,13 @@ const Login = () => {
                     alert(res.data.message)
                     if (res.data.message === "LogIn Sucessful") {
                         const viewer = sessionStorage.getItem('viewer')
+                        sessionStorage.setItem('sessionData', JSON.stringify(res.data.user))
                         if(viewer === '1'){
                             navigate('/addjob')
                         }
                         else if(viewer === '2'){
                             navigate('/jobpage')
                         }
-                        sessionStorage.setItem('sessionData', JSON.stringify(res.data.user))
                     }
                 })
         } else {

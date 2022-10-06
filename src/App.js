@@ -11,6 +11,7 @@ import Login from "./components/Landing/Login";
 import ReportMain from "./components/Reports/ReportMain";
 import PostPage from "./components/Job/seeker/PostPage";
 import DirectoryMain from "./components/Directory/DirectoryMain";
+import ApplicationsMain from "./components/Applications/ApplicationsMain";
 require('dotenv').config();
 function App() {
   return (
@@ -24,8 +25,9 @@ function App() {
       <Route path='/addjob' element={<AddJobMain/>}></Route>
       <Route path='/login' element={<Login/>}></Route>
       <Route path='/reports' element={<ReportMain/>}></Route>
-      <Route path='/friends' element={<DirectoryMain/>}></Route>
+      <Route path='/connect' element={<DirectoryMain/>}></Route>
       <Route path='/postpage' element={<PostPage/>}></Route>  
+      <Route path='/myapplications' element={<ApplicationsMain/>}></Route>
     </Routes>
   );
 }

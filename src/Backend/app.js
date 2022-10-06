@@ -323,33 +323,33 @@ app.post("/ResetPassword/:id",async(req,res) =>{
 app.post("/UpdateProfile", async(req,res) => {
     // console.log(req.body)
     try{
-    const _ID = req.body._id
+    const _ID = req.body._id.toString()
     // console.log(_ID)
-    const name = req.body.name[0]
+    const name = req.body.name.toString()
     // console.log(name)
-    const number = req.body.number[0]
+    const number = req.body.number.toString()
     // console.log(number)
-    const email = req.body.email[0]
+    const email = req.body.email.toString()
     // console.log(email)
-    const password = req.body.password[0]
+    const password = req.body.password.toString()
     // console.log(password)
-    const ID = req.body.ID[0]
+    const ID = req.body.ID.toString()
     // console.log(ID)
-    const Batch = req.body.Batch[0]
+    const Batch = req.body.Batch.toString()
     // console.log(Batch)
-    const Address = req.body.Address[0]
+    const Address = req.body.Address.toString()
     // console.log(Address)
-    const Branch = req.body.Branch[0]
+    const Branch = req.body.Branch.toString()
     // console.log(Branch)
-    const Curr_loc = req.body.Curr_loc[0]
+    const Curr_loc = req.body.Curr_loc.toString()
     // console.log(Curr_loc)
-    const DOB = req.body.DOB[0]
+    const DOB = req.body.DOB.toString()
     // console.log(DOB)
-    const Passyear = req.body.Passyear[0]
+    const Passyear = req.body.Passyear.toString()
     // console.log(Passyear)
-    const Work_Ind = req.body.Work_Ind[0]
+    const Work_Ind = req.body.Work_Ind.toString()
     // console.log(Work_Ind)
-    const company = req.body.company[0]
+    const company = req.body.company.toString()
     // console.log(company)
 
     const Job_role = req.body.Job_role.toString()

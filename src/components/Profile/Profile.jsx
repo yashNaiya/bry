@@ -25,7 +25,7 @@ const Profile = () => {
     }
 
     const handleSubmit = (e) => {
-        sessionStorage.setItem('sessionData',JSON.stringify(user))
+        sessionStorage.setItem('sessionData', JSON.stringify(user))
         // user = JSON.parse(sessionStorage.getItem('sessionData'))
         console.log(user)
         console.log(JSON.parse(sessionStorage.getItem('sessionData')))
@@ -76,8 +76,8 @@ const Profile = () => {
                 <Box display="flex" flexDirection={'column'} sx={{ alignItems: "center", margin: 'auto' }}>
                     <Typography variant='h4' color={'primary'} fontWeight={100} padding={4}>Manage Profile</Typography>
                     <Box>
-                        <Box>
-                            <img src={SERVER_HOST + user.Image} alt='profile' width={'150'} height={'150'} />
+                        <Box >
+                            <img src={SERVER_HOST + user.Image} position='center' alt='profile' width={'150'} height={'auto'} />
                         </Box>
                         {readMode ? <></> :
                             <>
@@ -191,7 +191,7 @@ const Profile = () => {
                             label="Year of Joining"
                             value={user.Batch}
                             autoComplete='off'
-                            name='yearOfJoining'
+                            name='Batch'
                             inputProps={
                                 { readOnly: readMode ? true : false }
                             }
@@ -371,6 +371,7 @@ const Profile = () => {
                                     defaultValue="yes"
                                     onChange={handleChange}
                                     name="Workshop"
+                                    value={user.Workshop}
                                     row
                                 >
                                     <FormControlLabel value="yes" control={<Radio />} label="Yes" />
@@ -386,6 +387,7 @@ const Profile = () => {
                                     defaultValue="yes"
                                     onChange={handleChange}
                                     name="Lecture"
+                                    value={user.Lecture}
                                     row
                                 >
                                     <FormControlLabel value="yes" control={<Radio />} label="Yes" />

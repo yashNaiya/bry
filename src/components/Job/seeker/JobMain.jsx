@@ -14,6 +14,10 @@ const JobMain = () => {
     category:""
   });
 
+  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('sessionData')))
+
+
+
   return (
     <Box>
       <Navbar />
