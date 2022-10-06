@@ -4,17 +4,15 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardContent from '@mui/material/CardContent';
 import CardActions from '@mui/material/CardActions';
-import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
-import ReadMoreIcon from '@mui/icons-material/ReadMore';
 import { Button } from '@mui/material';
 
 const PostPage = () => {
     return (
-        <Box display={'flex'} justifyContent={'center'} bgcolor={'primary.light'} width={'100%'}>
-            <Box width={'70%'}>
+        <Box display={'flex'} justifyContent={'center'} width={'100%'}>
+            <Box width={'70%'} box-shadow= 'rgba(0, 0, 0, 0.24) 0px 3px 8px'>
                 <form>
-                    <Card sx={{ margin: "1%" }} >
+                    <Card sx={{ margin: "1%" }}>
                         <CardHeader
                             title="Web Development"
                             subheader="work from home/location"

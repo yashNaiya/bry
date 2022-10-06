@@ -6,28 +6,21 @@ import Select from '@mui/material/Select';
 import MenuLists from '../../../config/MenuLists';
 import axios from 'axios';
 
-const Rightbar = () => {
+const Rightbar = (props) => {
 
 
-
-  const [category, setCategory] = useState('');
-  const [location, setLocation] = useState('');
-  const [mode,setMode] = useState('')
-
-  const handleCategory = (event) => {
-    setCategory(event.target.value);
-  };
-  const handleLocation = (event) => {
-    setLocation(event.target.value);
-  };
-  const handleMode = (event)=>{
-    setMode(event.target.value)
-
-  }
+  const handleChange = (e) => {
+    props.setFilter((prevState) => ({
+        ...prevState,
+        [e.target.name]: [e.target.value]
+    }))
+}
   const handleClear = () => {
-    setMode('')
-    setLocation('')
-    setCategory('')
+    props.setFilter({
+      mode:"",
+      location:"",
+      category:""
+    })
   }
 
   const handleApply = () => {
@@ -45,8 +38,9 @@ const Rightbar = () => {
             <Select
               labelId="demo-simple-select-autowidth-label"
               id="demo-simple-select-autowidth"
-              value={category}
-              onChange={handleCategory}
+              name="category"
+              onChange={handleChange}
+              value={props.filter.category}
               label="Category"
             >
               {MenuLists.category.map(item => (
@@ -59,8 +53,9 @@ const Rightbar = () => {
             <Select
               labelId="demo-simple-select-autowidth-label"
               id="simple-select-autowidth"
-              value={location}
-              onChange={handleLocation}
+              name="location"
+              onChange={handleChange}
+              value={props.filter.location}
               label="Location"
             >
               {MenuLists.location.map(item => (
@@ -70,12 +65,11 @@ const Rightbar = () => {
           </FormControl>
           <FormGroup sx={{ m: 2, marginLeft: 0 }}>
             {MenuLists.mode.map(item => (
-              <FormControlLabel control={<Checkbox />} onChange={handleMode} label={item.name} value={item.value} key={item.value} />
+              <FormControlLabel control={<Checkbox />} name='mode' onChange={handleChange} label={item.name} value={item.value} key={item.value} />
 
             ))}
           </FormGroup>
-          <Box display={'flex'} justifyContent={'space-evenly'}>
-            <Button variant='contained' onClick={handleApply}>Apply</Button>
+          <Box >
             <Button variant='outlined' onClick={handleClear}>Clear</Button>
           </Box>
         </Box>
