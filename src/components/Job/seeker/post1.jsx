@@ -27,7 +27,6 @@ const Post1 = (data) => {
         console.log(data.user_id_In_Job)
         if(user_id===data.user_id_In_Job){
             alert("You Can Not Apply Jobs You Posted")
-          
             return
         }
 
