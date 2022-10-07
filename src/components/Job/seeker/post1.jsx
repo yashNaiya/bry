@@ -32,9 +32,9 @@ const Post1 = (data) => {
     }
 
     const handleView = (data) => {
-        console.log("hello")
-        console.log(data)
-        // data.setJob()
+        // console.log("hello")
+        // console.log(data)
+        data.setJob(data)
         data.showPost(true)
 
     }

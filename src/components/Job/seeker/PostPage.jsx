@@ -8,8 +8,8 @@ import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
-
 const PostPage = (props) => {
+    // console.log(props.job)
     return (
         <Box>
             <Button onClick={() => {
@@ -22,42 +22,42 @@ const PostPage = (props) => {
                     <form>
                         <Card sx={{ margin: "1%" }}>
                             <CardHeader
-                                title="Web Development"
-                                subheader="work from home/location"
+                                title={props.job.title}
+                                subheader={ props.job.WorkFromHome +"/"+props.job.location}
                             />
                             <CardContent>
                                 <Typography paddingY={'1rem'} color={'primary.main'} variant='h6'>
-                                    Rs. 8+
+                                    Salary : {props.job.salary}
                                 </Typography>
                                 <Typography paddingY={'1rem'} variant='button'>
-                                    type :
+                                    Type : {props.job.type}
                                 </Typography>
                                 <Typography paddingY={'1rem'}>
-                                    company name :
+                                    Company Name : {props.job.companyName}
                                 </Typography>
                                 <Typography paddingY={'1rem'}>
-                                    company website :
+                                    Company Website : {props.job.website}
                                 </Typography>
                                 <Typography paddingY={'1rem'}>
-                                    experiance :
+                                    Experiance : {props.job.experiance}
                                 </Typography>
                                 <Typography paddingY={'1rem'}>
-                                    last date :
+                                    Last Date : {props.job.lastDate}
                                 </Typography>
                                 <Typography paddingY={'1rem'} variant={'h6'}>
                                     About job:
                                 </Typography>
                                 <Typography paddingY={'1rem'} >
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo, placeat consectetur libero officia architecto, possimus sed totam, iusto veniam dolorem laudantium modi minima error asperiores.
+                                   {props.job.jobDescription}
                                 </Typography>
                                 <Typography paddingY={'1rem'}>
-                                    opening :
+                                   Vacancy : {props.job.totalOpening}
                                 </Typography>
                                 <Typography paddingRight={'1rem'} display={'inline'}>
-                                    Recruiter name
+                                   Recruter Name : {props.job.recruterName}
                                 </Typography>
                                 <Typography display={'inline'}>
-                                    Recruiter designation
+                                  Recruter Designation : {props.job.recruterDesignation}
                                 </Typography>
                             </CardContent>
                             <Box display={'flex'} justifyContent={'center'}>
