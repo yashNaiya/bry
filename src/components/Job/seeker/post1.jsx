@@ -62,7 +62,7 @@ const Post1 = (data) => {
                 </Typography>
             </CardContent>
             <CardActions disableSpacing>
-                <Button onClick={handleApply}>
+                <Button onClick={()=>handleApply(data.Job_id,user._id)}>
                     Apply
                 </Button>
                 <IconButton onClick={handleView} >

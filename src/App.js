@@ -14,6 +14,8 @@ import DirectoryMain from "./components/Directory/DirectoryMain";
 import ApplicationsMain from "./components/Applications/ApplicationsMain";
 import MyjobsMain from "./components/Jobposted/MyjobsMain";
 import JobDetail from "./components/Jobposted/JobDetail";
+import ChatMain from "./components/Chat/ChatMain";
+
 require('dotenv').config();
 function App() {
   return (
@@ -31,6 +33,7 @@ function App() {
       <Route path='/myapplications' element={<ApplicationsMain/>}></Route>
       <Route path='/myjobs' element={<MyjobsMain/>}></Route>
       <Route path='/jobdetail' element={<JobDetail/>}></Route>
+      <Route path='/chatpage' element={<ChatMain/>}></Route>
     </Routes>
   );
 }

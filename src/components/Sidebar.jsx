@@ -38,7 +38,7 @@ const Sidebar = () => {
             </ListItemIcon>
             <ListItemText primary="My Applications" />
           </ListItemButton>
-          <ListItemButton>
+          <ListItemButton to={'/chatpage'}>
             <ListItemIcon >
               <ChatBubbleIcon color='primary' />
             </ListItemIcon>
@@ -87,7 +87,7 @@ const Sidebar = () => {
             </ListItemIcon>
             <ListItemText primary="Add Job" />
           </ListItemButton>
-          <ListItemButton>
+          <ListItemButton to={'/chatpage'}>
             <ListItemIcon >
               <ChatBubbleIcon color='primary' />
             </ListItemIcon>
@@ -136,7 +136,7 @@ const Sidebar = () => {
             </ListItemIcon>
             <ListItemText primary="Authenticate" />
           </ListItemButton>
-          <ListItemButton>
+          <ListItemButton to={'/chatpage'}>
             <ListItemIcon >
               <ChatBubbleIcon color='primary' />
             </ListItemIcon>
