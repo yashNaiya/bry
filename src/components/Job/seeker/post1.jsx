@@ -30,9 +30,13 @@ const Post1 = (data) => {
             })
             .catch(err => console.log(err))
     }
-    const handleView = () => {
+
+    const handleView = (data) => {
+        console.log("hello")
+        console.log(data)
         // data.setJob()
         data.showPost(true)
+
     }
 
 
@@ -65,7 +69,7 @@ const Post1 = (data) => {
                 <Button onClick={()=>handleApply(data.Job_id,user._id)}>
                     Apply
                 </Button>
-                <IconButton onClick={handleView} >
+                <IconButton onClick={()=>handleView(data)} >
                     <ReadMoreIcon />
                 </IconButton>
             </CardActions>
