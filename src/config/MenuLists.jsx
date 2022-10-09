@@ -49,19 +49,19 @@ const MenuLists = {
     mode: [
         {
             name: "Work from home",
-            value: "Work from home"
+            value: true
         },
         {
             name: "Fresher jobs",
-            value: "Fresher jobs"
+            value: "fresher"
         },
         {
-            name: "Show only 3 LPA+ jobs",
-            value: "Show only 3 LPA+ jobs"
+            name: "Show only 4 LPA+ jobs",
+            value: "2-4"
         },
         {
             name: "Include all internships",
-            value: "Include all internships"
+            value: "internship"
         }
     ],
     salary: [

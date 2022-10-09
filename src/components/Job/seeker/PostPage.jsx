@@ -7,9 +7,25 @@ import CardActions from '@mui/material/CardActions';
 import Typography from '@mui/material/Typography';
 import { Button } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import axios from 'axios';
+import { useState } from 'react';
 
 const PostPage = (props) => {
-    // console.log(props.job)
+    console.log(props.job)
+    const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('sessionData')))
+    const handleApply = (Job_id, user_id) => {
+        console.log(user_id)
+        console.log(props.job.user_id_In_Job)
+        if (user_id === props.job.user_id_In_Job) {
+            alert("You Can Not Apply Jobs You Posted")
+            return
+        }
+        axios.post(`/ApplyForJob/${Job_id}/${user_id}`)
+            .then(response => {
+                alert(response.data.message)
+            })
+            .catch(err => console.log(err))
+    }
     return (
         <Box>
             <Button onClick={() => {
@@ -62,7 +78,7 @@ const PostPage = (props) => {
                             </CardContent>
                             <Box display={'flex'} justifyContent={'center'}>
                                 <CardActions disableSpacing>
-                                    <Button variant={'contained'}>Apply</Button>
+                                <Button onClick={()=>handleApply(props.job.Job_id,user._id)}>Apply</Button>
                                 </CardActions>
                             </Box>
                         </Card>
