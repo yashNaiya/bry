@@ -19,14 +19,15 @@ const Rightbar = (props) => {
     props.setFilter({
       mode:"",
       location:"",
-      category:""
+      category:"",
     })
   }
 
   const handleApply = () => {
     // console.log(location, category,mode);
-    axios.post('/getfilterJob')
-    .then(res => res.data)
+    // console.log(props.filter)
+    // axios.post('/getfilterJob',)
+    // .then(res => res.data)
   }
   return (
     <Box flex={2} height="100vh" p={2} sx={{ display: { xs: "none", sm: "block" } }} >
