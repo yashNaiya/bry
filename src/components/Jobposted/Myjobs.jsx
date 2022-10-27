@@ -16,7 +16,12 @@ const Myjobs = (props) => {
       flexDirection={'row'}
       justifyContent={'space-evenly'}
       flexWrap={'wrap'}>
-      <Card sx={{ margin: '3rem', minWidth: 345, maxHeight: 200, backgroundColor: 'primary.light' }}>
+      <Card sx={{
+        margin: '3rem',
+        minWidth: 345, 
+        maxHeight: 200, 
+        boxShadow: " rgba(0, 0, 0, 0.35) 0px 5px 15px 0px;",
+      }}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             Company Name

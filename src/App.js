@@ -15,6 +15,7 @@ import ApplicationsMain from "./components/Applications/ApplicationsMain";
 import MyjobsMain from "./components/Jobposted/MyjobsMain";
 import JobDetail from "./components/Jobposted/JobDetail";
 import ChatMain from "./components/Chat/ChatMain";
+import PageNotFound from "./components/PageNotFound"
 
 require('dotenv').config();
 function App() {
@@ -34,6 +35,7 @@ function App() {
       <Route path='/myjobs' element={<MyjobsMain/>}></Route>
       <Route path='/jobdetail' element={<JobDetail/>}></Route>
       <Route path='/chatpage' element={<ChatMain/>}></Route>
+      <Route path="*" element={<PageNotFound />}></Route>
     </Routes>
   );
 }

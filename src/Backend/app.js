@@ -34,6 +34,7 @@ const transporter = nodemailer.createTransport({
 //multer store Image
 const multer = require("multer");
 const { default: mongoose } = require("mongoose");
+const { chats } = require("./Data/data");
 
 var storage = multer.diskStorage({   
     destination: function(req, file, cb) { 
@@ -400,7 +401,9 @@ app.post("/UploadPhoto",upload.single("photo"), async(req,res) => {
 })
 
 // Add Job
-
+app.get("/myjobs",(req,res)=>{
+    JOBS.find()
+})
 app.post("/addjob",(req,res)=>{
     // console.log(req.body)
     const UserID = req.body.UserID
@@ -476,10 +479,8 @@ app.post("/getfilterJob" , async (req,res)=>{
     console.log(req.body)
 })
 
-//AddUserForJob
 app.post('/ApplyForJob/:Job_id/:user_id', async (req,res)=>{
     
-    // console.log(req.params)
     try{
         // console.log("Hello")
     user_id = req.params.user_id
@@ -535,4 +536,14 @@ app.post("/getAppliedJob/:user_id",async(req,res)=>{
 
 app.listen(9002,()=>{
    console.log("Be Started at port 9002")
+})
+
+
+app.get("/api/chat",(req,res)=>{
+    res.send(chats)
+})
+
+app.get("/api/chat/:id",(req,res)=>{
+    const singleChat = chats.find((c)=> c._id === req.params.id)
+    res.send(singleChat)
 })

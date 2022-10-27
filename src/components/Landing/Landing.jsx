@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Box, Typography, Button, styled } from '@mui/material'
 import MainNav from './MainNav'
 import { Stack } from '@mui/system'
@@ -9,6 +9,14 @@ const Landing = () => {
   const LoginLink = styled(NavLink)({
     textDecoration:'none'
 })
+
+const clearSession = () =>{
+  sessionStorage.setItem('sessionData',{})
+}
+    useEffect(() => {
+      clearSession()
+    }, [])
+    
 
     const setSeeker = () =>{
       sessionStorage.setItem('viewer','2')

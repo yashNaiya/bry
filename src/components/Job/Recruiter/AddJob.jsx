@@ -221,7 +221,7 @@ const AddJob = () => {
                 </Box>
             </form>
             <>
-                <img src={image} alt={'img'} height={'50%'} width='auto' />
+                <img src={image} alt={'img'} height={'40%'} width='auto' />
             </>
         </Box>
     )

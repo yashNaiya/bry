@@ -32,9 +32,7 @@ const Post1 = (data) => {
     }
 
     const handleView = (data) => {
-        console.log("hello")
         console.log(data)
-        // data.setJob()
         data.showPost(true)
 
     }
@@ -49,7 +47,7 @@ const Post1 = (data) => {
                     </Typography>
                 }
                 title={data.title}
-                subheader={data.WorkFromHome === 't' ? 'Work From Home' : data.location}
+                subheader={data.WorkFromHome === 'true' ? 'Work From Home' : data.location}
             />
             <CardContent>
                 <Typography variant='button'>
