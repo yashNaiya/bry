@@ -9,6 +9,9 @@ const Myjobs = (props) => {
   //   props.showPost(true)
   // }
 
+   const user = JSON.parse(sessionStorage.getItem('sessionData'))
+   console.log(user._id)
+
   return (
     <Box
       flex={6}

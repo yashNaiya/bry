@@ -533,6 +533,31 @@ app.post("/getAppliedJob/:user_id",async(req,res)=>{
 })
 
 
+app.post("/getpostedJob/:user_id",async(req,res)=>{
+
+    try{
+    // console.log(req.params)
+    user_id = req.params.user_id
+    const data = await User.aggregate([
+        { $match: { _id : ObjectId(user_id) } },
+        {
+            $lookup: { 
+                from: 'jobs', 
+                localField: 'AppliedJobs', 
+                foreignField: '_id', 
+                as: 'Company' 
+            } 
+        }
+        
+    ])
+    // console.log(data[0].Company)
+    res.send(data[0].Company)
+    // console.log(data.name)
+   }catch(e){
+    res.send(e)
+   }
+
+})
 app.listen(9002,()=>{
    console.log("Be Started at port 9002")
 })

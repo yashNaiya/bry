@@ -17,7 +17,7 @@ const Applications = () => {
 
    console.log(dataTable)
 
-    const columns = ["companyName","website","recruterName","salary","location","title"];
+    const columns = ["companyName","website","recruterName","salary","location","title","lastDate"];
 
 
     const options = {
