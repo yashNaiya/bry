@@ -10,6 +10,8 @@ const StyledToolbar = styled(Toolbar)({
   justifyContent: "space-between"
 })
 
+const viewer = sessionStorage.getItem('viewer')
+
 const UserBox = styled("div")(({ theme }) => ({
   display: "flex",
   gap: "20px",

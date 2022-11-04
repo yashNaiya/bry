@@ -19,7 +19,7 @@ const Rightbar = (props) => {
     props.setFilter({
       mode:"",
       location:"",
-      category:"",
+      field:"",
     })
   }
 
@@ -35,16 +35,16 @@ const Rightbar = (props) => {
         <Box sx={{ minWidth: 120 }} position="fixed">
           <Typography fontWeight={100} m={2} align={'center'} variant="h5">Filter<FilterAltIcon color='primary' /></Typography>
           <FormControl size='small' sx={{ m: 1, width: "100%", marginLeft: "0" }}>
-            <InputLabel id="demo-simple-select-autowidth-label">Category</InputLabel>
+            <InputLabel id="demo-simple-select-autowidth-label">Field</InputLabel>
             <Select
               labelId="demo-simple-select-autowidth-label"
               id="demo-simple-select-autowidth"
-              name="category"
+              name="field"
               onChange={handleChange}
-              value={props.filter.category}
-              label="Category"
+              value={props.filter.field}
+              label="Field"
             >
-              {MenuLists.category.map(item => (
+              {MenuLists.fields.map(item => (
                 <MenuItem key={item.value} value={item.value}>{item.name}</MenuItem>
               ))}
             </Select>

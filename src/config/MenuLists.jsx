@@ -45,6 +45,10 @@ const MenuLists = {
             name: 'Mumbai',
             value: 'Mumbai'
         },
+        {
+            name:"Ahmedabad",
+            value:"Ahmedabad"
+        }
     ],
     mode: [
         {
@@ -94,6 +98,49 @@ const MenuLists = {
         }, {
             name: '4+',
             value: '4+'
+        }
+    ],
+    fields:[
+        {
+            name:"Civil",
+            value:"Civil"
+        },
+        {
+            name:"Structural",
+            value:"Structural"
+        }, {
+            name:"Production",
+            value:"Production"
+        }, {
+            name:"Computer",
+            value:"Computer"
+        }, {
+            name:"Electronics",
+            value:"Electronics"
+        }, {
+            name:"Electrical",
+            value:"Electrical"
+        }, {
+            name:"Mechanical",
+            value:"Mechanical"
+        }, {
+            name:"Electronics & Communication",
+            value:"Electronics & Communication"
+        },
+        {
+            name:"Mathematics",
+            value:"Mathematics"
+        },{
+            name:"Information Technology",
+            value:"Information Technology"
+        },
+    ],
+    admins:[
+        {
+            _id:'632f1a6aee9f29d3e69dc151',
+        },
+        {
+            _id:'632f18baa9ab9e216bf17a98',
         }
     ],
 }

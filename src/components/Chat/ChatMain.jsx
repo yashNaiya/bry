@@ -3,6 +3,7 @@ import React from 'react'
 import Navbar from '../Job/seeker/Navbar'
 import Sidebar from '../Sidebar'
 import Chat from './Chat'
+import ChatRightbar from './ChatRightbar'
 
 const ChatMain = () => {
   return (
@@ -12,6 +13,7 @@ const ChatMain = () => {
           <Stack direction="row" spacing={4} justifyContent="space-between">
             <Sidebar />
             <Chat />
+            <ChatRightbar/>
           </Stack>
         </Box>
       </Box>

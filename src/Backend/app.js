@@ -35,6 +35,7 @@ const transporter = nodemailer.createTransport({
 const multer = require("multer");
 const { default: mongoose } = require("mongoose");
 const { chats } = require("./Data/data");
+const Chat = require("./Models/chat");
 
 var storage = multer.diskStorage({   
     destination: function(req, file, cb) { 
@@ -56,9 +57,12 @@ app.post("/login",(req,res)=>{
     User.findOne({email:email,state:true},(err,user) =>{
       if(user){
           if(password[0] === user.password){
-      
-           // console.log("LogIn Sucessful")
-           res.send({message:"LogIn Sucessful",user,state:1})
+           if(user.email === 'parth07@gmail.com'){
+                
+                res.send({message:"Admin Login Sucessful",user,state:1})
+           }else{
+               res.send({message:"LogIn Sucessful",user,state:1})
+           }
           }
           else{
            //  console.log("Password Did Not Match")
@@ -116,7 +120,7 @@ app.post("/register",(req,res)=>{
 
 
 // Get Data At Port
-app.get("/register",async(req,res)=>{
+app.get("/register/notRegistered",async(req,res)=>{
     try{
         const usersData = await User.find({state:"false"});
         // usersData = usersData.pretty();
@@ -126,6 +130,9 @@ app.get("/register",async(req,res)=>{
         res.send(e)
     }
 })
+
+
+
 app.get("/register/valid",async(req,res)=>{
     try{
         const usersData = await User.find({state:"true"});
@@ -420,6 +427,7 @@ app.post("/addjob",(req,res)=>{
     const totalOpening = req.body.totalOpening[0]
     const recruterDesignation = req.body.recruterDesignation
     const recruterName = req.body.recruterName
+    const field = req.body.field[0]
     // console.log(companyName)
 
    
@@ -439,7 +447,8 @@ app.post("/addjob",(req,res)=>{
         totalOpening:totalOpening,
         experiance:experiance,
         recruterDesignation:recruterDesignation,
-        recruterName:recruterName  
+        recruterName:recruterName,  
+        field:field
        })
        job.save(err =>{
            if(err){
@@ -542,8 +551,78 @@ app.listen(9002,()=>{
 app.get("/api/chat",(req,res)=>{
     res.send(chats)
 })
-
+app.get("/register",async (req,res)=>{
+    const users = await User.find()
+    res.send(users)    
+})
 app.get("/api/chat/:id",(req,res)=>{
     const singleChat = chats.find((c)=> c._id === req.params.id)
     res.send(singleChat)
+})
+
+
+// Chat api
+
+app.post("/api/chat",async(req,res)=>{
+    const {userId} = req.body
+    const {user} = req.body
+    if(!userId){
+        console.log("userId param not sent with the request")
+        return res.sendStatus(400)
+    }
+
+    var isChat = await Chat.find({
+        isGroupChat: false,
+        $and:[
+            {users:{$elemMatch:{$eq:user}}},
+            {users:{$elemMatch:{$eq:userId}}}
+        ],
+    }).populate("users","-password")
+        .populate("latestMessage");
+
+    isChat = await User.populate(isChat,{
+        path:'latestMessage.sender',
+        select:"name pic email"
+    })
+
+    if(isChat.length > 0){
+        res.send(isChat[0]);
+    }else{
+        var chatData = {
+            chatName:"sender",
+            isGroupChat: false,
+            users:[user,userId],
+        }
+
+        try {
+            const createdChat = await Chat.create(chatData);
+
+            const FullChat = await Chat.findOne({_id: createdChat._id}).populate("users","-password")
+
+            res.status(200).send(FullChat)
+        } catch (error) {
+            res.status(400);
+            throw new Error(error.message);
+        }
+    }
+})
+
+app.get("/api/chat",(req,res)=>{
+
+})
+
+app.post("/api/chat/group",(req,res)=>{
+
+})
+
+app.put("/api/chat/rename",(req,res)=>{
+
+})
+
+app.put("/api/chat/groupRename",(req,res)=>{
+
+})
+
+app.put("/api/chat/groupAdd",(req,res)=>{
+
 })

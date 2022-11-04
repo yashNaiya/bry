@@ -47,6 +47,11 @@ const Login = () => {
                             navigate('/jobpage', { replace: true })
                         }
                     }
+                    else if(res.data.message === "Admin Login Sucessful"){
+                        sessionStorage.setItem('viewer','0')
+                        sessionStorage.setItem('sessionData', JSON.stringify(res.data.user))
+                        navigate('/reports')
+                    }
                 })
         } else {
             alert("Invalid Input")

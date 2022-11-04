@@ -8,6 +8,9 @@ const Myjobs = (props) => {
   // const handleClick = ()=>{
   //   props.showPost(true)
   // }
+  const handleView = ()=>{
+    props.showPost(true)
+  }
 
   return (
     <Box
@@ -37,7 +40,7 @@ const Myjobs = (props) => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Learn More</Button>
+          <Button size="small" onClick={handleView}>Learn More</Button>
         </CardActions>
       </Card>
     </Box>
