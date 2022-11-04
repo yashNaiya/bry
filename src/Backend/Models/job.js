@@ -59,6 +59,9 @@ const Jobs = new mongoose.Schema({
     experiance:{
         type:String
     },
+    field:{
+        type:String
+    },
     Appliedusers :[{
         type:mongoose.Schema.Types.ObjectId,
         ref : "Info",

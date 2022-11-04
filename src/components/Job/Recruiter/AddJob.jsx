@@ -13,7 +13,7 @@ const AddJob = () => {
     console.log(user)
     const [isChecked, setIsChecked] = useState("true");
     const handleCheck = () => {
-        isChecked ==="false" ? setIsChecked("true") : setIsChecked("false")
+        isChecked === "false" ? setIsChecked("true") : setIsChecked("false")
         inputs.workFromHome = isChecked
         console.log(inputs.workFromHome)
     };
@@ -26,8 +26,8 @@ const AddJob = () => {
     }
     const [inputs, setinputs] = useState({
         UserID: user._id,
-        recruterName:user.name,
-        recruterDesignation:user.Designation,
+        recruterName: user.name,
+        recruterDesignation: user.Designation,
         type: "",
         title: "",
         salary: "",
@@ -37,22 +37,23 @@ const AddJob = () => {
         location: "",
         totalOpening: "",
         experiance: "",
-        lastdate:"",
+        lastdate: "",
+        field: "",
         workFromHome: isChecked
     })
 
     const handleSubmit = (e) => {
         e.preventDefault();
-       
-        const { UserID,title, type,companyName, jobDescription, website , salary,location} = inputs
-        
-        if (title && type && companyName &&  jobDescription &&  website  && salary && location && UserID){
+
+        const { UserID, title, type, companyName, jobDescription, website, salary, location, field } = inputs
+
+        if (title && type && companyName && jobDescription && website && salary && location && UserID && field) {
             axios.post("/addjob", inputs)
-            .then(res => alert(res.data.message))
-            
-       } else {
-           alert("Invalid Input")
-       }
+                .then(res => alert(res.data.message))
+
+        } else {
+            alert("Invalid Input")
+        }
 
     }
     return (
@@ -93,6 +94,22 @@ const AddJob = () => {
                                 <FormControlLabel value="job" control={<Radio />} label="Full time" />
                                 <FormControlLabel value="internship" control={<Radio />} label="Internship" />
                             </RadioGroup>
+                        </FormControl>
+                        <FormControl size='small' sx={{ m: 1, width: "100%", marginLeft: "0" }}>
+                            <InputLabel id="demo-simple-select-autowidth-label">Field</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-autowidth-label"
+                                id="demo-simple-select-autowidth"
+                                value={inputs.field}
+                                variant={'filled'}
+                                onChange={handleChange}
+                                label="Field"
+                                name="field"
+                            >
+                                {MenuLists.fields.map(item => (
+                                    <MenuItem key={item.value} value={item.value}>{item.name}</MenuItem>
+                                ))}
+                            </Select>
                         </FormControl>
                         <TextField
                             margin='normal'
@@ -210,7 +227,7 @@ const AddJob = () => {
                         <FormControlLabel
                             defaultChecked={false}
                             value={isChecked}
-                            name = 'WorkFromHome'
+                            name='WorkFromHome'
                             onChange={handleCheck}
                             control={<Checkbox />} label="Work From Home" />
 
@@ -221,7 +238,7 @@ const AddJob = () => {
                 </Box>
             </form>
             <>
-                <img src={image} alt={'img'} height={'50%'} width='auto' />
+                <img src={image} alt={'img'} height={'40%'} width='auto' />
             </>
         </Box>
     )

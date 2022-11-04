@@ -9,7 +9,7 @@ function Authenticate() {
   const [dataTable, setDataTable] = useState([]);
   //  console.log(dataTable)
   useEffect(() => {
-    axios('/register')
+    axios('/register/notRegistered')
       .then(res => setDataTable(res.data))
       .catch(err => console.log(err))
   }, []);

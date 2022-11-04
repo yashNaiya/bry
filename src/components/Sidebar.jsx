@@ -18,13 +18,12 @@ const Sidebar = () => {
   if (viewer === '2') {
 
     return (
-      <Box maxHeight={'100%'} minHeight={"100vh"} flex={1.5}
+      <Box flex={1.5}
         sx={{
           display: { xs: "none", sm: "flex" },
-          borderRight: '2px solid #A7BEAE',
-          // boxShadow:'1px 3px 1px 2px #A7BEAE'
+  
         }}>
-        <Box position="fixed">
+        <Box maxHeight={'100%'} minHeight={"100vh"} minWidth={"15%"}  position="fixed" sx={{borderRight: '2px solid #A7BEAE'}}>
 
           <ListItemButton to={'/jobpage'}>
             <ListItemIcon>
@@ -56,25 +55,19 @@ const Sidebar = () => {
             </ListItemIcon>
             <ListItemText primary="Profile" />
           </ListItemButton>
-          <ListItemButton>
-            <ListItemIcon>
-              <SettingsIcon color='primary' />
-            </ListItemIcon>
-            <ListItemText primary="Settings" />
-          </ListItemButton>
         </Box>
       </Box>
     )
   }
   else if (viewer === '1') {
     return (
-      <Box maxHeight={'100%'} minHeight={"100vh"} flex={1.5}
+      <Box  flex={1.5}
         sx={{
           display: { xs: "none", sm: "flex" },
-          borderRight: '2px solid #A7BEAE',
+          
           
         }}>
-        <Box position="fixed">
+        <Box maxHeight={'100%'} minHeight={"100vh"} minWidth={"15%"}  position="fixed" sx={{borderRight: '2px solid #A7BEAE'}}>
           <ListItemButton to='/myjobs'>
             <ListItemIcon>
               <WorkIcon color='primary' />
@@ -104,12 +97,6 @@ const Sidebar = () => {
               <AccountCircleIcon color='primary' />
             </ListItemIcon>
             <ListItemText primary="Profile" />
-          </ListItemButton>
-          <ListItemButton>
-            <ListItemIcon>
-              <SettingsIcon color='primary' />
-            </ListItemIcon>
-            <ListItemText primary="Settings" />
           </ListItemButton>
         </Box>
       </Box>
@@ -153,12 +140,6 @@ const Sidebar = () => {
               <AccountCircleIcon color='primary' />
             </ListItemIcon>
             <ListItemText primary="Profile" />
-          </ListItemButton>
-          <ListItemButton>
-            <ListItemIcon>
-              <SettingsIcon color='primary' />
-            </ListItemIcon>
-            <ListItemText primary="Settings" />
           </ListItemButton>
         </Box>
       </Box>

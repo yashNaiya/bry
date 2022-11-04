@@ -41,11 +41,16 @@ const Login = () => {
                         const viewer = sessionStorage.getItem('viewer')
                         sessionStorage.setItem('sessionData', JSON.stringify(res.data.user))
                         if(viewer === '1'){
-                            navigate('/addjob')
+                            navigate('/addjob', { replace: true })
                         }
                         else if(viewer === '2'){
-                            navigate('/jobpage')
+                            navigate('/jobpage', { replace: true })
                         }
+                    }
+                    else if(res.data.message === "Admin Login Sucessful"){
+                        sessionStorage.setItem('viewer','0')
+                        sessionStorage.setItem('sessionData', JSON.stringify(res.data.user))
+                        navigate('/reports')
                     }
                 })
         } else {

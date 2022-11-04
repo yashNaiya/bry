@@ -8,6 +8,9 @@ const Myjobs = (props) => {
   // const handleClick = ()=>{
   //   props.showPost(true)
   // }
+  const handleView = ()=>{
+    props.showPost(true)
+  }
 
    const user = JSON.parse(sessionStorage.getItem('sessionData'))
    console.log(user._id)
@@ -19,7 +22,12 @@ const Myjobs = (props) => {
       flexDirection={'row'}
       justifyContent={'space-evenly'}
       flexWrap={'wrap'}>
-      <Card sx={{ margin: '3rem', minWidth: 345, maxHeight: 200, backgroundColor: 'primary.light' }}>
+      <Card sx={{
+        margin: '3rem',
+        minWidth: 345, 
+        maxHeight: 200, 
+        boxShadow: " rgba(0, 0, 0, 0.35) 0px 5px 15px 0px;",
+      }}>
         <CardContent>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
             Company Name
@@ -35,7 +43,7 @@ const Myjobs = (props) => {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Learn More</Button>
+          <Button size="small" onClick={handleView}>Learn More</Button>
         </CardActions>
       </Card>
     </Box>

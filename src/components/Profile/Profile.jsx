@@ -403,7 +403,7 @@ const Profile = () => {
 
             </form>
             <>
-                <img src={image} height={'35%'} width='auto' />
+                <img src={image} height={'30%'} width='auto' />
             </>
         </Box>
     )

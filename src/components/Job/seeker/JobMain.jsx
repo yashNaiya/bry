@@ -12,7 +12,7 @@ const JobMain = () => {
   const [filter, setFilter] = useState({
     mode:"",
     location:"",
-    category:""
+    field:""
   });
 
   const [post,showPost] = useState(false)
