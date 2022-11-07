@@ -147,6 +147,7 @@ app.get("/register/valid",async(req,res)=>{
 //Get One Student Data
 app.get("/register/:email",async (req,res)=>{
     try{
+        // console.log("mail")
         
         const email = req.params.email;
         const OneUserData = await User.findOne({email,email});

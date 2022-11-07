@@ -39,8 +39,17 @@ const JobDetail = (props) => {
         print: false,
         pagination: false,
         onRowClick: (data) => {
-         localStorage.setItem("viewedProfile",JSON.stringify(data))
-        console.log(localStorage.getItem("viewedProfile"))
+          // console.log(data[2])
+
+          axios.get(`/register/${data[2]}`)
+          .then(function (response) {
+            // console.log(response.data)
+            localStorage.setItem("viewedProfile",response.data)
+          })
+          .catch(err => console.log(err));
+          // console.log(dataofuser)
+         
+         console.log(localStorage.getItem("viewedProfile"))
          window.open('/viewProfile', '_blank', 'noopener,noreferrer');
       }
   };
