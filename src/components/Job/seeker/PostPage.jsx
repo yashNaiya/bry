@@ -14,8 +14,8 @@ const PostPage = (props) => {
     console.log(props.job)
     const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('sessionData')))
     const handleApply = (Job_id, user_id) => {
-        console.log(user_id)
-        console.log(props.job.user_id_In_Job)
+        // console.log(user_id)
+        // console.log(props.job.user_id_In_Job)
         if (user_id === props.job.user_id_In_Job) {
             alert("You Can Not Apply Jobs You Posted")
             return

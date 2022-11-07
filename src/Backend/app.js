@@ -545,9 +545,48 @@ app.post("/getAppliedJob/:user_id",async(req,res)=>{
 })
 
 
-app.listen(9002,()=>{
-   console.log("Be Started at port 9002")
+app.get("/getpostedJob/:user_id",async(req,res)=>{
+
+    try{
+    // console.log(req.params)
+    user_id = req.params.user_id
+    // console.log(user_id)
+    const postedJobs = await JOBS.find({UserID:ObjectId(user_id)});
+    // console.log(postedJobs)
+    res.send(postedJobs)
+   }catch(e){
+    res.send(e)
+   }
+
 })
+
+
+app.post("/getAppliedusers/:job_id",async(req,res)=>{
+
+    try{
+    // console.log(req.params)
+    job_id = req.params.job_id
+    const data = await JOBS.aggregate([
+        { $match: { _id : ObjectId(job_id) } },
+        {
+            $lookup: { 
+                from: 'infos', 
+                localField: 'Appliedusers', 
+                foreignField: '_id', 
+                as: 'AppliedUsers' 
+            } 
+        }
+        
+    ])
+    // console.log(data[0].Company)
+    res.send(data[0].AppliedUsers)
+    // console.log(data.name)
+   }catch(e){
+    res.send(e)
+   }
+
+})
+
 
 
 app.get("/api/chat",(req,res)=>{
@@ -629,3 +668,8 @@ app.put("/api/chat/groupRename",(req,res)=>{
 app.put("/api/chat/groupAdd",(req,res)=>{
 
 })
+
+
+app.listen(9002,()=>{
+    console.log("Be Started at port 9002")
+ })

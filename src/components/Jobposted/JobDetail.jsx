@@ -3,19 +3,33 @@ import React from 'react'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import MUIDataTable from 'mui-datatables'
 import { useNavigate } from 'react-router-dom';
-
+import { useEffect, useState } from 'react'
+import axios from 'axios';
 
 const JobDetail = (props) => {
+  // console.log(props)
   const navigate = useNavigate()
 
-  const columns = ["Name", "Company", "City", "State"];
+    const [dataTable, setDataTable] = useState([]);
 
-  const data = [
-    ["Joe James", "Test Corp", "Yonkers", "NY"],
-    ["John Walsh", "Test Corp", "Hartford", "CT"],
-    ["Bob Herm", "Test Corp", "Tampa", "FL"],
-    ["James Houston", "Test Corp", "Dallas", "TX"],
-  ];
+   useEffect(() => {
+    axios.post(`/getAppliedusers/${props.job._id}`)
+      .then(res => setDataTable(res.data))
+      .catch(err => console.log(err))
+  }, []);
+  
+  // console.log(dataTable)
+ 
+
+
+  const columns = ["name", "ID", "email", "Batch","Branch"];
+
+  // const data = [
+  //   ["Joe James", "Test Corp", "Yonkers", "NY"],
+  //   ["John Walsh", "Test Corp", "Hartford", "CT"],
+  //   ["Bob Herm", "Test Corp", "Tampa", "FL"],
+  //   ["James Houston", "Test Corp", "Dallas", "TX"],
+  // ];
 
   const options = {
     filter: true,
@@ -44,36 +58,36 @@ const JobDetail = (props) => {
         <Box>
           <Card sx={{ margin: "1%" }}>
             <CardHeader
-              title="Title"
+              title={props.job.title}
               subheader="subheader"
             />
             <CardContent>
               <Typography paddingY={'1rem'} color={'primary.main'} variant='h6'>
-                Salary :"6LPA"
+                Salary : {props.job.salary}
               </Typography>
               <Typography paddingY={'1rem'} variant='button'>
-                Type : "type"
+                Type : {props.job.type}
               </Typography>
               <Typography paddingY={'1rem'}>
-                Company Name : "companyName"
+                Company Name : {props.job.companyName}
               </Typography>
               <Typography paddingY={'1rem'}>
-                Company Website : "website"
+                Company Website : {props.job.website}
               </Typography>
               <Typography paddingY={'1rem'}>
-                Experiance : "experiance"
+                Experiance : {props.job.experiance}
               </Typography>
               <Typography paddingY={'1rem'}>
-                Last Date : "lastDate"
+                Last Date : {props.job.lastDate}
               </Typography>
               <Typography paddingY={'1rem'} variant={'h6'}>
-                About job:
+                Location : {props.job.location}
               </Typography>
               <Typography paddingY={'1rem'} >
-                "jobDescription"
+                jobDescription : {props.job.jobDescription}
               </Typography>
               <Typography paddingY={'1rem'}>
-                Vacancy : "totalOpening"
+                Vacancy : {props.job.totalOpening}
               </Typography>
             </CardContent>
           </Card>
@@ -81,7 +95,7 @@ const JobDetail = (props) => {
         <Box>
           <MUIDataTable
             title={"Applications"}
-            data={data}
+            data={dataTable}
             columns={columns}
             options={options}
           />
