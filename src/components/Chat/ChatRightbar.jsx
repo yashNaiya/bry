@@ -46,12 +46,13 @@ const ChatRightbar = () => {
         <Box flex={2} paddingX={3} maxHeight={'100%'} minHeight={'70vh'} sx={{ borderLeft: '2px solid #A7BEAE' }}>
             <TextField fullWidth size='small' name='find' value={find} placeholder='find' onChange={handleChange} />
             {search1.map(src => <div key={src._id}><Box p={3} sx={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px", backgroundColor: "primary.light", cursor: "pointer" }}>
-                <Button onClick={() => 
+                <Button onClick={async() => 
                     { 
                         setTempChat(()=>({
-                            user:user,
+                            user:user._id,
                             userId:src._id
                         }))
+                        axios.post("/api/chat",tempChat).then(res => alert(res.data.message))
                     }
 
                 } 

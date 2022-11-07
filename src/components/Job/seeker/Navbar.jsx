@@ -38,6 +38,8 @@ const Navbar = () => {
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+ 
+  
   const handleRecruiter = async () =>{
     await sessionStorage.setItem('viewer','1')
     navigate('/addjob',{replace:true})
@@ -64,7 +66,7 @@ const Navbar = () => {
         <Typography variant="h6" color="primary" sx={{ display: { xs: "none", sm: "block" } }}>BVM</Typography>
         <Box display={'flex'} flexDirection={'row'} justifyContent={'space-evenly'}>
       <Box display={'flex'} flexDirection={'row'} paddingRight={'3rem'} justifyContent={'space-between'} alignItems={'center'}>
-        <Button
+         <Button
         id="basic-button"
         aria-controls={Open ? 'basic-menu' : undefined}
         aria-haspopup="true"

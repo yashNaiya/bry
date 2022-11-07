@@ -23,7 +23,7 @@ function Authenticate() {
   ]
 
   return (
-    <Box display={'flex'} alignItems='center' flexDirection={'column'} p={5}>
+    <Box flex={6} display={'flex'} alignItems='center' flexDirection={'column'} p={5}>
       <Typography variant='h4' color={'primary'} fontWeight={500}>New User Registers</Typography>
       <TableData data = {dataTable} column={column}/>
     </Box>

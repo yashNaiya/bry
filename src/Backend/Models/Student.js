@@ -110,6 +110,6 @@ const Infouser = new mongoose.Schema({
 
 //Create Model
 
-const User = new mongoose.model("Info", Infouser);
+const User = mongoose.model("Info", Infouser);
 
 module.exports = User;
