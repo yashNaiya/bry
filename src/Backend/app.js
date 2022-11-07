@@ -57,7 +57,7 @@ app.post("/login",(req,res)=>{
     User.findOne({email:email,state:true},(err,user) =>{
       if(user){
           if(password[0] === user.password){
-           if(user.email === 'parth07@gmail.com'){
+           if(user.email === 'parth07@gmail.com' || user.email==='thakor90@gmail.com'){
                 
                 res.send({message:"Admin Login Sucessful",user,state:1})
            }else{
@@ -163,6 +163,8 @@ app.get("/register/:email",async (req,res)=>{
         res.send(e);
     }
 })
+
+
 
 
 //Set State of Student to true
@@ -606,6 +608,7 @@ app.get("/api/chat/:id",(req,res)=>{
 app.post("/api/chat",async(req,res)=>{
     const {userId} = req.body
     const {user} = req.body
+    
     if(!userId){
         console.log("userId param not sent with the request")
         return res.sendStatus(400)

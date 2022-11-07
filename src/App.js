@@ -17,6 +17,7 @@ import JobDetail from "./components/Jobposted/JobDetail";
 import ChatMain from "./components/Chat/ChatMain";
 import PageNotFound from "./components/PageNotFound"
 import ViewProfile from "./components/ViewProfile";
+import AuthenitcateMain from "./components/Authenticate/AuthenitcateMain";
 
 require('dotenv').config();
 function App() {
@@ -24,7 +25,7 @@ function App() {
     <Routes>
       <Route path='/' element={<Landing/>}></Route>
       <Route path='/jobpage' element={<JobMain/>}></Route>
-      <Route path='/Authentication' element={<Authenticate/>}></Route>
+      <Route path='/Authentication' element={<AuthenitcateMain/>}></Route>
       <Route path='/forgotpass/:id/:token' element={<ForgotPassword/>}></Route>
       <Route path='/profilepage' element={<ProfileMain/>}></Route>
       <Route path='/register' element={<Register/>}></Route>
