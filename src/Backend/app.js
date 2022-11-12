@@ -22,6 +22,9 @@ var jwt = require('jsonwebtoken');
 const nodemailer = require("nodemailer");
 const { appBarClasses } = require("@mui/material");
 
+const Message = require("./Models/message")
+const Conversation = require("./Models/Conversation")
+
 const transporter = nodemailer.createTransport({
     service:"gmail",
     auth:{
@@ -34,8 +37,9 @@ const transporter = nodemailer.createTransport({
 //multer store Image
 const multer = require("multer");
 const { default: mongoose } = require("mongoose");
-const { chats } = require("./Data/data");
-const Chat = require("./Models/chat");
+
+
+
 
 var storage = multer.diskStorage({   
     destination: function(req, file, cb) { 
@@ -590,18 +594,6 @@ app.post("/getAppliedusers/:job_id",async(req,res)=>{
 
 
 
-app.get("/api/chat",(req,res)=>{
-    res.send(chats)
-})
-app.get("/register",async (req,res)=>{
-    const users = await User.find()
-    res.send(users)    
-})
-app.get("/api/chat/:id",(req,res)=>{
-    const singleChat = chats.find((c)=> c._id === req.params.id)
-    res.send(singleChat)
-})
-
 
 // Chat api
 
@@ -650,25 +642,70 @@ app.post("/api/chat",async(req,res)=>{
     }
 })
 
-app.get("/api/chat",(req,res)=>{
+
+app.post("/StartNewChat",async (req,res) =>{
+    // console.log("Hello")
+
+    const newConversation = new Conversation({
+        members : [req.body.senderId,req.body.receiverId],
+    });
+
+    try{
+        const SavedNewConversation = await newConversation.save();
+        res.status(200).json(SavedNewConversation)
+    }
+    catch(err){
+        res.status(500).json(err)
+    }
+})
+
+app.post("/Newmessage", async (req, res)=>{
+     const newMessage = new Message(req.body)
+     try{
+         const savedMessage = await newMessage.save();
+         res.status(200).json(savedMessage)
+    }catch(err){
+         res. status (500).jsont(err)}
+})
+
+
+//will return all conversationIds 
+app.get("/GetAllCoversation/:userId",async (req,res) =>{
+    
+    
+     try{
+
+        console.log("Hello")
+        const userId = req.params.userId
+        const AllCoversation = await Conversation.find({
+           members : {$in :[userId]}
+        })
+        res.status(200).json(AllCoversation)
+     }catch(err){
+        res.status(500).json(err)
+     }
 
 })
 
-app.post("/api/chat/group",(req,res)=>{
+// Get All the chat Friends
 
-})
+// app.get("/GetAllChatfriend/:userId",async (req,res) =>{
+    
+    
+//     try{
 
-app.put("/api/chat/rename",(req,res)=>{
+//     //    console.log("Hello")
+//        const userId = req.params.userId
+//     //    console.log("Hello")
+//        const GetAllChatfriend= await Conversation.members.find(userId)
+         
+//        res.status(200).json(GetAllChatfriend)
+//     }catch(err){
+//        res.status(500).json(err)
+//     }
 
-})
+// })
 
-app.put("/api/chat/groupRename",(req,res)=>{
-
-})
-
-app.put("/api/chat/groupAdd",(req,res)=>{
-
-})
 
 
 app.listen(9002,()=>{
