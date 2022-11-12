@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react'
-import { AppBar, Avatar, Menu, InputBase, MenuItem, styled, Toolbar, Typography, Box, Button } from '@mui/material'
+import React from 'react'
+import { AppBar, Menu, MenuItem, styled, Toolbar, Typography, Box, Button } from '@mui/material'
 import { useState } from 'react';
 import ReactRoundedImage from "react-rounded-image";
 import { useNavigate } from 'react-router-dom';

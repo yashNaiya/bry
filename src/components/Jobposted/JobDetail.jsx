@@ -44,12 +44,12 @@ const JobDetail = (props) => {
           axios.get(`/register/${data[2]}`)
           .then(function (response) {
             // console.log(response.data)
-            localStorage.setItem("viewedProfile",response.data)
+            localStorage.setItem("viewedProfile",JSON.stringify(response.data))
           })
           .catch(err => console.log(err));
           // console.log(dataofuser)
          
-         console.log(localStorage.getItem("viewedProfile"))
+        //  console.log(localStorage.getItem("viewedProfile"))
          window.open('/viewProfile', '_blank', 'noopener,noreferrer');
       }
   };
