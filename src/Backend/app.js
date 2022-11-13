@@ -168,6 +168,28 @@ app.get("/register/:email",async (req,res)=>{
     }
 })
 
+//Get User By Id
+
+app.post("/User",async (req,res)=>{
+    try{
+
+    const frnd = req.body
+    const UserData =[]
+    // console.log(frnd)
+
+    for(var i=0;i<frnd.length;i++){
+        // console.log(frnd[i])
+     UserData[i] = await User.find({_id:ObjectId(frnd[i])},{name:1})
+    }
+
+    // console.log(UserData)
+    res.status(200).json(UserData)
+    }catch(err){
+     res.status(500).json(err)
+    }
+
+})
+
 
 
 
@@ -669,13 +691,25 @@ app.post("/Newmessage", async (req, res)=>{
 })
 
 
+app.get("/GetChatOfOneuser/:conversationId",async (req,res) => {
+
+    try{
+        // console.log("Hello")
+        const GetChatOfOneuser =  await Message.find({
+            conversationId:req.params.conversationId
+        })
+        res.status(200).json(GetChatOfOneuser)
+    }catch(err){
+        res.status(500).json(err) }
+
+})
+
 //will return all conversationIds 
 app.get("/GetAllCoversation/:userId",async (req,res) =>{
     
     
      try{
-
-        console.log("Hello")
+        // console.log("Hello")
         const userId = req.params.userId
         const AllCoversation = await Conversation.find({
            members : {$in :[userId]}

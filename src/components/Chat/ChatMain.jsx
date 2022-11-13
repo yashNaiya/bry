@@ -4,6 +4,7 @@ import Navbar from '../Job/seeker/Navbar'
 import Sidebar from '../Sidebar'
 import Chat from './Chat'
 import ChatRightbar from './ChatRightbar'
+import Message from './Message'
 
 const ChatMain = () => {
   return (
