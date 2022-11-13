@@ -168,6 +168,19 @@ app.get("/register/:email",async (req,res)=>{
     }
 })
 
+//Get User By Id
+
+app.get("/User/:userId",async (req,res)=>{
+    try{
+    const UserId = req.params.userId;
+    console.log(UserId)
+
+    }catch(err){
+
+    }
+
+})
+
 
 
 
@@ -669,13 +682,25 @@ app.post("/Newmessage", async (req, res)=>{
 })
 
 
+app.get("/GetChatOfOneuser/:conversationId",async (req,res) => {
+
+    try{
+        // console.log("Hello")
+        const GetChatOfOneuser =  await Message.find({
+            conversationId:req.params.conversationId
+        })
+        res.status(200).json(GetChatOfOneuser)
+    }catch(err){
+        res.status(500).json(err) }
+
+})
+
 //will return all conversationIds 
 app.get("/GetAllCoversation/:userId",async (req,res) =>{
     
     
      try{
-
-        console.log("Hello")
+        // console.log("Hello")
         const userId = req.params.userId
         const AllCoversation = await Conversation.find({
            members : {$in :[userId]}

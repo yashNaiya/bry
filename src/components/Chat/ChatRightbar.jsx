@@ -8,12 +8,27 @@ const ChatRightbar = () => {
     const [chats, setchats] = useState([])
     const [search, setSearch] = useState([])
     const [find, setfind] = useState('')
+    const [friendIds,setFriendsIds]=useState(null)
     const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('sessionData')))
+    const [conversation,setConversation] = useState([])
+
+    useEffect(()=>{
+        const getCoversations = async () =>{
+            try{
+            const res = await axios.get("/GetAllCoversation/"+user._id);
+            setConversation(res.data)
+            }catch(err){
+                console.log(err)
+            }
+        }; 
+        getCoversations()
+    },[user._id]);
+
     const [tempChat, setTempChat] = useState({
         userId:"",
         user:""
     })
-
+   
     const fetchChats = async () => {
         const { data } = await axios.get('/api/chat')
         setchats(data)
