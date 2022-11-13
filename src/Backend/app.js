@@ -170,13 +170,22 @@ app.get("/register/:email",async (req,res)=>{
 
 //Get User By Id
 
-app.get("/User/:userId",async (req,res)=>{
+app.post("/User",async (req,res)=>{
     try{
-    const UserId = req.params.userId;
-    console.log(UserId)
 
+    const frnd = req.body
+    const UserData =[]
+    // console.log(frnd)
+
+    for(var i=0;i<frnd.length;i++){
+        // console.log(frnd[i])
+     UserData[i] = await User.find({_id:ObjectId(frnd[i])},{name:1})
+    }
+
+    // console.log(UserData)
+    res.status(200).json(UserData)
     }catch(err){
-
+     res.status(500).json(err)
     }
 
 })
