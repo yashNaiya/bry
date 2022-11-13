@@ -27,6 +27,7 @@
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.7.8",
     "react": "^18.2.0",
+    "react-chatbox-component": "^0.0.5",
     "react-dom": "^18.2.0",
     "react-rounded-image": "^2.0.14",
     "react-router-dom": "^6.4.0",
@@ -35,8 +36,8 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
-    "build": "react-scripts --openssl-legacy-provider build",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

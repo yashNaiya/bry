@@ -7,9 +7,9 @@ import ChatRightbar from './ChatRightbar'
 
 const ChatMain = () => {
   return (
-    <Box>
+    <Box >
         <Navbar />
-        <Box paddingX="5%" sx={{paddingX:{sm:"0"}}}>
+        <Box marginX={1} marginTop={0} paddingX="5%" sx={{paddingX:{sm:"0"}}}>
           <Stack direction="row" spacing={4} justifyContent="space-between">
             <Sidebar />
            

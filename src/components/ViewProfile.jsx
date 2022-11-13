@@ -4,10 +4,8 @@ import image from '../assets/profile.svg'
 
 
 const ViewProfile = () => {
-    const [user, setUser] = useState()
-    useEffect(() => {
-        setUser(localStorage.getItem("viewedProfile"))
-    }, [])
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("viewedProfile")))
+    console.log(user)
 
     return (
         <Box maxWidth={500}
@@ -27,126 +25,168 @@ const ViewProfile = () => {
             }}>
             <img src={image} alt={'profile'} width={'150'} height={'150'} />
             <Box minWidth={300} display='flex' flexDirection={'column'} p={2} alignItems={'center'}>
-                <TextField
-                    fullWidth
-                    inputProps={{ readOnly: true }}
-                    variant='filled'
-                    label="Name"
-                    autoComplete='off'
-                    name='name'
-                    defaultValue="Name"
-                    size='small' margin='normal' type={"text"}
-                />
-                <TextField
-                    fullWidth
-                    inputProps={{ readOnly: true }}
-                    variant='filled'
-                    label="ID"
-                    value="Id"
-                    autoComplete='off'
-                    name='ID'
-                    size='small' margin='normal' type={"text"}
-                />
-                <TextField
-                    fullWidth
-                    inputProps={{ readOnly: true }}
-                    variant='filled'
-                    label="Email"
-                    autoComplete='off'
-                    name='email'
-                    value="Email"
-                    size='small' margin='normal' type={"email"}
-                />
-                <TextField
-                    fullWidth
-                    inputProps={{ readOnly: true }}
-                    variant='filled'
-                    label="Current Location"
-                    autoComplete='off'
-                    value="current location"
-                    name='Curr_loc'
-                    size='small' margin='normal' type={"text"}
-                />
-                <TextField
-                    fullWidth
-                    inputProps={{ readOnly: true }}
-                    variant='filled'
-                    label="Year of Joining"
-                    value="2019"
-                    autoComplete='off'
-                    name='yearOfJoining'
-                    size='small' margin='normal' type={"number"}
-                />
-                <TextField
-                    fullWidth
-                    inputProps={{ readOnly: true }}
-                    variant='filled'
-                    label="Passout Year"
-                    autoComplete='off'
-                    value="2023"
-                    name='Passyear'
-                    size='small' margin='normal' type={"number"}
-                />
-                <TextField
-                    fullWidth
-                    inputProps={{ readOnly: true }}
-                    variant='filled'
-                    label="Job role"
-                    autoComplete='off'
-                    name='Job_role'
-                    value="Job role"
-                    size='small' margin='normal' type={"text"}
-                />
-                <TextField
-                    fullWidth
-                    inputProps={{ readOnly: true }}
-                    variant='filled'
-                    label="Company"
-                    autoComplete='off'
-                    name='company'
-                    value="company"
-                    size='small' margin='normal' type={"text"}
-                />
-                <TextField
-                    fullWidth
-                    inputProps={{ readOnly: true }}
-                    variant='filled'
-                    label="Designation"
-                    autoComplete='off'
-                    name='Designation'
-                    value="designation"
-                    size='small' margin='normal' type={"text"}
-                />
-                <TextField
-                    fullWidth
-                    inputProps={{ readOnly: true }}
-                    variant='filled'
-                    label="Work Industry"
-                    autoComplete='off'
-                    name='Work_Ind'
-                    value="Work industry"
-                    size='small' margin='normal' type={"text"}
-                />
-                <TextField
-                    fullWidth
-                    inputProps={{ readOnly: true }}
-                    variant='filled'
-                    label="Branch"
-                    autoComplete='off'
-                    name='Branch'
-                    value="Branch"
-                    size='small' margin='normal' type={"text"}
-                />
-                <TextField
-                    fullWidth
-                    inputProps={{ readOnly: true }}
-                    variant='filled'
-                    label="Field Of Interest"
-                    autoComplete='off'
-                    name='Interest'
-                    value="Intrest"
-                    size='small' margin='normal' type={"text"}
-                />
+            <TextField
+                        fullWidth
+                        inputProps={{ readOnly: true }}
+                        variant='filled'
+                        label="Name"
+                        autoComplete='off'
+                        name='name'
+                        defaultValue={user.name}
+                        size='small' margin='normal' type={"text"}
+                    />
+                    <TextField
+                        fullWidth
+                        inputProps={{ readOnly: true }}
+                        variant='filled'
+                        label="ID"
+                        value={user.ID}
+                        autoComplete='off'
+                        name='ID'
+                        size='small' margin='normal' type={"text"}
+                    />
+                    <TextField
+                        fullWidth
+                        inputProps={{ readOnly: true }}
+                        variant='filled'
+                        label="Email"
+                        autoComplete='off'
+                        name='email'
+                        value={user.email}
+                        size='small' margin='normal' type={"email"}
+                    />
+                    <TextField
+                        fullWidth
+                        inputProps={{ readOnly: true }}
+                        variant='filled'
+                        label="Current Location"
+                        autoComplete='off'
+                        value={user.Curr_loc}
+                        name='Curr_loc'
+                        size='small' margin='normal' type={"text"}
+                    />
+                    <TextField
+                        fullWidth
+                        inputProps={{ readOnly: true }}
+                        variant='filled'
+                        label="Year of Joining"
+                        value={user.Batch}
+                        autoComplete='off'
+                        name='yearOfJoining'
+                        sx={{
+                            '& .MuiOutlinedInput-input': {
+                                '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+                                    '-webkit-appearance': 'none',
+                                },
+                            }
+                        }}
+                        size='small' margin='normal' type={"number"}
+                    />
+                    <TextField
+                        fullWidth
+                        inputProps={{ readOnly: true }}
+                        variant='filled'
+                        label="Passout Year"
+                        autoComplete='off'
+                        value={user.Passyear}
+                        name='Passyear'
+                        sx={{
+                            '& .MuiOutlinedInput-input': {
+                                '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+                                    '-webkit-appearance': 'none',
+                                },
+                            }
+                        }}
+                        size='small' margin='normal' type={"number"}
+                    />
+                    <TextField
+                        fullWidth
+                        inputProps={{ readOnly: true }}
+                        variant='filled'
+                        label="Job role"
+                        autoComplete='off'
+                        name='Job_role'
+                        value={user.Job_role}
+                        sx={{
+                            '& .MuiOutlinedInput-input': {
+                                '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+                                    '-webkit-appearance': 'none',
+                                },
+                            }
+                        }}
+                        size='small' margin='normal' type={"text"}
+                    />
+                    <TextField
+                        fullWidth
+                        inputProps={{ readOnly: true }}
+                        variant='filled'
+                        label="Company"
+                        autoComplete='off'
+                        name='company'
+                        value={user.company}
+                        sx={{
+                            '& .MuiOutlinedInput-input': {
+                                '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+                                    '-webkit-appearance': 'none',
+                                },
+                            }
+                        }}
+                        size='small' margin='normal' type={"text"}
+                    />
+                    <TextField
+                        fullWidth
+                        inputProps={{ readOnly: true }}
+                        variant='filled'
+                        label="Designation"
+                        autoComplete='off'
+                        name='Designation'
+                        value={user.Designation}
+                        sx={{
+                            '& .MuiOutlinedInput-input': {
+                                '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+                                    '-webkit-appearance': 'none',
+                                },
+                            }
+                        }}
+                        size='small' margin='normal' type={"text"}
+                    />
+                    <TextField
+                        fullWidth
+                        inputProps={{ readOnly: true }}
+                        variant='filled'
+                        label="Work Industry"
+                        autoComplete='off'
+                        name='Work_Ind'
+                        value={user.Work_Ind}
+                        sx={{
+                            '& .MuiOutlinedInput-input': {
+                                '&::-webkit-outer-spin-button, &::-webkit-inner-spin-button': {
+                                    '-webkit-appearance': 'none',
+                                },
+                            }
+                        }}
+                        size='small' margin='normal' type={"text"}
+                    />
+                    <TextField
+                        fullWidth
+                        inputProps={{ readOnly: true }}
+                        variant='filled'
+                        label="Branch"
+                        autoComplete='off'
+                        name='Branch'
+                        value={user.Branch}
+                        size='small' margin='normal' type={"text"}
+                    />
+                    <TextField
+                        fullWidth
+                        inputProps={{ readOnly: true }}
+                        variant='filled'
+                        label="Field Of Interest"
+                        autoComplete='off'
+                        name='Interest'
+                        value={user.Interest}
+                        size='small' margin='normal' type={"text"}
+                    />
                 <Button>Message</Button>
             </Box>
         </Box>
