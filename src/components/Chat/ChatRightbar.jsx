@@ -63,8 +63,10 @@ const ChatRightbar = () => {
                 conv[0] = conversation[i]._id
               }
        } 
-       console.log(conv)
        
+       console.log(conv)
+
+
 
     }
 
