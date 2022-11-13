@@ -3,7 +3,7 @@ import React, { useState,useEffect } from 'react'
 import axios from 'axios'
 import Message from './Message'
 import SendIcon from '@mui/icons-material/Send';
-import { ObjectId } from 'mongodb';
+import { useEffect, useState } from 'react'
 
 const Chat = () => {
 
@@ -13,21 +13,6 @@ const Chat = () => {
     alignItems: 'center',
     justifyContent: 'space-around'
   }))
-
-  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('sessionData')))
-
-  const [GetUserchat,SetGetUserChat] = useState([])
-  
-  useEffect(() => {
-    axios.get('/GetChatOfOneuser/636e4042fda7e092e001177e')
-        .then(res => SetGetUserChat(res.data))
-        .catch(err => console.log(err))
-    }, []);
-
-    console.log(GetUserchat[0])
-
-    GetUserchat.map((m)=>console.log(m.text))
-    
 
   return (
     <Box display='flex' flexDirection='column' flex={4} padding={2} borderRadius={5} maxHeight={'75vh'} minHeight={'75vh'} sx={{ boxShadow: "inset rgba(0, 0, 0, 0.35) 0px 0px 12px 0px" }} >

@@ -3,6 +3,7 @@ import { Box, Stack } from "@mui/material"
 import Navbar from "../Job/seeker/Navbar"
 import Sidebar from '../Sidebar'
 import Directory from './Directory'
+import Filter from './Filter'
 
 const DirectoryMain = () => {
   return (
@@ -12,6 +13,7 @@ const DirectoryMain = () => {
                 <Stack direction="row" spacing={4} justifyContent="space-between">
                     <Sidebar />
                     <Directory/>
+                    <Filter/>
                 </Stack>
             </Box>
         </Box>
