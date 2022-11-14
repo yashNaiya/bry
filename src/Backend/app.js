@@ -744,6 +744,19 @@ app.get("/GetAllCoversation/:userId",async (req,res) =>{
 
 
 
-app.listen(9002,()=>{
+const server = app.listen(9002,()=>{
     console.log("Be Started at port 9002")
+ })
+
+ const io = require("socket.io")(server,{
+    pingTimeout:60000,
+    cors:{
+        origin:"http://localhost:3000",
+    },
+
+ })
+
+ io.on("connection",(socket)=>{
+    console.log("a User Connected");
+    io.emit("welcome","hello this is socket server")
  })

@@ -3,6 +3,9 @@ import React, { useState,useEffect } from 'react'
 import axios from 'axios'
 import Message from './Message'
 import SendIcon from '@mui/icons-material/Send';
+import {io} from "socket.io-client"
+import { WebSocket } from 'ws';
+
 
 
 const Chat = () => {
@@ -19,9 +22,28 @@ const Chat = () => {
   const [GetUserchat,SetGetUserChat] = useState([])
   const [newMessage,setNewMessage] = useState("")
   const [chat,setChat] = useState(sessionStorage.getItem('chat'))
+  const [socket,SetSocket] = useState(null)
 
 
   // console.log(sessionStorage.getItem('chat'))
+ useEffect(()=>{
+   SetSocket(io("ws://localhost:9002"))
+ },[])
+ console.log(socket)
+
+//  useEffect(()=>{
+//     socket.on("welcome",message=>{
+//       console.log(message)
+//     })
+//  })
+
+ 
+ 
+   
+  
+ 
+
+
 
   useEffect(() => {
     axios.get('/GetChatOfOneuser/6371dbdba0328674eded3d22')
