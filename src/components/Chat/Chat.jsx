@@ -5,8 +5,9 @@ import Message from './Message'
 import SendIcon from '@mui/icons-material/Send';
 
 
-const Chat = () => {
+const Chat = (props) => {
 
+// props.chatIds
 
   const ChatboxBottom = styled("div")(({ theme }) => ({
     marginTop: '5px',
