@@ -41,7 +41,7 @@ const ChatMain = () => {
       <Box marginX={1} marginTop={0} paddingX="5%" sx={{ paddingX: { sm: "0" } }}>
         <Stack direction="row" spacing={4} justifyContent="space-between">
           <Sidebar />
-          <Chat conv={conv} fId={friendId} />
+          <Chat conv={conv}  />
           <ChatRightbar getCoversations={getCoversations} ChatPage={ChatPage} conversation={conversation} setConversation={setConversation} />
         </Stack>
       </Box>

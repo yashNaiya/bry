@@ -5,7 +5,7 @@ import image from '../../assets/pngegg.png'
 import {format} from "timeago.js"
 
 const Message = (props) => {
-    console.log(props)
+    // console.log(props)
     const MessageTop = styled("div")(({ theme }) => ({
         display:"flex",
         flexDirection:"row",

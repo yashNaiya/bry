@@ -4,7 +4,7 @@ import axios from 'axios';
 import Post1 from './post1';
 
 const Post = (props) => {
-    // console.log(props)
+    console.log(props)
     const [dataTable, setDataTable] = useState([]);
     useEffect(() => {
         axios.get('/addjob')
@@ -13,11 +13,12 @@ const Post = (props) => {
     }, []);
     
     const dataTable1 =  dataTable.filter(data =>{
-        // console.log(data.location+" "+props.filter.location)
-        return data.location === props.filter.location[0] || data.field === props.filter.field[0] || data.WorkFromHome === props.filter.mode[0] || data.type === props.filter.mode[0] || data.experiance === props.filter.mode[0] || data.salary > props.filter.mode[0]
+        console.log(data)
+         console.log(data.type+" "+props.filter.mode[0])
+        return  data.location === props.filter.location[0] || (data.experiance === props.filter.mode[0] || data.WorkFromHome === props.filter.mode[0] || data.salary > props.filter.mode[0] || data.type === props.filter.mode[0] )
     })
 
-    // console.log(dataTable1)
+    console.log(dataTable1)
 
     if(props.filter.location[0] || props.filter.field[0] || props.filter.mode[0]){
     return (
