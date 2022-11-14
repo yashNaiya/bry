@@ -8,7 +8,9 @@ import { WebSocket } from 'ws';
 
 
 
-const Chat = () => {
+const Chat = (props) => {
+
+// props.chatIds
 
   const ChatboxBottom = styled("div")(({ theme }) => ({
     marginTop: '5px',

@@ -1,9 +1,15 @@
 import { Box, Collapse, List, ListItemButton, ListItemIcon, ListItemText, makeStyles, TextField } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 const Filter = () => {
+    const [find, setfind] = useState('')
+
+    const handleChange = async (e) => {
+      setfind(e.target.value)
+    }
+
     const [open1, setOpen1] = React.useState(false);
     const handleClick1 = () => {
         setOpen1(!open1);
@@ -27,6 +33,7 @@ const Filter = () => {
 
     return (
         <Box flex={2} minHeight={'80vh'} display={'flex'} flexDirection={'column'} paddingRight="5px">
+            <TextField fullWidth size='small' sx={{paddingTop:"10px"}} name='find' value={find} onChange={handleChange} variant='standard' label='Search' />
             <List>
                 <ListItemButton sx={{padding:"15px",marginY:"10px",borderRadius:"10px",backgroundColor:"#D3D3D3"}} onClick={handleClick1}>
                     <ListItemText primary="Search By Role" />

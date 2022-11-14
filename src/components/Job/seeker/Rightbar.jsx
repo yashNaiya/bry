@@ -8,7 +8,6 @@ import axios from 'axios';
 
 const Rightbar = (props) => {
 
-
   const handleChange = (e) => {
     props.setFilter((prevState) => ({
         ...prevState,
@@ -66,7 +65,7 @@ const Rightbar = (props) => {
           </FormControl>
           <FormGroup sx={{ m: 2, marginLeft: 0 }}>
             {MenuLists.mode.map(item => (
-              <FormControlLabel control={<Checkbox />} name='mode' onChange={handleChange} label={item.name} value={item.value} key={item.value} />
+              <FormControlLabel control={<Checkbox/>} name='mode' onChange={handleChange} label={item.name} value={item.value} key={item.value} />
 
             ))}
           </FormGroup>

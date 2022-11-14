@@ -10,81 +10,52 @@ const ChatRightbar = (props) => {
     const [chats, setchats] = useState([])
     const [search, setSearch] = useState([])
     const [find, setfind] = useState('')
-    const [friend,setFriends]=useState([])
     const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('sessionData')))
-    const [conversation,setConversation] = useState([])
 
-    useEffect(()=>{
-        const getCoversations = async () =>{
-            try{
-            const res = await axios.get("/GetAllCoversation/"+user._id);
-            setConversation(res.data)
-            }catch(err){
-                console.log(err)
-            }
-        }; 
-        getCoversations()
-    },[user._id]);
-
-    
     const frnd = []
-    
-    for(var i=0;i<props.conversation.length;i++){
-       if(props.conversation[i].members[0]!==user._id){
-        frnd[i] = props.conversation[i].members[0]
-         }
 
-       if(props.conversation[i].members[1]!==user._id){
-        frnd[i] = props.conversation[i].members[1] 
-       } }
-   
-    //    console.log(conversation)
-    //    console.log(frnd)
-    //    console.log(friend)
+    for (var i = 0; i < props.conversation.length; i++) {
+        if (props.conversation[i].members[0] !== user._id) {
+            frnd[i] = (props.conversation[i].members[0])
+        }
 
-  
-     const ans = []
-     const ans11 = []
-  
-        const getUserData = async () =>{
-            try{
-                const ans = await axios.post("/User",frnd);
-                setFriends(ans.data)
+        if (props.conversation[i].members[1] !== user._id) {
+            frnd[i] = (props.conversation[i].members[1])
+        }
+    }
 
-            }catch(err){
-                console.log(err)
-            } 
+    const getUserData = async () => {
+        try {
+            const ans = await axios.post("/User", frnd);
+            props.setFriends(ans.data)
 
-    }; 
+        } catch (err) {
+            console.log(err)
+        }
 
-    const ChatPage=(fId)=>
-      {
+    };
 
-        // console.log("Hello")
-        // console.log(fId)
+    const ChatPage = async (fId) => {
         const conv = []
-        for(var i=0;i<conversation.length;i++){
-            if(conversation[i].members[0]===fId || conversation[i].members[1]===fId){
-                conv[0] = conversation[i]._id
-              }
-       }
+        for (var i = 0; i < props.conversation.length; i++) {
+            if (props.conversation[i].members[0] === fId || props.conversation[i].members[1] === fId) {
+                conv[0] = props.conversation[i]._id
+            }
+            props.setChatIds({
+                friendId:fId,
+                convId:conv[0]
+             })
+             console.log(props.chatIds)
+        }
+    }
 
-       const chat ={
-        friendId:fId,
-        conversation:conv[0]
-       }
-       sessionStorage.setItem('chat',chat)
-    //    console.log( sessionStorage.getItem('chat'))
-    //    console.log(conv[0])
-      }
-       
-    // }
+
 
     const [tempChat, setTempChat] = useState({
         userId: "",
         user: ""
     })
-   
+
     const fetchChats = async () => {
         const { data } = await axios.get('/api/chat')
         setchats(data)
@@ -95,15 +66,11 @@ const ChatRightbar = (props) => {
             setSearch([])
         }
         else {
-            const { data } = await axios.get('/register')
+            const { data } = await axios.get('/register/valid')
             setSearch(data)
         }
     }
-    // function searchClick(userId){
-    //     // axios.post("/api/chat", ).then(res => alert(res.data.message))
-    //     console.log(userId)
-    // }
-    
+
 
     const search1 = search.filter(src => {
         return src.name.includes(find) || src.email.includes(find)
@@ -112,20 +79,11 @@ const ChatRightbar = (props) => {
     useEffect(() => {
         fetchChats()
     }, [])
-    
-    
 
-    {/* // const handleSubmit = (e) => {
-    //     e.preventDefault();
-
-    // } */}
 
     return (
-        // <Box flex={6}>
-        //   {chats.map(chat=><div key={chat._id}>{chat.chatName}</div>)}
-        // </Box>
         <Box flex={2} padding={2} borderRadius={5} maxHeight={'75vh'} minHeight={'75vh'} sx={{ overflowY: "scroll", boxShadow: "rgba(0, 0, 0, 0.35) 0px 0px 15px" }}>
-            <TextField fullWidth size='small' name='find' sx={{paddingTop:"10px"}} variant='standard' value={find} placeholder='Search' onChange={handleChange} />
+            <TextField fullWidth size='small' name='find' sx={{ paddingTop: "10px" }} variant='standard' value={find} label='Search' onChange={handleChange} />
             {search1.map(src => <div key={src._id}><Box p={3} sx={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px", cursor: "pointer" }}>
                 <Button onClick={async () => {
                     setTempChat(() => ({
@@ -142,23 +100,24 @@ const ChatRightbar = (props) => {
             </Box></div>)}
             <Box paddingY={4}>
                 {
-                    friend.map((m)=> 
+                    props.friend.map((m) =>
 
-                  <ListItemButton sx={{marginY:'10px'}} onClick={e => ChatPage(m._id)}>
-                    <img width={"32px"} height={"32px"} borderRadius={"50%"} objectFit={"cover"} src={image} alt='' />
-                    <ListItemText sx={{marginX:"10px"}} primary={m.name} />
-                </ListItemButton>
+                        <ListItemButton sx={{ marginY: '10px' }} onClick={e => ChatPage(m._id)}>
+                            <img width={"32px"} height={"32px"} borderRadius={"50%"} objectFit={"cover"} src={image} alt='' />
+                            <ListItemText sx={{ marginX: "10px" }} primary={m.name} />
+                        </ListItemButton>
                     )
 
-                    
-                }   
+
+                }
             </Box>
             <Button onClick={getUserData} >See Old Conversations</Button>
         </Box>
     )
-            
+
 
 }
+
 
 
 export default ChatRightbar

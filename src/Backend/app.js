@@ -86,7 +86,7 @@ app.post("/register",(req,res)=>{
     // res.send("Hello From Other Side")
    const {name, email, password, number,ID,rePass,batch} = req.body
 
-
+    console.log(req.body)
    User.findOne({email:email},(err,user)=>{
    if(user){
        console.log("Registerd already")
@@ -99,13 +99,12 @@ app.post("/register",(req,res)=>{
            password:password[0],
            ID:ID[0],
            Batch:batch[0],
-           rePass:rePass[0]
-           
+           rePass:rePass[0],
        })
        user.save(err =>{
            if(err){
-            //   console.log(err)
-            // console.log("Hello")
+              console.log(err)
+            console.log("Hello")
                  res.send(err)
            }
            else{
@@ -175,7 +174,7 @@ app.post("/User",async (req,res)=>{
 
     const frnd = req.body
     
-    // console.log(frnd)
+    console.log(frnd)
     const ResData = []
 
     for(var i=0;i<frnd.length;i++){
@@ -621,54 +620,10 @@ app.post("/getAppliedusers/:job_id",async(req,res)=>{
 
 // Chat api
 
-app.post("/api/chat",async(req,res)=>{
-    const {userId} = req.body
-    const {user} = req.body
-    
-    if(!userId){
-        console.log("userId param not sent with the request")
-        return res.sendStatus(400)
-    }
-
-    var isChat = await Chat.find({
-        isGroupChat: false,
-        $and:[
-            {users:{$elemMatch:{$eq:user}}},
-            {users:{$elemMatch:{$eq:userId}}}
-        ],
-    }).populate("users","-password")
-        .populate("latestMessage");
-
-    isChat = await User.populate(isChat,{
-        path:'latestMessage.sender',
-        select:"name pic email"
-    })
-
-    if(isChat.length > 0){
-        res.send(isChat[0]);
-    }else{
-        var chatData = {
-            chatName:"sender",
-            isGroupChat: false,
-            users:[user,userId],
-        }
-
-        try {
-            const createdChat = await Chat.create(chatData);
-
-            const FullChat = await Chat.findOne({_id: createdChat._id}).populate("users","-password")
-
-            res.status(200).send(FullChat)
-        } catch (error) {
-            res.status(400);
-            throw new Error(error.message);
-        }
-    }
-})
-
 
 app.post("/StartNewChat",async (req,res) =>{
     // console.log("Hello")
+    console.log(req.body)
 
     const newConversation = new Conversation({
         members : [req.body.senderId,req.body.receiverId],
