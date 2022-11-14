@@ -61,7 +61,7 @@ app.post("/login",(req,res)=>{
     User.findOne({email:email,state:true},(err,user) =>{
       if(user){
           if(password[0] === user.password){
-           if(user.email === 'parth07@gmail.com' || user.email==='thakor90@gmail.com'){
+           if(user.email === 'yashnaiya16@gmail.com' || user.email==='thakorshyam90@gmail.com'){
                 
                 res.send({message:"Admin Login Sucessful",user,state:1})
            }else{
@@ -173,16 +173,18 @@ app.post("/User",async (req,res)=>{
     try{
 
     const frnd = req.body
-    const UserData =[]
+    
     // console.log(frnd)
+    const ResData = []
 
     for(var i=0;i<frnd.length;i++){
         // console.log(frnd[i])
-     UserData[i] = await User.find({_id:ObjectId(frnd[i])},{name:1})
+     const UserData = await User.find({_id:ObjectId(frnd[i])},{name:1})
+     ResData[i] = UserData[0]
     }
 
-    // console.log(UserData)
-    res.status(200).json(UserData)
+    // console.log(ResData)
+    res.status(200).json(ResData)
     }catch(err){
      res.status(500).json(err)
     }

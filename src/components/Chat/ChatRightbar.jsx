@@ -10,7 +10,7 @@ const ChatRightbar = () => {
     const [chats, setchats] = useState([])
     const [search, setSearch] = useState([])
     const [find, setfind] = useState('')
-    const [friendIds,setFriendsIds]=useState([])
+    const [friend,setFriends]=useState([])
     const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('sessionData')))
     const [conversation,setConversation] = useState([])
 
@@ -26,7 +26,7 @@ const ChatRightbar = () => {
         getCoversations()
     },[user._id]);
 
-    console.log(conversation)
+    
     const frnd = []
     
     for(var i=0;i<conversation.length;i++){
@@ -38,34 +38,47 @@ const ChatRightbar = () => {
         frnd[i] = conversation[i].members[1] 
        } }
    
+    //    console.log(conversation)
+    //    console.log(frnd)
+    //    console.log(friend)
 
   
      const ans = []
+     const ans11 = []
   
         const getUserData = async () =>{
             try{
                 const ans = await axios.post("/User",frnd);
-                setFriendsIds(ans.data)
-               
+                setFriends(ans.data)
+
             }catch(err){
                 console.log(err)
             } 
-            // friendIds.map(m=>console.log(m[0].name))
 
     }; 
 
     const ChatPage=(fId)=>
       {
-        console.log(fId)
+
+        // console.log("Hello")
+        // console.log(fId)
         const conv = []
         for(var i=0;i<conversation.length;i++){
             if(conversation[i].members[0]===fId || conversation[i].members[1]===fId){
                 conv[0] = conversation[i]._id
               }
-       } 
-       console.log(conv)
+       }
+
+       const chat ={
+        friendId:fId,
+        conversation:conv[0]
+       }
+       sessionStorage.setItem('chat',chat)
+    //    console.log( sessionStorage.getItem('chat'))
+    //    console.log(conv[0])
+      }
        
-    }
+    
 
     const [tempChat, setTempChat] = useState({
         userId: "",
@@ -120,12 +133,15 @@ const ChatRightbar = () => {
             </Box></div>)}
             <Box paddingY={4}>
                 {
-                    friendIds.map((m)=> 
-                  <ListItemButton sx={{marginY:'10px'}} onClick={ChatPage(m[0]._id)}>
+                    friend.map((m)=> 
+
+                  <ListItemButton sx={{marginY:'10px'}} onClick={e => ChatPage(m._id)}>
                     <img width={"32px"} height={"32px"} borderRadius={"50%"} objectFit={"cover"} src={image} alt='' />
-                    <ListItemText sx={{marginX:"10px"}} primary={m[0].name } />
+                    <ListItemText sx={{marginX:"10px"}} primary={m.name} />
                 </ListItemButton>
                     )
+
+                    
                 }   
             </Box>
             <Button onClick={getUserData} >See Old Conversations</Button>
@@ -134,6 +150,7 @@ const ChatRightbar = () => {
             
 
 }
+
 
 
 export default ChatRightbar
