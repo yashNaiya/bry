@@ -23,16 +23,8 @@ const Profile = () => {
 
 
     }
-
-    const handleSubmit = (e) => {
-        sessionStorage.setItem('sessionData', JSON.stringify(user))
-        // user = JSON.parse(sessionStorage.getItem('sessionData'))
-        console.log(user)
-        console.log(JSON.parse(sessionStorage.getItem('sessionData')))
-
-        e.preventDefault();
-        axios.post("/UpdateProfile", user).then(res => alert(res.data.message))
-
+ 
+    const handleSubmit =(e) => {
         if (value === 1) {
             const formdata = new FormData()
             formdata.append("photo", file)
@@ -41,6 +33,14 @@ const Profile = () => {
 
         }
         setvalue(0)
+        sessionStorage.setItem('sessionData', JSON.stringify(user))
+        // user = JSON.parse(sessionStorage.getItem('sessionData'))
+        console.log(user)
+        console.log(JSON.parse(sessionStorage.getItem('sessionData')))
+
+        e.preventDefault();
+        axios.post("/UpdateProfile", user).then(res => alert(res.data.message))
+
         // setImagePath(`http://localhost:9002/images/${user.Image}`)
 
     }

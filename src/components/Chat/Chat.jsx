@@ -1,10 +1,11 @@
 import { Box, Button, styled, TextField } from '@mui/material'
-import React from 'react'
+import React, { useState } from 'react'
 import axios from 'axios'
 import Message from './Message'
 import SendIcon from '@mui/icons-material/Send';
 
 const Chat = () => {
+
 
   const ChatboxBottom = styled("div")(({ theme }) => ({
     marginTop: '5px',
@@ -12,6 +13,13 @@ const Chat = () => {
     alignItems: 'center',
     justifyContent: 'space-around'
   }))
+
+  const [message, setMessage] = useState("")
+
+  const handleChange = (e)=>{
+    console.log(e)
+    setMessage(e.target.value)
+  }
 
   return (
     <Box display='flex' flexDirection='column' flex={4} padding={2} borderRadius={5} maxHeight={'75vh'} minHeight={'75vh'} sx={{ boxShadow: "inset rgba(0, 0, 0, 0.35) 0px 0px 12px 0px" }} >
@@ -24,7 +32,7 @@ const Chat = () => {
         <Message own={false} />
       </Box>
       <ChatboxBottom>
-        <TextField sx={{ width: '80%' }} size='small' placeholder='write something'></TextField>
+        <TextField fullWidth size='small' type='text' key={"messageText"} name='textfield' sx={{ paddingTop: "10px" }} variant='standard' value={message} label='Search' onChange={handleChange} />
         <Button><SendIcon /></Button>
       </ChatboxBottom>
     </Box>

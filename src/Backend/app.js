@@ -86,7 +86,7 @@ app.post("/register",(req,res)=>{
     // res.send("Hello From Other Side")
    const {name, email, password, number,ID,rePass,batch} = req.body
 
-
+    console.log(req.body)
    User.findOne({email:email},(err,user)=>{
    if(user){
        console.log("Registerd already")
@@ -99,13 +99,12 @@ app.post("/register",(req,res)=>{
            password:password[0],
            ID:ID[0],
            Batch:batch[0],
-           rePass:rePass[0]
-           
+           rePass:rePass[0],
        })
        user.save(err =>{
            if(err){
-            //   console.log(err)
-            // console.log("Hello")
+              console.log(err)
+            console.log("Hello")
                  res.send(err)
            }
            else{
@@ -667,6 +666,7 @@ app.post("/api/chat",async(req,res)=>{
 
 app.post("/StartNewChat",async (req,res) =>{
     // console.log("Hello")
+    console.log(req.body)
 
     const newConversation = new Conversation({
         members : [req.body.senderId,req.body.receiverId],
