@@ -697,7 +697,7 @@ app.get("/GetAllCoversation/:userId",async (req,res) =>{
 
 // })
 
-
+let users = [];
 
 const server = app.listen(9002,()=>{
     console.log("Be Started at port 9002")
@@ -711,7 +711,44 @@ const server = app.listen(9002,()=>{
 
  })
 
+ const adduser = (userId,socketId) =>{
+    !users.some((user)=> user.userId === userId) &&
+    users.push({userId,socketId})
+ }
+
+ const removeUser = (socketId) =>{
+    // console.log(users[0].userId);
+    users = users.filter(user => user.socketId !== socketId)
+ }
+
+
+ const getUser = (userId) => {
+   return users.find(user=>user.userId === userId)
+ }
  io.on("connection",(socket)=>{
     console.log("a User Connected");
     io.emit("welcome","hello this is socket server")
+
+    socket.on("addUser",(userId) =>{
+        adduser(userId,socket.id);
+        io.emit("getUsers",users);
+    })
+
+
+    socket.on("sendMessage",({senderId,receiverId,text}) =>{
+ 
+        const user = getUser(receiverId);
+        io.to(user.socketId).emit("getMessage",{
+           senderId,
+           text
+        });
+    })
+
+
+ socket.on("disconnect",()=>{
+    console.log("a user Disconnected");
+    removeUser(socket._id) 
+    io.emit("getUsers",users);
  })
+
+})

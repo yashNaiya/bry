@@ -24,7 +24,6 @@ const ChatMain = () => {
 
   useEffect(() => {
     getCoversations()
-
   }, [user._id]);
   const frnd = []
  

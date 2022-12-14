@@ -6,11 +6,12 @@ import SendIcon from '@mui/icons-material/Send';
 import {io} from "socket.io-client"
 import { WebSocket } from 'ws';
 
-
+const Endpoint = "http://localhost:9002"
+var socket;
 
 const Chat = (props) => {
 
-// props.chatIds
+  console.log(props.chatIds)
 
   const ChatboxBottom = styled("div")(({ theme }) => ({
     marginTop: '5px',
@@ -24,30 +25,41 @@ const Chat = (props) => {
   const [GetUserchat,SetGetUserChat] = useState([])
   const [newMessage,setNewMessage] = useState("")
   const [chat,setChat] = useState(sessionStorage.getItem('chat'))
-  const [socket,SetSocket] = useState(null)
+  const [arrivalMessage,SetArrivalMessage] = useState(null);
 
 
   // console.log(sessionStorage.getItem('chat'))
  useEffect(()=>{
-   SetSocket(io("ws://localhost:9002"))
+   socket = io(Endpoint)
  },[])
- console.log(socket)
+//  console.log(socket)
 
-//  useEffect(()=>{
-//     socket.on("welcome",message=>{
-//       console.log(message)
-//     })
-//  })
+ useEffect(()=>{
+   socket.emit("addUser",user._id)
+   socket.on("getUsers",users=>{
+    console.log(users);
+   })
+   socket.on("getMessage",data =>{
+    SetArrivalMessage({
+      sender : data.senderId,
+      text:data.text,
+      createdAt:Date.now(),
+    })
+  })
+ 
+},[user])
+ 
+ useEffect(()=>{
 
- 
- 
-   
   
- 
+ })
 
 
 
+  // console.log("Hello")
+  
   useEffect(() => {
+    console.log(props.chatIds.convId)
     axios.get('/GetChatOfOneuser/6371dbdba0328674eded3d22')
         .then(res => SetGetUserChat(res.data))
         .catch(err => console.log(err))
@@ -67,6 +79,12 @@ const Chat = (props) => {
          conversationId:"6371dbdba0328674eded3d22"
       };
 
+      socket.emit("sendMessage",{
+        senderId : user._id,
+        receiverId : "6331914a42bdfb6ac76bc746",
+        text : newMessage
+      })
+
 
       try{
         const res = axios.post("/Newmessage",message);
@@ -84,7 +102,7 @@ const Chat = (props) => {
       <Box overflow={'scroll'}>
         {
       GetUserchat.map((m)=>{
-          console.log(m)
+          // console.log(m)
           if(m.sender === user._id){
             return  <Message own={true} msg={m.text} time={m.createdAt}/>
           }
