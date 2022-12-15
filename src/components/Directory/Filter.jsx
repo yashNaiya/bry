@@ -105,17 +105,17 @@ const Filter = () => {
                 <Collapse in={open4} timeout="auto" unmountOnExit>
                     <List>
                         <TextField 
-                        sx={{'& input[type=number]': {
-                            '-moz-appearance': 'textfield'
-                        },
-                        '& input[type=number]::-webkit-outer-spin-button': {
-                            '-webkit-appearance': 'none',
-                            margin: 0
-                        },
-                        '& input[type=number]::-webkit-inner-spin-button': {
-                            '-webkit-appearance': 'none',
-                            margin: 0
-                        }}}
+                        // sx={{'& input[type=number]': {
+                        //     '-moz-appearance': 'textfield'
+                        // },
+                        // '& input[type=number]::-webkit-outer-spin-button': {
+                        //     '-webkit-appearance': 'none',
+                        //     margin: 0
+                        // },
+                        // '& input[type=number]::-webkit-inner-spin-button': {
+                        //     '-webkit-appearance': 'none',
+                        //     margin: 0
+                        // }}}
                         size='small' variant='outlined' type={'number'} label={'Enter Year'}></TextField>
                     </List>
                 </Collapse>

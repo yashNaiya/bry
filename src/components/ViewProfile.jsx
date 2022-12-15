@@ -6,26 +6,31 @@ import image from '../assets/profile.svg'
 const ViewProfile = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("viewedProfile")))
     console.log(user)
+    const handleSelect = (e)=>{
 
+    }
+    const handleReject = (e)=>{
+        
+    }
     return (
         <Box maxWidth={500}
-        m={'auto'}
-        p={5}>
-        <Box
-            maxWidth={500}
             m={'auto'}
-            marginBottom={'3rem'}
-            p={5}
-            display='flex'
-            flexDirection={'column'}
-            alignItems='center'
-            sx={{
-                boxShadow: 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px',
-                padding: { xs: 'none', sm: '10px' }
-            }}>
-            <img src={image} alt={'profile'} width={'150'} height={'150'} />
-            <Box minWidth={300} display='flex' flexDirection={'column'} p={2} alignItems={'center'}>
-            <TextField
+            p={5}>
+            <Box
+                maxWidth={500}
+                m={'auto'}
+                marginBottom={'3rem'}
+                p={5}
+                display='flex'
+                flexDirection={'column'}
+                alignItems='center'
+                sx={{
+                    boxShadow: 'rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px',
+                    padding: { xs: 'none', sm: '10px' }
+                }}>
+                <img src={image} alt={'profile'} width={'150'} height={'150'} />
+                <Box minWidth={300} display='flex' flexDirection={'column'} p={2} alignItems={'center'}>
+                    <TextField
                         fullWidth
                         inputProps={{ readOnly: true }}
                         variant='filled'
@@ -187,10 +192,13 @@ const ViewProfile = () => {
                         value={user.Interest}
                         size='small' margin='normal' type={"text"}
                     />
-                <Button>Message</Button>
+                    <Box display={'flex'} width={'100%'} sx={{marginTop:'5px'}} flexDirection={'row'} justifyContent={'space-evenly'}>
+                        <Button onClick={handleSelect} variant="contained">Select</Button>
+                        <Button onClick={handleReject} variant='outlined'>Reject</Button>
+                    </Box>
+                </Box>
             </Box>
         </Box>
-    </Box>
     )
 }
 
