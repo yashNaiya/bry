@@ -9,7 +9,7 @@ const Card = (props) => {
     return (
         <Box m={'25px'} display='flex' flexDirection={'column'} alignItems='center' borderRadius={'10px'} sx={{ width: "210px", height: "250px", boxShadow: "#676767 0px 0px 15px 0px" }}>
             <Box sx={{ transform: 'translateY(-30%)' }}>
-                    <ReactRoundedImage onClick={console.log('hii')} image={SERVER_HOST+props.data.Image} roundedSize="0" imageWidth="110"
+                    <ReactRoundedImage image={SERVER_HOST+props.data.Image} roundedSize="0" imageWidth="110"
                         imageHeight="110" />
             </Box>
             <Typography variant='h6'>{props.data.name}</Typography>

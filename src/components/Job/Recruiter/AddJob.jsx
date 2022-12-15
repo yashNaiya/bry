@@ -196,7 +196,7 @@ const AddJob = () => {
                                 shrink: true,
                             }}
                         />
-                        <TextField
+                        {/* <TextField
                             autoComplete='off'
                             size='small'
                             margin='normal'
@@ -207,7 +207,23 @@ const AddJob = () => {
                             value={inputs.location}
                             onChange={handleChange}
                             fullWidth
-                        />
+                        /> */}
+                        <FormControl size='small' sx={{ m: 1, width: "100%", marginLeft: "0" }}>
+                            <InputLabel id="demo-simple-select-autowidth-label">Location</InputLabel>
+                            <Select
+                                labelId="demo-simple-select-autowidth-label"
+                                id="demo-simple-select-autowidth"
+                                value={inputs.location}
+                                variant={'filled'}
+                                onChange={handleChange}
+                                label="Location"
+                                name="location"
+                            >
+                                {MenuLists.location.map(item => (
+                                    <MenuItem key={item.value} value={item.value}>{item.name}</MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
                         <FormControl size='small' sx={{ m: 1, width: "100%", marginLeft: "0" }}>
                             <InputLabel id="demo-simple-select-autowidth-label">Experience</InputLabel>
                             <Select

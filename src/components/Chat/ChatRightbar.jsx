@@ -3,7 +3,6 @@ import React from 'react'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
 import image from '../../assets/pngegg.png'
-import Chat from './Chat'
 
 const ChatRightbar = (props) => {
 
@@ -45,21 +44,17 @@ const ChatRightbar = (props) => {
                 friendId:fId,
                 convId:conv[0]
              })
-             console.log(props.chatIds)
+            //  console.log(props.chatIds)
         }
     }
 
 
 
     const [tempChat, setTempChat] = useState({
-        userId: "",
-        user: ""
-    })
+        senderId: "",
+        receiverId: ""
+      })
 
-    const fetchChats = async () => {
-        const { data } = await axios.get('/api/chat')
-        setchats(data)
-    }
     const handleChange = async (e) => {
         setfind(e.target.value)
         if ((e.target.value) === '') {
@@ -75,22 +70,24 @@ const ChatRightbar = (props) => {
     const search1 = search.filter(src => {
         return src.name.includes(find) || src.email.includes(find)
     })
-
     useEffect(() => {
-        fetchChats()
-    }, [])
+        if(tempChat.receiverId){            
+            axios.post("/StartNewChat",tempChat)
+        }
 
+    }, [tempChat])
+    
 
     return (
         <Box flex={2} padding={2} borderRadius={5} maxHeight={'75vh'} minHeight={'75vh'} sx={{ overflowY: "scroll", boxShadow: "rgba(0, 0, 0, 0.35) 0px 0px 15px" }}>
             <TextField fullWidth size='small' name='find' sx={{ paddingTop: "10px" }} variant='standard' value={find} label='Search' onChange={handleChange} />
             {search1.map(src => <div key={src._id}><Box p={3} sx={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px", cursor: "pointer" }}>
-                <Button onClick={async () => {
+                <Button onClick={() => {
                     setTempChat(() => ({
-                        user: user._id,
-                        userId: src._id
+                        senderId: user._id,
+                        receiverId: src._id
                     }))
-                    axios.post("/api/chat", tempChat).then(res => alert(res.data.message))
+                 
                 }
 
                 }
@@ -102,8 +99,8 @@ const ChatRightbar = (props) => {
                 {
                     props.friend.map((m) =>
 
-                        <ListItemButton sx={{ marginY: '10px' }} onClick={e => ChatPage(m._id)}>
-                            <img width={"32px"} height={"32px"} borderRadius={"50%"} objectFit={"cover"} src={image} alt='' />
+                        <ListItemButton key={m._id} sx={{ marginY: '10px' }} onClick={e => ChatPage(m._id)}>
+                            <img width={"32px"} height={"32px"}  src={image} alt='' />
                             <ListItemText sx={{ marginX: "10px" }} primary={m.name} />
                         </ListItemButton>
                     )

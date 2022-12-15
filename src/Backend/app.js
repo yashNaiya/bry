@@ -89,7 +89,7 @@ app.post("/register",(req,res)=>{
     console.log(req.body)
    User.findOne({email:email},(err,user)=>{
    if(user){
-       console.log("Registerd already")
+    //    console.log("Registerd already")
        res.send({message:"User Already registered"})
    }else{
        const user = new User({
@@ -622,7 +622,7 @@ app.post("/getAppliedusers/:job_id",async(req,res)=>{
 
 
 app.post("/StartNewChat",async (req,res) =>{
-    // console.log("Hello")
+    console.log("Hello")
     console.log(req.body)
 
     const newConversation = new Conversation({

@@ -26,8 +26,6 @@ const ChatMain = () => {
     getCoversations()
 
   }, [user._id]);
-  const frnd = []
- 
 
   return (
     <Box >

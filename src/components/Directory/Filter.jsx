@@ -33,7 +33,7 @@ const Filter = () => {
 
     return (
         <Box flex={2} minHeight={'80vh'} display={'flex'} flexDirection={'column'} paddingRight="5px">
-            <TextField fullWidth size='small' sx={{paddingTop:"10px"}} name='find' value={find} onChange={handleChange} variant='standard' label='Search' />
+            {/* <TextField fullWidth size='small' sx={{paddingTop:"10px"}} name='find' value={find} onChange={handleChange} variant='standard' label='Search' /> */}
             <List>
                 <ListItemButton sx={{padding:"15px",marginY:"10px",borderRadius:"10px",backgroundColor:"#D3D3D3"}} onClick={handleClick1}>
                     <ListItemText primary="Search By Role" />
