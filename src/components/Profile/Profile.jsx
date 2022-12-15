@@ -23,14 +23,30 @@ const Profile = () => {
 
 
     }
- 
-    const handleSubmit =(e) => {
+    const [resume, setResume] = useState();
+
+    const uploadResume = (e) => {
+        setResume(e.target.files[0])
+        if (value == 1) {
+            setvalue(3)
+        }
+        else {
+            setvalue(2)
+        }
+    }
+    const handleSubmit = (e) => {
         if (value === 1) {
             const formdata = new FormData()
             formdata.append("photo", file)
             formdata.append("ID", user._id)
             axios.post("/UploadPhoto", formdata).then(res => alert(res.data.message))
 
+        }
+        if (value == 2) {
+            // only resume upload
+        }
+        if (value == 3) {
+            // both image and resume upload
         }
         setvalue(0)
         sessionStorage.setItem('sessionData', JSON.stringify(user))
@@ -57,8 +73,12 @@ const Profile = () => {
         // console.log(e.target.files);
         // setFile({...file,url:URL.createObjectURL(e.target.files[0])});
         setFile(e.target.files[0])
-        setvalue(1)
-
+        if (value == 2) {
+            setvalue(3)
+        }
+        else {
+            setvalue(1)
+        }
     }
     return (
         <Box flex={6}
@@ -395,6 +415,15 @@ const Profile = () => {
                                 </RadioGroup>
                             </FormControl>
                         </Box>
+                        {readMode ?
+                            <Button onClick={() => {
+                                localStorage.setItem("viewedResume", JSON.stringify("resume file name"))
+                                window.open('/viewResume', '_blank', 'noopener,noreferrer');
+                            }}>See Resume</Button> :
+                            <Button>
+                                Upload Resume
+                                <input hidden name='resume' onChange={uploadResume} type="file" />
+                            </Button>}
                     </Box>
                 </Box>
                 <Box display="flex" flexDirection={'column'} sx={{ alignItems: "center", margin: '10px' }}>
