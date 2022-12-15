@@ -3,10 +3,14 @@ import React, { useState, useEffect, useRef } from 'react'
 import axios from 'axios'
 import Message from './Message'
 import SendIcon from '@mui/icons-material/Send';
+import { WebSocket } from 'ws';
+
+const Endpoint = "http://localhost:9002"
+var socket;
 
 const Chat = (props) => {
 
-  // props.chatIds
+  console.log(props.chatIds)
 
   const ChatboxBottom = styled("div")(({ theme }) => ({
     marginTop: '5px',

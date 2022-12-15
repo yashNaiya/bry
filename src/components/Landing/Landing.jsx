@@ -53,7 +53,7 @@ const clearSession = () =>{
               onClick={setRecruiter}
               color={'primary'}
               variant={'contained'}>
-              <Typography variant='h4' fontWeight={100} padding={3}>Want To Hier?</Typography>
+              <Typography variant='h4' fontWeight={100} padding={3}>Want To Hire?</Typography>
             </Button>
             </LoginLink>
           </Stack>
