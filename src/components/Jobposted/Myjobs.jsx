@@ -39,6 +39,7 @@ const Myjobs = (props) => {
             margin: '3rem',
             minWidth: 345,
             maxHeight: 200,
+            backgroundColor:"#d3d2d2",
             boxShadow: " rgba(0, 0, 0, 0.35) 0px 5px 15px 0px;",
 
           }}>

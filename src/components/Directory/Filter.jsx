@@ -4,12 +4,21 @@ import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 const Filter = () => {
-    const [find, setfind] = useState('')
 
-    const handleChange = async (e) => {
-      setfind(e.target.value)
+    const [filter, setFilter] = useState({
+        role:"",
+        joining:2001,
+        graduating:2001,
+        dept:"",
+        cur_loc:""
+    })
+    const handleChange = (e) => {
+
+        setFilter((prevState) => ({
+            ...prevState,
+            [e.target.name]: [e.target.value]
+        }))
     }
-
     const [open1, setOpen1] = React.useState(false);
     const handleClick1 = () => {
         setOpen1(!open1);
@@ -35,34 +44,23 @@ const Filter = () => {
         <Box flex={2} minHeight={'80vh'} display={'flex'} flexDirection={'column'} paddingRight="5px">
             {/* <TextField fullWidth size='small' sx={{paddingTop:"10px"}} name='find' value={find} onChange={handleChange} variant='standard' label='Search' /> */}
             <List>
-                <ListItemButton sx={{padding:"15px",marginY:"10px",borderRadius:"10px",backgroundColor:"#D3D3D3"}} onClick={handleClick1}>
+                <ListItemButton sx={{padding:"15px",marginY:"10px",borderRadius:"10px",backgroundColor:"#BAB2B5"}} onClick={handleClick1}>
                     <ListItemText primary="Search By Role" />
                     {open1 ? <ExpandLess /> : <ExpandMore />}
                 </ListItemButton>
                 <Collapse in={open1} timeout="auto" unmountOnExit>
                     <List>
-                        <TextField 
-                        sx={{'& input[type=number]': {
-                            '-moz-appearance': 'textfield'
-                        },
-                        '& input[type=number]::-webkit-outer-spin-button': {
-                            '-webkit-appearance': 'none',
-                            margin: 0
-                        },
-                        '& input[type=number]::-webkit-inner-spin-button': {
-                            '-webkit-appearance': 'none',
-                            margin: 0
-                        }}}
-                        size='small' variant='outlined' type={'number'} label={'Enter Year'}></TextField>
+                        <TextField name='role' value={filter.role} onChange={handleChange}
+                        size='small' variant='outlined' type={'text'} label={'Enter Role'}></TextField>
                     </List>
                 </Collapse>
-                <ListItemButton sx={{padding:"15px",marginY:"10px",borderRadius:"10px",backgroundColor:"#D3D3D3"}} onClick={handleClick2}>
+                <ListItemButton sx={{padding:"15px",marginY:"10px",borderRadius:"10px",backgroundColor:"#BAB2B5"}} onClick={handleClick2}>
                     <ListItemText primary="Year of Joining" />
                     {open2 ? <ExpandLess /> : <ExpandMore />}
                 </ListItemButton>
                 <Collapse in={open2} timeout="auto" unmountOnExit>
                     <List>
-                        <TextField 
+                        <TextField name='joining' value={filter.joining} onChange={handleChange}
                         sx={{'& input[type=number]': {
                             '-moz-appearance': 'textfield'
                         },
@@ -77,13 +75,13 @@ const Filter = () => {
                         size='small' variant='outlined' type={'number'} label={'Enter Year'}></TextField>
                     </List>
                 </Collapse>
-                <ListItemButton sx={{padding:"15px",marginY:"10px",borderRadius:"10px", backgroundColor:"#D3D3D3"}} onClick={handleClick3}>
+                <ListItemButton sx={{padding:"15px",marginY:"10px",borderRadius:"10px", backgroundColor:"#BAB2B5"}} onClick={handleClick3}>
                     <ListItemText primary="Year of Graduation" />
                     {open3 ? <ExpandLess /> : <ExpandMore />}
                 </ListItemButton>
                 <Collapse in={open3} timeout="auto" unmountOnExit>
                     <List>
-                        <TextField 
+                        <TextField name='graduation' value={filter.graduating} onChange={handleChange}
                         sx={{'& input[type=number]': {
                             '-moz-appearance': 'textfield'
                         },
@@ -98,46 +96,24 @@ const Filter = () => {
                         size='small' variant='outlined' type={'number'} label={'Enter Year'}></TextField>
                     </List>
                 </Collapse>
-                <ListItemButton sx={{padding:"15px",marginY:"10px",borderRadius:"10px", backgroundColor:"#D3D3D3"}} onClick={handleClick4}>
+                <ListItemButton sx={{padding:"15px",marginY:"10px",borderRadius:"10px", backgroundColor:"#BAB2B5"}} onClick={handleClick4}>
                     <ListItemText primary="Department" />
                     {open4 ? <ExpandLess /> : <ExpandMore />}
                 </ListItemButton>
                 <Collapse in={open4} timeout="auto" unmountOnExit>
                     <List>
-                        <TextField 
-                        // sx={{'& input[type=number]': {
-                        //     '-moz-appearance': 'textfield'
-                        // },
-                        // '& input[type=number]::-webkit-outer-spin-button': {
-                        //     '-webkit-appearance': 'none',
-                        //     margin: 0
-                        // },
-                        // '& input[type=number]::-webkit-inner-spin-button': {
-                        //     '-webkit-appearance': 'none',
-                        //     margin: 0
-                        // }}}
-                        size='small' variant='outlined' type={'number'} label={'Enter Year'}></TextField>
+                        <TextField name='dept' value={filter.dept} onChange={handleChange}
+                        size='small' variant='outlined' type={'text'} label={'Enter Department'}></TextField>
                     </List>
                 </Collapse>
-                <ListItemButton sx={{padding:"15px",marginY:"10px",borderRadius:"10px", backgroundColor:"#D3D3D3"}} onClick={handleClick5}>
+                <ListItemButton sx={{padding:"15px",marginY:"10px",borderRadius:"10px", backgroundColor:"#BAB2B5"}} onClick={handleClick5}>
                     <ListItemText primary="Current Location" />
                     {open5 ? <ExpandLess /> : <ExpandMore />}
                 </ListItemButton>
                 <Collapse in={open5} timeout="auto" unmountOnExit>
                     <List>
-                        <TextField 
-                        sx={{'& input[type=number]': {
-                            '-moz-appearance': 'textfield'
-                        },
-                        '& input[type=number]::-webkit-outer-spin-button': {
-                            '-webkit-appearance': 'none',
-                            margin: 0
-                        },
-                        '& input[type=number]::-webkit-inner-spin-button': {
-                            '-webkit-appearance': 'none',
-                            margin: 0
-                        }}}
-                        size='small' variant='outlined' type={'number'} label={'Enter Year'}></TextField>
+                        <TextField name='cur_loc' value={filter.cur_loc} onChange={handleChange}
+                        size='small' variant='outlined' type={'text'} label={'Enter Location'}></TextField>
                     </List>
                 </Collapse>
             </List>

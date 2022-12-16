@@ -104,7 +104,7 @@ const Chat = (props) => {
   }
 
   return (
-    <Box justifyContent={'space-between'} display='flex' flexDirection='column' flex={4} padding={2} borderRadius={5} maxHeight={'75vh'} minHeight={'75vh'} sx={{ boxShadow: "inset rgba(0, 0, 0, 0.35) 0px 0px 12px 0px" }} >
+    <Box justifyContent={'space-between'} display='flex' flexDirection='column' flex={4} padding={2}  maxHeight={'75vh'} minHeight={'75vh'} sx={{ boxShadow: "inset rgba(0, 0, 0, 0.35) 0px 0px 12px 0px" }} >
       <Box overflow={'scroll'} minHeight={'80%'}>
         {
           GetUserchat.map((m) => {

@@ -11,6 +11,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import {  useNavigate } from 'react-router-dom';
 import PostPage from './PostPage';
+import { padding } from '@mui/system';
 
 const Post1 = (data) => {
     const navigate = useNavigate()
@@ -41,7 +42,7 @@ const Post1 = (data) => {
 
 
     return (
-        <Card sx={{ margin: "1%" }} >
+        <Card sx={{ backgroundColor:"#d3d2d2", boxShadow: " rgba(0, 0, 0, 0.35) 0px 5px 15px 0px;", marginBottom: "25px", padding:'20px' }} >
             <CardHeader
                 action={
                     <Typography variant='h5' color='primary.main' fontWeight={100} >
@@ -55,10 +56,10 @@ const Post1 = (data) => {
                 <Typography variant='button'>
                     {data.type}
                 </Typography>
-                <Typography paddingY={'1rem'}>
+                <Typography >
                     {data.companyName}
                 </Typography>
-                <Typography paddingRight={'1rem'} display={'inline'}>
+                <Typography display={'inline'}>
                     {data.recruterName}
                 </Typography>
                 <Typography display={'inline'}>

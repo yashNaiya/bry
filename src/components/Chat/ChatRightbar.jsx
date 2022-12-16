@@ -79,7 +79,7 @@ const ChatRightbar = (props) => {
     
 
     return (
-        <Box flex={2} padding={2} borderRadius={5} maxHeight={'75vh'} minHeight={'75vh'} sx={{ overflowY: "scroll", boxShadow: "rgba(0, 0, 0, 0.35) 0px 0px 15px" }}>
+        <Box flex={2} padding={2} maxHeight={'75vh'} minHeight={'75vh'} sx={{ overflowY: "scroll", boxShadow: "rgba(0, 0, 0, 0.35) 0px 0px 15px" }}>
             <TextField fullWidth size='small' name='find' sx={{ paddingTop: "10px" }} variant='standard' value={find} label='Search' onChange={handleChange} />
             {search1.map(src => <div key={src._id}><Box p={3} sx={{ boxShadow: "rgba(0, 0, 0, 0.24) 0px 3px 8px", cursor: "pointer" }}>
                 <Button onClick={() => {
