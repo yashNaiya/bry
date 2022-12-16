@@ -4,13 +4,47 @@ import axios from 'axios'
 import Message from './Message'
 import SendIcon from '@mui/icons-material/Send';
 import { WebSocket } from 'ws';
-
+import { io } from "socket.io-client";
 const Endpoint = "http://localhost:9002"
 var socket;
 
 const Chat = (props) => {
+  // console.log(props)
+  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('sessionData')))
+  const [arrivalMessage,setArrivalMessage] = useState(null)
 
-  console.log(props.chatIds)
+  const [GetUserchat, SetGetUserChat] = useState([])
+  const [newMessage, setNewMessage] = useState()
+
+  socket = io(Endpoint)
+
+  socket.on("connect", () => {
+    // console.log(socket.id); 
+  });
+
+  socket.emit("addUser",user._id)
+
+  useEffect(()=>{
+    socket.on("getMessage",data=>{
+      setArrivalMessage({
+        sender : data.senderId,
+        text : data.text,
+        createdAt : Date.now()
+      })
+    })
+
+
+  })
+
+ 
+  
+  // if(arrivalMessage){
+
+  //   SetGetUserChat(arrivalMessage)
+  // }
+  console.log(arrivalMessage)
+
+  // console.log(props.chatIds)
 
   const ChatboxBottom = styled("div")(({ theme }) => ({
     marginTop: '5px',
@@ -21,10 +55,8 @@ const Chat = (props) => {
   }))
 
 
-  const [user, setUser] = useState(JSON.parse(sessionStorage.getItem('sessionData')))
 
-  const [GetUserchat, SetGetUserChat] = useState([])
-  const [newMessage, setNewMessage] = useState()
+
 
   const getChats = () => {
     if (props.chatIds.convId) {
@@ -33,6 +65,10 @@ const Chat = (props) => {
         .catch(err => console.log(err))
     }
   }
+
+ 
+
+
 
   useEffect(() => {
     getChats()
@@ -49,9 +85,16 @@ const Chat = (props) => {
       conversationId: props.chatIds.convId
     };
 
+    socket.emit("sendMessage",{
+      senderId : user._id,
+      receiverId : props.chatIds.friendId,
+      text: newMessage,
+    });
+
 
     try {
       const res = axios.post("/Newmessage", message);
+
 
     } catch (err) {
       console.log(err);
