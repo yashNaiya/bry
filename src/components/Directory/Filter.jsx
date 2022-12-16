@@ -3,18 +3,12 @@ import React, { useState } from 'react'
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
-const Filter = () => {
+const Filter = (props) => {
 
-    const [filter, setFilter] = useState({
-        role:"",
-        joining:2001,
-        graduating:2001,
-        dept:"",
-        cur_loc:""
-    })
+
     const handleChange = (e) => {
 
-        setFilter((prevState) => ({
+        props.setFilter((prevState) => ({
             ...prevState,
             [e.target.name]: [e.target.value]
         }))
@@ -50,7 +44,7 @@ const Filter = () => {
                 </ListItemButton>
                 <Collapse in={open1} timeout="auto" unmountOnExit>
                     <List>
-                        <TextField name='role' value={filter.role} onChange={handleChange}
+                        <TextField name='role' value={props.filter.role} onChange={handleChange}
                         size='small' variant='outlined' type={'text'} label={'Enter Role'}></TextField>
                     </List>
                 </Collapse>
@@ -60,7 +54,7 @@ const Filter = () => {
                 </ListItemButton>
                 <Collapse in={open2} timeout="auto" unmountOnExit>
                     <List>
-                        <TextField name='joining' value={filter.joining} onChange={handleChange}
+                        <TextField name='joining' value={props.filter.joining} onChange={handleChange}
                         sx={{'& input[type=number]': {
                             '-moz-appearance': 'textfield'
                         },
@@ -81,7 +75,7 @@ const Filter = () => {
                 </ListItemButton>
                 <Collapse in={open3} timeout="auto" unmountOnExit>
                     <List>
-                        <TextField name='graduation' value={filter.graduating} onChange={handleChange}
+                        <TextField name='graduation' value={props.filter.graduating} onChange={handleChange}
                         sx={{'& input[type=number]': {
                             '-moz-appearance': 'textfield'
                         },
@@ -102,7 +96,7 @@ const Filter = () => {
                 </ListItemButton>
                 <Collapse in={open4} timeout="auto" unmountOnExit>
                     <List>
-                        <TextField name='dept' value={filter.dept} onChange={handleChange}
+                        <TextField name='dept' value={props.filter.dept} onChange={handleChange}
                         size='small' variant='outlined' type={'text'} label={'Enter Department'}></TextField>
                     </List>
                 </Collapse>
@@ -112,7 +106,7 @@ const Filter = () => {
                 </ListItemButton>
                 <Collapse in={open5} timeout="auto" unmountOnExit>
                     <List>
-                        <TextField name='cur_loc' value={filter.cur_loc} onChange={handleChange}
+                        <TextField name='cur_loc' value={props.filter.cur_loc} onChange={handleChange}
                         size='small' variant='outlined' type={'text'} label={'Enter Location'}></TextField>
                     </List>
                 </Collapse>
