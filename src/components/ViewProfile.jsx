@@ -1,12 +1,14 @@
 import { Box, Button, TextField } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import image from '../assets/profile.svg'
-
+import axios from 'axios'
 
 const ViewProfile = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("viewedProfile")))
     console.log(user)
-    const handleSelect = (e)=>{
+    const handleSelect = (email)=>{
+        console.log(email)
+        axios.patch(`/register/update/${email}`).then(res => alert(res.data.message))
 
     }
     const handleReject = (e)=>{
@@ -193,7 +195,7 @@ const ViewProfile = () => {
                         size='small' margin='normal' type={"text"}
                     />
                     <Box display={'flex'} width={'100%'} sx={{marginTop:'5px'}} flexDirection={'row'} justifyContent={'space-evenly'}>
-                        <Button onClick={handleSelect} variant="contained">Select</Button>
+                        <Button onClick={() => handleSelect(user.email)} variant="contained">Select</Button>
                         <Button onClick={handleReject} variant='outlined'>Reject</Button>
                     </Box>
                 </Box>
