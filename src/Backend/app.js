@@ -271,6 +271,22 @@ app.patch("/register/update/:email",async (req,res)=>{
 })
 
 
+app.delete("/RejectSeekerFromJob/:jobId/:email",async (req,res)=>{
+    try{
+        // console.log(req.params)
+
+        const email = req.params.email;
+       
+        
+
+      }catch(e){
+
+      }
+   
+})
+
+
+
 
 //Delete Student From Database
 app.delete("/register/Delete/:ID",async (req,res)=>{
