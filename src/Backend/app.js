@@ -195,6 +195,7 @@ app.post("/User",async (req,res)=>{
 
 
 //Set State of Student to true
+
 app.patch("/register/update/:ID/:email",async (req,res)=>{
     try{
         // console.log(req.params)
@@ -235,6 +236,40 @@ app.patch("/register/update/:ID/:email",async (req,res)=>{
         res.send(e);
     }
 })
+
+
+app.patch("/register/update/:email",async (req,res)=>{
+    try{
+        // console.log(req.params)
+
+        const email = req.params.email;
+       
+        // console.log(OneUserDataStateUpdate)
+        
+            const mailOptions = {
+                from:'BVMAlumini1020',
+                to:email,
+                subject:"Company name",
+                text: "Conratulations You are selected In our company as developer,we will give you more information about it"
+            }
+            
+            transporter.sendMail(mailOptions,(error,info)=>{
+                if(error){
+                    console.log("error",error);
+                    res.status(401).json({status:401,message:"email not send"})
+                }else{
+                    console.log("Email sent",info.response);
+                    res.status(201).json({status:201,message:"Email sent Succsfully"})
+                    res.send({message:"User is Added"});
+                }
+            })
+
+      }catch(e){
+
+      }
+   
+})
+
 
 
 //Delete Student From Database
@@ -727,7 +762,7 @@ const server = app.listen(9002,()=>{
 
 
  io.on("connection",(socket)=>{
-    console.log("a User Connected");
+    // console.log("a User Connected");
     io.emit("welcome","hello this is socket server")
 
     socket.on("addUser",userId=>{
@@ -738,7 +773,7 @@ const server = app.listen(9002,()=>{
     socket.on("sendMessage",({senderId,receiverId,text})=>{
         const use = getUser(receiverId)
         // console.log(use);
-        console.log(text)
+        // console.log(text)
         io.to(use.socketId).emit("getMessage",{
             senderId,
             text
@@ -746,7 +781,7 @@ const server = app.listen(9002,()=>{
     })
 
     socket.on("disconnect",()=>{
-        console.log("a User Disconnect")
+        // console.log("a User Disconnect")
         removeUser(socket.id)
         // console.log(users)
     })

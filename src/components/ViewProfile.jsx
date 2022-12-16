@@ -1,12 +1,14 @@
 import { Box, Button, TextField } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import image from '../assets/profile.svg'
-
+import axios from 'axios'
 
 const ViewProfile = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("viewedProfile")))
     console.log(user)
-    const handleSelect = (e)=>{
+    const handleSelect = (email)=>{
+        console.log(email)
+        axios.patch(`/register/update/${email}`).then(res => alert(res.data.message))
 
     }
     const handleReject = (e)=>{
