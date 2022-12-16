@@ -3,7 +3,8 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import Card from './Card'
 
-const Directory = () => {
+const Directory = (props) => {
+    console.log(props.filter)
     const [dataTable, setDataTable] = useState([]);
     //  console.log(dataTable)
     useEffect(() => {

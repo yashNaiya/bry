@@ -45,6 +45,7 @@ const JobDetail = (props) => {
           .then(function (response) {
             // console.log(response.data)
             localStorage.setItem("viewedProfile",JSON.stringify(response.data))
+            localStorage.setItem("job",JSON.stringify(props.job))
           })
           .catch(err => console.log(err));
           // console.log(dataofuser)
