@@ -5,7 +5,9 @@ import axios from 'axios'
 
 const ViewProfile = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("viewedProfile")))
-    console.log(user)
+    const [job,seJob] = useState(JSON.parse(localStorage.getItem("job")))
+    // console.log(user)
+    // console.log(job)
     const handleSelect = (email)=>{
         console.log(email)
         axios.patch(`/register/update/${email}`).then(res => alert(res.data.message))
