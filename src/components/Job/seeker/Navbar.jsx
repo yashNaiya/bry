@@ -61,7 +61,7 @@ const Navbar = () => {
     navigate('/', {replace:true})
   }
   return (
-    <AppBar position='sticky' color="secondary" sx={{ boxShadow: "none", paddingY: "1%" }} >
+    <AppBar position='sticky' color="secondary" sx={{marginBottom:'.5rem', boxShadow: "none", paddingY: ".3rem" }} >
       <StyledToolbar >
         <Typography variant="h6" color="primary" sx={{ display: { xs: "none", sm: "block" } }}>BVM</Typography>
         <Box display={'flex'} flexDirection={'row'} justifyContent={'space-evenly'}>

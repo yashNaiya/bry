@@ -23,7 +23,7 @@ const Sidebar = () => {
           display: { xs: "none", sm: "flex" },
   
         }}>
-        <Box maxHeight={'100%'} minHeight={"100vh"} minWidth={"15%"}  position="fixed" sx={{borderRight: '2px solid #A7BEAE'}}>
+        <Box maxHeight={'100%'} minHeight={"100vh"} minWidth={"18%"}  position="fixed" sx={{borderRight: '2px solid #123C69'}}>
 
           <ListItemButton to={'/jobpage'}>
             <ListItemIcon>
@@ -65,7 +65,7 @@ const Sidebar = () => {
         sx={{
           display: { xs: "none", sm: "flex" },
         }}>
-        <Box maxHeight={'100%'} minHeight={"100vh"} minWidth={"15%"}  position="fixed" sx={{borderRight: '2px solid #A7BEAE'}}>
+        <Box maxHeight={'100%'} minHeight={"100vh"} minWidth={"18%"}  position="fixed" sx={{borderRight: '2px solid #123C69'}}>
           <ListItemButton to='/myjobs'>
             <ListItemIcon>
               <WorkIcon color='primary' />
@@ -106,7 +106,7 @@ const Sidebar = () => {
         sx={{
           display: { xs: "none", sm: "flex" },
         }}>
-        <Box maxHeight={'100%'} minHeight={"100vh"} minWidth={"15%"}  position="fixed" sx={{borderRight: '2px solid #A7BEAE'}}>
+        <Box maxHeight={'100%'} minHeight={"100vh"} minWidth={"18%"}  position="fixed" sx={{borderRight: '2px solid #123C69'}}>
           <ListItemButton to={'/reports'}>
             <ListItemIcon>
               <ArticleIcon color='primary' />

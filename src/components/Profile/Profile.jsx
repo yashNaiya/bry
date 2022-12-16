@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Typography, TextField, Button, IconButton, FormControl, Radio, FormControlLabel, FormLabel, RadioGroup } from '@mui/material'
 import { useState } from 'react'
 import { PhotoCamera } from '@mui/icons-material';
-import image from '../../assets/profile.svg'
+import image from '../../assets/Resume.gif'
 import axios from 'axios';
 
 const Profile = () => {

@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import image from '../assets/profile.svg'
 
 
-const ViewProfile = () => {
+const ViewProfile2 = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("viewedProfile")))
     console.log(user)
     const handleSelect = (e)=>{
@@ -192,10 +192,7 @@ const ViewProfile = () => {
                         value={user.Interest}
                         size='small' margin='normal' type={"text"}
                     />
-                    <Box display={'flex'} width={'100%'} sx={{marginTop:'15px'}} flexDirection={'row'} justifyContent={'space-evenly'}>
-                        <Button onClick={handleSelect} variant="contained">Select</Button>
-                        <Button onClick={handleReject} variant='outlined'>Reject</Button>
-                    </Box>
+                        <Button sx={{marginTop:"15px"}} onClick={handleSelect} variant="contained">Message</Button>
                 </Box>
             </Box>
         </Box>
@@ -204,4 +201,4 @@ const ViewProfile = () => {
 
 // localStorage.removeItem('Name');
 
-export default ViewProfile
+export default ViewProfile2

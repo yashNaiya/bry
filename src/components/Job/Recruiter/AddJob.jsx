@@ -3,7 +3,7 @@ import { Box, Typography, TextField, Button, MenuItem, Select, RadioGroup, Radio
 import { useState } from 'react'
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
-import image from '../../../assets/job.svg'
+import image from '../../../assets/job.gif'
 import MenuLists from '../../../config/MenuLists';
 import axios from 'axios';
 

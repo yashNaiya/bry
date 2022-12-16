@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { Box, Typography, Button, styled } from '@mui/material'
 import MainNav from './MainNav'
 import { Stack } from '@mui/system'
-import image from '../../assets/landing.svg'
+import image from '../../assets/landing3.gif'
 import { NavLink } from 'react-router-dom'
 
 const Landing = () => {
