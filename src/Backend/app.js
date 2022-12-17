@@ -37,6 +37,7 @@ const transporter = nodemailer.createTransport({
 //multer store Image
 const multer = require("multer");
 const { default: mongoose } = require("mongoose");
+const { findById } = require("./Models/Student");
 
 
 
@@ -271,16 +272,22 @@ app.patch("/register/update/:email",async (req,res)=>{
 })
 
 
-app.delete("/RejectSeekerFromJob/:jobId/:email",async (req,res)=>{
+app.delete("/RejectSeekerFromJob/:jobId/:userId",async (req,res)=>{
     try{
-        // console.log(req.params)
+        console.log("New");
 
-        const email = req.params.email;
-       
+        const userId = req.params.userId;
+        const jobId = req.params.jobId;
+        console.log(userId)
+        // console.log(jobId)
+
+        const d = await JOBS.findByIdAndUpdate({_id:jobId},{$pull:{Appliedusers:userId}})
+
+        res.status(201).json({status:201,message:"Applicant Removed"})
         
-
+       
       }catch(e){
-
+        res.status(401).json({status:401,message:"Cannot Remove,Error occured"})
       }
    
 })
@@ -533,7 +540,7 @@ app.post("/addjob",(req,res)=>{
        })
        job.save(err =>{
            if(err){
-            //   console.log(err)
+              console.log(err)
             // console.log("Hello")
                  res.send(err)
            }

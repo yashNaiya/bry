@@ -13,8 +13,8 @@ const Post = (props) => {
     }, []);
     
     const dataTable1 =  dataTable.filter(data =>{
-        console.log(data)
-         console.log(data.type+" "+props.filter.mode[0])
+        // console.log(data)
+        //  console.log(data.type+" "+props.filter.mode[0])
         return  data.location === props.filter.location[0] || (data.experiance === props.filter.mode[0] || data.WorkFromHome === props.filter.mode[0] || data.salary > props.filter.mode[0] || data.type === props.filter.mode[0] )
     })
 

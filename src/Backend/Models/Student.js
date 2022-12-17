@@ -101,11 +101,12 @@ const Infouser = new mongoose.Schema({
     verifytoken :{
         type : String
     },
-    AppliedJobs :[{
+    Appliedjobs :[{
         type:mongoose.Schema.Types.ObjectId,
         ref : "Info",
-        unique: true
-    }]
+        
+    }],
+    
 })
 
 //Create Model

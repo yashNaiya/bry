@@ -13,12 +13,11 @@ const ViewProfile = () => {
         axios.patch(`/register/update/${email}`).then(res => alert(res.data.message))
 
     }
-    const handleReject = (email)=>{
+    const handleReject = (userId)=>{
         // console.log(email);
         // console.log("Hello");
-
         //need Job id
-        axios.delete(`/RejectSeekerFromJob/${email}`).then(res => alert(res.data.message))
+        axios.delete(`/RejectSeekerFromJob/${job._id}/${userId}`).then(res => alert(res.data.message))
     }
     return (
         <Box maxWidth={500}
@@ -202,7 +201,7 @@ const ViewProfile = () => {
                     />
                     <Box display={'flex'} width={'100%'} sx={{marginTop:'15px'}} flexDirection={'row'} justifyContent={'space-evenly'}>
                         <Button  onClick={() => handleSelect(user.email)} variant="contained">Select</Button>
-                        <Button onClick={() => handleReject(user.email)} variant='outlined'>Reject</Button>
+                        <Button onClick={() => handleReject(user._id)} variant='outlined'>Reject</Button>
                     </Box>
                 </Box>
             </Box>

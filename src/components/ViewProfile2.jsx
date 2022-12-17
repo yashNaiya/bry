@@ -5,13 +5,14 @@ import image from '../assets/profile.svg'
 
 const ViewProfile2 = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem("viewedProfile")))
-    console.log(user)
-    const handleSelect = (e)=>{
 
+    const [opened,setOpened] = useState()
+    console.log(user._id)
+    const handleMessage = ()=>{
+        sessionStorage.setItem('user2', JSON.stringify(user)) 
+        window.open('/chatpage', 'noopener,noreferrer');   
     }
-    const handleReject = (e)=>{
-        
-    }
+
     return (
         <Box maxWidth={500}
             m={'auto'}
@@ -192,7 +193,6 @@ const ViewProfile2 = () => {
                         value={user.Interest}
                         size='small' margin='normal' type={"text"}
                     />
-                        <Button sx={{marginTop:"15px"}} onClick={handleSelect} variant="contained">Message</Button>
                 </Box>
             </Box>
         </Box>

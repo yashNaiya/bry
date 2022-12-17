@@ -4,7 +4,6 @@ import Authenticate from "./components/Authenticate/Authenticate";
 import { Routes, Route } from "react-router-dom"
 import React  from 'react';
 import ViewProfile2 from "./components/ViewProfile2";
-import ViewResume from "./components/ViewResume";
 import ForgotPassword from "./components/Forgotpassword";
 import ProfileMain from "./components/Profile/ProfileMain";
 import Register from "./components/Landing/Register";
@@ -39,7 +38,6 @@ function App() {
       <Route path='/myjobs' element={<MyjobsMain/>}></Route>
       <Route path='/viewProfile' element={<ViewProfile/>}></Route>
       <Route path='/viewProfile2' element={<ViewProfile2/>}></Route>
-      <Route path='/viewResume' element={<ViewResume/>}></Route>
       <Route path='/chatpage' element={<ChatMain/>}></Route>
       <Route path="*" element={<PageNotFound />}></Route>
     </Routes>

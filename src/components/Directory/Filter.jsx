@@ -75,7 +75,7 @@ const Filter = (props) => {
                 </ListItemButton>
                 <Collapse in={open3} timeout="auto" unmountOnExit>
                     <List>
-                        <TextField name='graduation' value={props.filter.graduating} onChange={handleChange}
+                        <TextField name='graduating' value={props.filter.graduating} onChange={handleChange}
                         sx={{'& input[type=number]': {
                             '-moz-appearance': 'textfield'
                         },

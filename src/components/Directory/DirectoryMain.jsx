@@ -9,8 +9,8 @@ import {useState} from 'react'
 const DirectoryMain = () => {
   const [filter, setFilter] = useState({
     role:"",
-    joining:2001,
-    graduating:2001,
+    joining:"",
+    graduating:"",
     dept:"",
     cur_loc:""
 })

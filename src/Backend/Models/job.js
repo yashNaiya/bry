@@ -1,3 +1,4 @@
+const { ObjectId } = require("mongodb");
 const mongoose = require("mongoose")
 const Jobs = new mongoose.Schema({
    UserID : {
@@ -65,9 +66,10 @@ const Jobs = new mongoose.Schema({
     Appliedusers :[{
         type:mongoose.Schema.Types.ObjectId,
         ref : "Info",
-        unique: true
-    }]
+        
+    }],
     
+
  })
  
  //Create Model

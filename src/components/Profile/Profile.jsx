@@ -415,15 +415,6 @@ const Profile = () => {
                                 </RadioGroup>
                             </FormControl>
                         </Box>
-                        {readMode ?
-                            <Button onClick={() => {
-                                localStorage.setItem("viewedResume", JSON.stringify("resume file name"))
-                                window.open('/viewResume', '_blank', 'noopener,noreferrer');
-                            }}>See Resume</Button> :
-                            <Button>
-                                Upload Resume
-                                <input hidden name='resume' onChange={uploadResume} type="file" />
-                            </Button>}
                     </Box>
                 </Box>
                 <Box display="flex" flexDirection={'column'} sx={{ alignItems: "center", margin: '10px' }}>
