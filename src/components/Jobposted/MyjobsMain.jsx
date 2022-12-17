@@ -1,7 +1,6 @@
 import { Box, Stack } from '@mui/material'
 import React, { useState } from 'react'
 import Navbar from '../Job/seeker/Navbar'
-import PostPage from '../Job/seeker/PostPage'
 import Sidebar from '../Sidebar'
 import JobDetail from './JobDetail'
 import Myjobs from './Myjobs'
